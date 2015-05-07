@@ -2,15 +2,17 @@
 
     angular.module('taxidriver').controller('AppCtrl', ['$scope','ReportService', function($scope,ReportService) {
 
+      $scope.sql = null;
+      $scope.sqlrs = null;
 
       $scope.send = function(query)
       {
         ReportService.request(query).
         success(function(data, status) {
-          alert( data.rows);
+          $scope.sqlrs = data.rows.join(',');
         }).
         error(function(data, status) {
-          alert("Error" + status);
+          alert("Error:" + status + "\n" + data);
         });
 
       }       
