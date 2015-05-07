@@ -7,12 +7,16 @@
 
       $scope.send = function(query)
       {
+        $scope.sqlrs =  "Processing...";
+
         ReportService.request(query).
         success(function(data, status) {
           $scope.sqlrs = data.rows.join(',');
         }).
         error(function(data, status) {
-          alert("Error:" + status + "\n" + data);
+          var msg = data.error.errors[0].message;
+
+          $scope.sqlrs ="Error:" + msg;
         });
 
       }       
