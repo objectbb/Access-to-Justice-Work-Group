@@ -1,39 +1,57 @@
 <!doctype html>
 <html ng-app="taxidriver">
-    <head>
+<head>
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <div ng-controller="ButtonsCtrl">
-            <h4>Single toggle</h4>
-<pre>{{singleModel}}</pre>
-<button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-Single Toggle
-</button>
-<h4>Checkbox</h4>
-<pre>{{checkModel}}</pre>
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</label>
-                <label class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</label>
-                <label class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</label>
-            </div>
-<h4>Radio &amp; Uncheckable Radio</h4>
-<pre>{{radioModel || 'null'}}</pre>
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">Left</label>
-                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">Middle</label>
-                <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">Right</label>
-            </div>
-            <div class="btn-group">
-                <label class="btn btn-success" ng-model="radioModel" btn-radio="'Left'" uncheckable>Left</label>
-                <label class="btn btn-success" ng-model="radioModel" btn-radio="'Middle'" uncheckable>Middle</label>
-                <label class="btn btn-success" ng-model="radioModel" btn-radio="'Right'" uncheckable>Right</label>
-            </div>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div ng-controller="AppCtrl" class="form-group">
+
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-9">  
+         <div class="btn-group" dropdown dropdown-append-to-body>
+          <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+            SQL Reports<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+          <li><a href="#" ng-click="send('%2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')">select * from %2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ</a></li>
+          </ul>
         </div>
-        <script src="js/libs/angular.min.js"></script>
-        <script src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
-        <script src="js\app\app.js"></script>
-        <script src="js\app\controller\app.js"></script>        
-    </body>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">   
+        <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">   
+        <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send('%2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')" >Send</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/libs/angular.min.js"></script>
+<script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+
+<script type="text/javascript" src="js/app/app.js"></script>
+
+<script type="text/javascript" src="js/app/services/fusiontables/reports.js"></script>
+
+<script type="text/javascript" src="js/app/controller/app.js"></script>
+
+
+
+
+</body>
 </html>
