@@ -3,6 +3,7 @@
 <head>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
 </head>
 <body>
@@ -18,40 +19,73 @@
             SQL Reports<span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-          <li><a href="#" ng-click="send('%2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')">select * from %2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ</a></li>
-          </ul>
+            <li>
+             <a href="#" ng-click="send('select * from 1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i')">
+               <h4>Taxi Medallion Holders Summary</h4> </a>
+               1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i
+             </li>
+             <li class="divider"></li>
+             <li>
+               <a href="#" ng-click="send('select * from 1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt')">
+                 <h4>Doc & ANOV ers Summary</h4></a>
+                 1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt
+               </li>
+               <li class="divider"></li>
+               <li>
+                <a href="#" ng-click="send('select * from 1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')">
+                  <h4>Violations Report</h4></a>
+                  1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#" ng-click="send('select * from 1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ')">
+                    <h4>Taxi Medallion Holders Total (Grand)Report</h4>
+                  </a>1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">   
+            <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-1">   
+            <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send(sql)" >Send</button>
+          </div>
+           <div class="col-md-5">   
+              {{msg}}
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+        <div class="col-md-12">   
+            <table id="rstable" class="display">
+              <thead>
+              </thead>
+            </table>  
+          </div>
         </div>
       </div>
+
     </div>
-    <br>
-    <div class="row">
-      <div class="col-md-6">   
-        <textarea class="form-control" rows="5" ng-model="sql"></textarea>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-6">   
-        <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send('%2011An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')" >Send</button>
-      </div>
-    </div>
-  </div>
+    <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular.min.js"></script>
+    <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/libs/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="js/libs/dataTables.bootstrap.js"></script>
 
-</div>
-<script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="js/libs/angular.min.js"></script>
-<script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
-<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script type="text/javascript" src="js/app/app.js"></script>
+    <script type="text/javascript" src="js/app/services/fusiontables/reports.js"></script>
+    <script type="text/javascript" src="js/app/controller/app.js"></script>
 
-<script type="text/javascript" src="js/app/app.js"></script>
-
-<script type="text/javascript" src="js/app/services/fusiontables/reports.js"></script>
-
-<script type="text/javascript" src="js/app/controller/app.js"></script>
-
-
-
-
-</body>
-</html>
+  </body>
+  </html>

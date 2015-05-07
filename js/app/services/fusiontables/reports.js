@@ -8,13 +8,7 @@
       request : function(query) {
         var urlrequest = url + query + "&" + key;
 
-        $http.get(urlrequest).
-        success(function(data, status) {
-          return data.rows;
-        }).
-        error(function(data, status) {
-          alert("Error" + status);
-        });
+       return $http.get(urlrequest);
       }
     }
 

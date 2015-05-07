@@ -1,3 +1,4 @@
   (function() {
-      angular.module('taxidriver', ['ui.bootstrap']);      
+      angular.module('taxidriver', ['ui.bootstrap']);    
+      //$('#rstable').DataTable();  
   }());
