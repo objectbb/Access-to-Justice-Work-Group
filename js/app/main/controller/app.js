@@ -1,20 +1,31 @@
 (function() {
-    angular.module('taxidriver').controller('AppCtrl', ['$scope', 'ReportService', function($scope, ReportService) {
+    angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', function($scope, $q, ReportService) {
         $scope.sql = null;
         $scope.sqlrs = null;
-
         var columnsjoin = function(id) {
+            var deferred = $q.defer();
+            var rs;
             ReportService.requestcolumns(id).then(function(data, status) {
-                 return (_.map(data.data.items, function(n) {
+                rs = deferred.resolve((_.map(data.data.items, function(n) {
                     return n.name;
-                })).join(',');
+                })).join(', '));
+            }, function(updates) {
+                deferred.update(updates);
             });
+            return deferred.promise;
         }
-        $scope.tmhs = columnsjoin('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i');
-        $scope.anovs = columnsjoin('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt');
-        $scope.vr = columnsjoin('1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ');
-        $scope.tmht = columnsjoin('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ');
-
+        columnsjoin('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i').then(function(data) {
+            $scope.tmhs = data;
+        });
+        columnsjoin('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt').then(function(data) {
+            $scope.anovs = data;
+        });
+        columnsjoin('1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ').then(function(data) {
+            $scope.vr= data;
+        });
+         columnsjoin('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ').then(function(data) {
+            $scope.tmht= data;
+        });
         $scope.send = function(query) {
             $scope.msg = "Processing...";
             ReportService.request(query).

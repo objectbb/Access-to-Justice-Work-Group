@@ -1,3 +1,16 @@
-.main-background-img{
-	background-image: url("images/blue_woven_nylon_fabric.jpg");
+.background-green{
+	background-color: #64AA41;
+}
+
+.background-white{
+	background-color: #ffffff;
+}
+
+.font-white{
+	color: #ffffff;
+}
+body {
+    background-image: url(../images/blue_woven_nylon_fabric.jpg);
+    background-color: #cccccc;
+    font-size: 1.1em;
 }
