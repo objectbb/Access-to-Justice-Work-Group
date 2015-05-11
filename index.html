@@ -1,14 +1,18 @@
 <!doctype html>
 <html ng-app="taxidriver">
     <head>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/isteven-multi-select.css">
         <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
-        <div class="page-header background-white">
+        <div class="page-header background-green">
+            <span class="title">
             <h1>RUN OFF THE ROAD</h1>
+            <h4>&nbsp;&nbsp;&nbsp;Access-to-Justice-Work-Group</h4>
+            </span>
         </div>
         <div ng-controller="AppCtrl" class="form-group">
             <div class="container-fluid">
@@ -23,50 +27,7 @@
                                <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
 
                                 <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-
-                             <!--
-                                <accordion-group>
-                                    <accordion-heading>
-                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h4>Doc & ANOV ers Summary</h4>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5>1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt</h5><h6>Columns - {{anovs}}</h6>
-                                            </div>
-                                        </div>
-                                    </accordion-heading>
-                                    <a href="#" ng-click="send('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt')">Run Query</a>
-                                </accordion-group>
-                                <accordion-group>
-                                    <accordion-heading>
-                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h4>Violations Report </h4>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5>1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ</h5><h6>Columns - {{vr}}</h6>
-                                            </div>
-                                        </div>
-                                    </accordion-heading>
-                                    <a href="#" ng-click="send('1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ')"> Run query </a>
-                                </accordion-group>
-                                <accordion-group>
-                                    <accordion-heading>
-                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h4>Taxi Medallion Holders Total (Grand)Report</h4>
-                                            </div>
-                                            <div class="col-md-6"><h5>1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ</h5><h6>Columns - {{tmht}}</h6>
-                                            </div>
-                                        </div>
-                                    </accordion-heading>
-                                    <a href="#" ng-click="send('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ')">Run Query</a>
-                                </accordion-group>
-                                 -->
+                         
                                 <accordion-group>
                                     <accordion-heading class="accordion-heading-adv">
                                         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
