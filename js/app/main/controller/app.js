@@ -25,8 +25,8 @@
         getcolumns('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ').then(function(data) {
             $scope.tmht = data;
         });
-        $scope.send = function(table) {
-            var formcols = $scope.sqlcols.sqlcols;
+        $scope.send = function(table, inputcols, table) {
+            var formcols = inputcols;
 
             var cols = (_.map(formcols, function(item){
              return "'" + item.name + "'";
