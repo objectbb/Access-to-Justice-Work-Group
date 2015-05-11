@@ -25,7 +25,8 @@
         getcolumns('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ').then(function(data) {
             $scope.tmht = data;
         });
-        $scope.send = function(table, inputcols, table) {
+
+        $scope.send = function(table, inputcols) {
             var formcols = inputcols;
 
             var cols = (_.map(formcols, function(item){
@@ -61,5 +62,6 @@
                 "columns": cols
             });
         }
+
     }]);
 }());

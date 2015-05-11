@@ -1,0 +1,6 @@
+{
+  "name": "taxidriver",
+  "root": "./",
+  "clean_urls": true,
+  "error_page": "n"
+}

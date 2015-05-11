@@ -5,36 +5,32 @@
             <div class="col-md-4">
                 <h4>{{title}}</h4>
             </div>
-
             <div class="col-md-6">
-                <h6>Fusion Table Id:<code>{{fusiontbl}}</code></h6>
-                <h6>Columns:
-                <code ng-repeat="item in columns">
-                {{item.name}}
-                </code>
-
-                </h6>
-            </div>
-
+                
+                    <code class="codeheader">Fusion Table Id:</code><br><code>{{fusiontbl}}</code>
+                    <br>
+                    <code class="codeheader">Columns:</code><br>
+                        <code ng-repeat="item in columns">
+                        {{item.name}}
+                        </code>
+                   
         </div>
-    </accordion-heading>
-
-    <span>
-    Group by:
-
-    <isteven-multi-select
-    input-model="columns"
-    output-model="sqlcols"
-    button-label="icon name"
-    item-label="icon name maker"
-    orientation="horizontal"
-    tick-property="ticked"
-    >
-    </isteven-multi-select>
-    </span>
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span>
-    <a href="#" ng-click="send('{{fusiontbl}}',sqlcols, fusiontbl)"> Run query </a>
-    </span>
-
+    </div>
+</accordion-heading>
+<span>
+Group by:
+<isteven-multi-select
+input-model="columns"
+output-model="sqlcols"
+button-label="icon name"
+item-label="icon name maker"
+orientation="horizontal"
+tick-property="ticked"
+>
+</isteven-multi-select>
+</span>
+<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+<span>
+<a href="#" ng-click="send(fusiontbl,sqlcols)"> Run query </a>
+</span>
 </accordion-group>

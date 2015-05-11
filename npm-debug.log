@@ -34,21 +34,21 @@
 18 verbose url raw divshot-cli
 19 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-cli' ]
 20 verbose url resolved https://registry.npmjs.org/divshot-cli
-21 info trying registry request attempt 1 at 01:55:35
+21 info trying registry request attempt 1 at 03:27:06
 22 verbose etag "EBYUM4HZCFFB8YDC02GFXM2CJ"
 23 http GET https://registry.npmjs.org/divshot-cli
 24 http 304 https://registry.npmjs.org/divshot-cli
 25 silly registry.get cb [ 304,
-25 silly registry.get   { date: 'Fri, 08 May 2015 06:55:36 GMT',
+25 silly registry.get   { date: 'Mon, 11 May 2015 08:27:04 GMT',
 25 silly registry.get     via: '1.1 varnish',
 25 silly registry.get     'cache-control': 'max-age=60',
 25 silly registry.get     etag: '"EBYUM4HZCFFB8YDC02GFXM2CJ"',
-25 silly registry.get     age: '0',
+25 silly registry.get     age: '15',
 25 silly registry.get     connection: 'keep-alive',
-25 silly registry.get     'x-served-by': 'cache-dfw1829-DFW',
-25 silly registry.get     'x-cache': 'MISS',
-25 silly registry.get     'x-cache-hits': '0',
-25 silly registry.get     'x-timer': 'S1431068136.409202,VS0,VE190',
+25 silly registry.get     'x-served-by': 'cache-dfw1824-DFW',
+25 silly registry.get     'x-cache': 'HIT',
+25 silly registry.get     'x-cache-hits': '1',
+25 silly registry.get     'x-timer': 'S1431332824.420312,VS0,VE1',
 25 silly registry.get     vary: 'Accept' } ]
 26 verbose etag divshot-cli from cache
 27 silly addNameRange number 2 { name: 'divshot-cli', range: '', hasData: true }
@@ -1380,21 +1380,10 @@
 453 verbose addNamed [ null, null ]
 454 silly lockFile 5f1ceab2-request-2-44-0 request@^2.44.0
 455 verbose lock request@^2.44.0 C:\Users\objectbb\AppData\Roaming\npm-cache\5f1ceab2-request-2-44-0.lock
-456 verbose cache add [ 'sizer@^0.1.1', null ]
-457 verbose cache add name=undefined spec="sizer@^0.1.1" args=["sizer@^0.1.1",null]
-458 verbose parsed url { protocol: null,
-458 verbose parsed url   slashes: null,
-458 verbose parsed url   auth: null,
-458 verbose parsed url   host: null,
-458 verbose parsed url   port: null,
-458 verbose parsed url   hostname: null,
-458 verbose parsed url   hash: null,
-458 verbose parsed url   search: null,
-458 verbose parsed url   query: null,
-458 verbose parsed url   pathname: 'sizer@^0.1.1',
-458 verbose parsed url   path: 'sizer@^0.1.1',
-458 verbose parsed url   href: 'sizer@^0.1.1' }
-459 verbose cache add name="sizer" spec="^0.1.1" args=["sizer","^0.1.1"]
+456 info addNameTag [ 'async', '^0.9.0' ]
+457 info addNameTag [ 'bytes', '^2.0.0' ]
+458 verbose cache add [ 'sizer@^0.1.1', null ]
+459 verbose cache add name=undefined spec="sizer@^0.1.1" args=["sizer@^0.1.1",null]
 460 verbose parsed url { protocol: null,
 460 verbose parsed url   slashes: null,
 460 verbose parsed url   auth: null,
@@ -1404,28 +1393,28 @@
 460 verbose parsed url   hash: null,
 460 verbose parsed url   search: null,
 460 verbose parsed url   query: null,
-460 verbose parsed url   pathname: '^0.1.1',
-460 verbose parsed url   path: '^0.1.1',
-460 verbose parsed url   href: '^0.1.1' }
-461 verbose addNamed [ 'sizer', '^0.1.1' ]
-462 verbose addNamed [ null, null ]
-463 silly lockFile 9c5daa54-sizer-0-1-1 sizer@^0.1.1
-464 verbose lock sizer@^0.1.1 C:\Users\objectbb\AppData\Roaming\npm-cache\9c5daa54-sizer-0-1-1.lock
-465 verbose cache add [ 'slash@^1.0.0', null ]
-466 verbose cache add name=undefined spec="slash@^1.0.0" args=["slash@^1.0.0",null]
-467 verbose parsed url { protocol: null,
-467 verbose parsed url   slashes: null,
-467 verbose parsed url   auth: null,
-467 verbose parsed url   host: null,
-467 verbose parsed url   port: null,
-467 verbose parsed url   hostname: null,
-467 verbose parsed url   hash: null,
-467 verbose parsed url   search: null,
-467 verbose parsed url   query: null,
-467 verbose parsed url   pathname: 'slash@^1.0.0',
-467 verbose parsed url   path: 'slash@^1.0.0',
-467 verbose parsed url   href: 'slash@^1.0.0' }
-468 verbose cache add name="slash" spec="^1.0.0" args=["slash","^1.0.0"]
+460 verbose parsed url   pathname: 'sizer@^0.1.1',
+460 verbose parsed url   path: 'sizer@^0.1.1',
+460 verbose parsed url   href: 'sizer@^0.1.1' }
+461 verbose cache add name="sizer" spec="^0.1.1" args=["sizer","^0.1.1"]
+462 verbose parsed url { protocol: null,
+462 verbose parsed url   slashes: null,
+462 verbose parsed url   auth: null,
+462 verbose parsed url   host: null,
+462 verbose parsed url   port: null,
+462 verbose parsed url   hostname: null,
+462 verbose parsed url   hash: null,
+462 verbose parsed url   search: null,
+462 verbose parsed url   query: null,
+462 verbose parsed url   pathname: '^0.1.1',
+462 verbose parsed url   path: '^0.1.1',
+462 verbose parsed url   href: '^0.1.1' }
+463 verbose addNamed [ 'sizer', '^0.1.1' ]
+464 verbose addNamed [ null, null ]
+465 silly lockFile 9c5daa54-sizer-0-1-1 sizer@^0.1.1
+466 verbose lock sizer@^0.1.1 C:\Users\objectbb\AppData\Roaming\npm-cache\9c5daa54-sizer-0-1-1.lock
+467 verbose cache add [ 'slash@^1.0.0', null ]
+468 verbose cache add name=undefined spec="slash@^1.0.0" args=["slash@^1.0.0",null]
 469 verbose parsed url { protocol: null,
 469 verbose parsed url   slashes: null,
 469 verbose parsed url   auth: null,
@@ -1435,28 +1424,28 @@
 469 verbose parsed url   hash: null,
 469 verbose parsed url   search: null,
 469 verbose parsed url   query: null,
-469 verbose parsed url   pathname: '^1.0.0',
-469 verbose parsed url   path: '^1.0.0',
-469 verbose parsed url   href: '^1.0.0' }
-470 verbose addNamed [ 'slash', '^1.0.0' ]
-471 verbose addNamed [ null, null ]
-472 silly lockFile 5e01e0f1-slash-1-0-0 slash@^1.0.0
-473 verbose lock slash@^1.0.0 C:\Users\objectbb\AppData\Roaming\npm-cache\5e01e0f1-slash-1-0-0.lock
-474 verbose cache add [ 'superstatic@1.2.1', null ]
-475 verbose cache add name=undefined spec="superstatic@1.2.1" args=["superstatic@1.2.1",null]
-476 verbose parsed url { protocol: null,
-476 verbose parsed url   slashes: null,
-476 verbose parsed url   auth: null,
-476 verbose parsed url   host: null,
-476 verbose parsed url   port: null,
-476 verbose parsed url   hostname: null,
-476 verbose parsed url   hash: null,
-476 verbose parsed url   search: null,
-476 verbose parsed url   query: null,
-476 verbose parsed url   pathname: 'superstatic@1.2.1',
-476 verbose parsed url   path: 'superstatic@1.2.1',
-476 verbose parsed url   href: 'superstatic@1.2.1' }
-477 verbose cache add name="superstatic" spec="1.2.1" args=["superstatic","1.2.1"]
+469 verbose parsed url   pathname: 'slash@^1.0.0',
+469 verbose parsed url   path: 'slash@^1.0.0',
+469 verbose parsed url   href: 'slash@^1.0.0' }
+470 verbose cache add name="slash" spec="^1.0.0" args=["slash","^1.0.0"]
+471 verbose parsed url { protocol: null,
+471 verbose parsed url   slashes: null,
+471 verbose parsed url   auth: null,
+471 verbose parsed url   host: null,
+471 verbose parsed url   port: null,
+471 verbose parsed url   hostname: null,
+471 verbose parsed url   hash: null,
+471 verbose parsed url   search: null,
+471 verbose parsed url   query: null,
+471 verbose parsed url   pathname: '^1.0.0',
+471 verbose parsed url   path: '^1.0.0',
+471 verbose parsed url   href: '^1.0.0' }
+472 verbose addNamed [ 'slash', '^1.0.0' ]
+473 verbose addNamed [ null, null ]
+474 silly lockFile 5e01e0f1-slash-1-0-0 slash@^1.0.0
+475 verbose lock slash@^1.0.0 C:\Users\objectbb\AppData\Roaming\npm-cache\5e01e0f1-slash-1-0-0.lock
+476 verbose cache add [ 'superstatic@1.2.1', null ]
+477 verbose cache add name=undefined spec="superstatic@1.2.1" args=["superstatic@1.2.1",null]
 478 verbose parsed url { protocol: null,
 478 verbose parsed url   slashes: null,
 478 verbose parsed url   auth: null,
@@ -1466,28 +1455,28 @@
 478 verbose parsed url   hash: null,
 478 verbose parsed url   search: null,
 478 verbose parsed url   query: null,
-478 verbose parsed url   pathname: '1.2.1',
-478 verbose parsed url   path: '1.2.1',
-478 verbose parsed url   href: '1.2.1' }
-479 verbose addNamed [ 'superstatic', '1.2.1' ]
-480 verbose addNamed [ '1.2.1', '1.2.1' ]
-481 silly lockFile 8a2ffa2e-superstatic-1-2-1 superstatic@1.2.1
-482 verbose lock superstatic@1.2.1 C:\Users\objectbb\AppData\Roaming\npm-cache\8a2ffa2e-superstatic-1-2-1.lock
-483 verbose cache add [ 'touch@0.0.3', null ]
-484 verbose cache add name=undefined spec="touch@0.0.3" args=["touch@0.0.3",null]
-485 verbose parsed url { protocol: null,
-485 verbose parsed url   slashes: null,
-485 verbose parsed url   auth: null,
-485 verbose parsed url   host: null,
-485 verbose parsed url   port: null,
-485 verbose parsed url   hostname: null,
-485 verbose parsed url   hash: null,
-485 verbose parsed url   search: null,
-485 verbose parsed url   query: null,
-485 verbose parsed url   pathname: 'touch@0.0.3',
-485 verbose parsed url   path: 'touch@0.0.3',
-485 verbose parsed url   href: 'touch@0.0.3' }
-486 verbose cache add name="touch" spec="0.0.3" args=["touch","0.0.3"]
+478 verbose parsed url   pathname: 'superstatic@1.2.1',
+478 verbose parsed url   path: 'superstatic@1.2.1',
+478 verbose parsed url   href: 'superstatic@1.2.1' }
+479 verbose cache add name="superstatic" spec="1.2.1" args=["superstatic","1.2.1"]
+480 verbose parsed url { protocol: null,
+480 verbose parsed url   slashes: null,
+480 verbose parsed url   auth: null,
+480 verbose parsed url   host: null,
+480 verbose parsed url   port: null,
+480 verbose parsed url   hostname: null,
+480 verbose parsed url   hash: null,
+480 verbose parsed url   search: null,
+480 verbose parsed url   query: null,
+480 verbose parsed url   pathname: '1.2.1',
+480 verbose parsed url   path: '1.2.1',
+480 verbose parsed url   href: '1.2.1' }
+481 verbose addNamed [ 'superstatic', '1.2.1' ]
+482 verbose addNamed [ '1.2.1', '1.2.1' ]
+483 silly lockFile 8a2ffa2e-superstatic-1-2-1 superstatic@1.2.1
+484 verbose lock superstatic@1.2.1 C:\Users\objectbb\AppData\Roaming\npm-cache\8a2ffa2e-superstatic-1-2-1.lock
+485 verbose cache add [ 'touch@0.0.3', null ]
+486 verbose cache add name=undefined spec="touch@0.0.3" args=["touch@0.0.3",null]
 487 verbose parsed url { protocol: null,
 487 verbose parsed url   slashes: null,
 487 verbose parsed url   auth: null,
@@ -1497,28 +1486,28 @@
 487 verbose parsed url   hash: null,
 487 verbose parsed url   search: null,
 487 verbose parsed url   query: null,
-487 verbose parsed url   pathname: '0.0.3',
-487 verbose parsed url   path: '0.0.3',
-487 verbose parsed url   href: '0.0.3' }
-488 verbose addNamed [ 'touch', '0.0.3' ]
-489 verbose addNamed [ '0.0.3', '0.0.3' ]
-490 silly lockFile 9e09bbf2-touch-0-0-3 touch@0.0.3
-491 verbose lock touch@0.0.3 C:\Users\objectbb\AppData\Roaming\npm-cache\9e09bbf2-touch-0-0-3.lock
-492 verbose cache add [ 'update-notifier@^0.2.2', null ]
-493 verbose cache add name=undefined spec="update-notifier@^0.2.2" args=["update-notifier@^0.2.2",null]
-494 verbose parsed url { protocol: null,
-494 verbose parsed url   slashes: null,
-494 verbose parsed url   auth: null,
-494 verbose parsed url   host: null,
-494 verbose parsed url   port: null,
-494 verbose parsed url   hostname: null,
-494 verbose parsed url   hash: null,
-494 verbose parsed url   search: null,
-494 verbose parsed url   query: null,
-494 verbose parsed url   pathname: 'update-notifier@^0.2.2',
-494 verbose parsed url   path: 'update-notifier@^0.2.2',
-494 verbose parsed url   href: 'update-notifier@^0.2.2' }
-495 verbose cache add name="update-notifier" spec="^0.2.2" args=["update-notifier","^0.2.2"]
+487 verbose parsed url   pathname: 'touch@0.0.3',
+487 verbose parsed url   path: 'touch@0.0.3',
+487 verbose parsed url   href: 'touch@0.0.3' }
+488 verbose cache add name="touch" spec="0.0.3" args=["touch","0.0.3"]
+489 verbose parsed url { protocol: null,
+489 verbose parsed url   slashes: null,
+489 verbose parsed url   auth: null,
+489 verbose parsed url   host: null,
+489 verbose parsed url   port: null,
+489 verbose parsed url   hostname: null,
+489 verbose parsed url   hash: null,
+489 verbose parsed url   search: null,
+489 verbose parsed url   query: null,
+489 verbose parsed url   pathname: '0.0.3',
+489 verbose parsed url   path: '0.0.3',
+489 verbose parsed url   href: '0.0.3' }
+490 verbose addNamed [ 'touch', '0.0.3' ]
+491 verbose addNamed [ '0.0.3', '0.0.3' ]
+492 silly lockFile 9e09bbf2-touch-0-0-3 touch@0.0.3
+493 verbose lock touch@0.0.3 C:\Users\objectbb\AppData\Roaming\npm-cache\9e09bbf2-touch-0-0-3.lock
+494 verbose cache add [ 'update-notifier@^0.2.2', null ]
+495 verbose cache add name=undefined spec="update-notifier@^0.2.2" args=["update-notifier@^0.2.2",null]
 496 verbose parsed url { protocol: null,
 496 verbose parsed url   slashes: null,
 496 verbose parsed url   auth: null,
@@ -1528,28 +1517,28 @@
 496 verbose parsed url   hash: null,
 496 verbose parsed url   search: null,
 496 verbose parsed url   query: null,
-496 verbose parsed url   pathname: '^0.2.2',
-496 verbose parsed url   path: '^0.2.2',
-496 verbose parsed url   href: '^0.2.2' }
-497 verbose addNamed [ 'update-notifier', '^0.2.2' ]
-498 verbose addNamed [ null, null ]
-499 silly lockFile 02da3be7-update-notifier-0-2-2 update-notifier@^0.2.2
-500 verbose lock update-notifier@^0.2.2 C:\Users\objectbb\AppData\Roaming\npm-cache\02da3be7-update-notifier-0-2-2.lock
-501 verbose cache add [ 'writestreamp@^0.1.0', null ]
-502 verbose cache add name=undefined spec="writestreamp@^0.1.0" args=["writestreamp@^0.1.0",null]
-503 verbose parsed url { protocol: null,
-503 verbose parsed url   slashes: null,
-503 verbose parsed url   auth: null,
-503 verbose parsed url   host: null,
-503 verbose parsed url   port: null,
-503 verbose parsed url   hostname: null,
-503 verbose parsed url   hash: null,
-503 verbose parsed url   search: null,
-503 verbose parsed url   query: null,
-503 verbose parsed url   pathname: 'writestreamp@^0.1.0',
-503 verbose parsed url   path: 'writestreamp@^0.1.0',
-503 verbose parsed url   href: 'writestreamp@^0.1.0' }
-504 verbose cache add name="writestreamp" spec="^0.1.0" args=["writestreamp","^0.1.0"]
+496 verbose parsed url   pathname: 'update-notifier@^0.2.2',
+496 verbose parsed url   path: 'update-notifier@^0.2.2',
+496 verbose parsed url   href: 'update-notifier@^0.2.2' }
+497 verbose cache add name="update-notifier" spec="^0.2.2" args=["update-notifier","^0.2.2"]
+498 verbose parsed url { protocol: null,
+498 verbose parsed url   slashes: null,
+498 verbose parsed url   auth: null,
+498 verbose parsed url   host: null,
+498 verbose parsed url   port: null,
+498 verbose parsed url   hostname: null,
+498 verbose parsed url   hash: null,
+498 verbose parsed url   search: null,
+498 verbose parsed url   query: null,
+498 verbose parsed url   pathname: '^0.2.2',
+498 verbose parsed url   path: '^0.2.2',
+498 verbose parsed url   href: '^0.2.2' }
+499 verbose addNamed [ 'update-notifier', '^0.2.2' ]
+500 verbose addNamed [ null, null ]
+501 silly lockFile 02da3be7-update-notifier-0-2-2 update-notifier@^0.2.2
+502 verbose lock update-notifier@^0.2.2 C:\Users\objectbb\AppData\Roaming\npm-cache\02da3be7-update-notifier-0-2-2.lock
+503 verbose cache add [ 'writestreamp@^0.1.0', null ]
+504 verbose cache add name=undefined spec="writestreamp@^0.1.0" args=["writestreamp@^0.1.0",null]
 505 verbose parsed url { protocol: null,
 505 verbose parsed url   slashes: null,
 505 verbose parsed url   auth: null,
@@ -1559,397 +1548,388 @@
 505 verbose parsed url   hash: null,
 505 verbose parsed url   search: null,
 505 verbose parsed url   query: null,
-505 verbose parsed url   pathname: '^0.1.0',
-505 verbose parsed url   path: '^0.1.0',
-505 verbose parsed url   href: '^0.1.0' }
-506 verbose addNamed [ 'writestreamp', '^0.1.0' ]
-507 verbose addNamed [ null, null ]
-508 silly lockFile ab4e9ff5-writestreamp-0-1-0 writestreamp@^0.1.0
-509 verbose lock writestreamp@^0.1.0 C:\Users\objectbb\AppData\Roaming\npm-cache\ab4e9ff5-writestreamp-0-1-0.lock
-510 info addNameTag [ 'async', '^0.9.0' ]
-511 info addNameTag [ 'booly', '^1.0.2' ]
-512 info addNameTag [ 'bytes', '^2.0.0' ]
+505 verbose parsed url   pathname: 'writestreamp@^0.1.0',
+505 verbose parsed url   path: 'writestreamp@^0.1.0',
+505 verbose parsed url   href: 'writestreamp@^0.1.0' }
+506 verbose cache add name="writestreamp" spec="^0.1.0" args=["writestreamp","^0.1.0"]
+507 verbose parsed url { protocol: null,
+507 verbose parsed url   slashes: null,
+507 verbose parsed url   auth: null,
+507 verbose parsed url   host: null,
+507 verbose parsed url   port: null,
+507 verbose parsed url   hostname: null,
+507 verbose parsed url   hash: null,
+507 verbose parsed url   search: null,
+507 verbose parsed url   query: null,
+507 verbose parsed url   pathname: '^0.1.0',
+507 verbose parsed url   path: '^0.1.0',
+507 verbose parsed url   href: '^0.1.0' }
+508 verbose addNamed [ 'writestreamp', '^0.1.0' ]
+509 verbose addNamed [ null, null ]
+510 silly lockFile ab4e9ff5-writestreamp-0-1-0 writestreamp@^0.1.0
+511 verbose lock writestreamp@^0.1.0 C:\Users\objectbb\AppData\Roaming\npm-cache\ab4e9ff5-writestreamp-0-1-0.lock
+512 info addNameTag [ 'booly', '^1.0.2' ]
 513 info addNameTag [ 'chalk', '^1.0.0' ]
-514 info addNameTag [ 'clone', '^1.0.0' ]
-515 info addNameTag [ 'copy-files', '^0.1.0' ]
-516 silly addNameRange { name: 'divshot-api',
-516 silly addNameRange   range: '>=1.3.0- <1.4.0-',
-516 silly addNameRange   hasData: false }
-517 info addNameTag [ 'exit-hook', '^1.1.1' ]
-518 info addNameTag [ 'feedback', '^0.3.2' ]
-519 info addNameTag [ 'fs-extra', '^0.18.0' ]
-520 info addNameTag [ 'home-dir', '^1.0.0' ]
-521 info addNameTag [ 'inquirer', '^0.8.0' ]
-522 info addNameTag [ 'join-path', '^1.0.0' ]
-523 info addNameTag [ 'jsonlint', '^1.6.2' ]
-524 info addNameTag [ 'lodash', '^2.4.1' ]
-525 info addNameTag [ 'marked', '^0.3.2' ]
-526 info addNameTag [ 'marked-terminal', '^1.1.1' ]
-527 info addNameTag [ 'mime-types', '^2.0.2' ]
-528 silly addNameRange { name: 'mkdirp', range: '>=0.5.0- <0.6.0-', hasData: false }
-529 info addNameTag [ 'moment', '^2.8.3' ]
-530 silly addNameRange { name: 'nash', range: '>=0.3.0- <0.4.0-', hasData: false }
-531 info addNameTag [ 'pluralize', '^1.0.3' ]
-532 info addNameTag [ 'pretty-print', '^1.0.0' ]
-533 info addNameTag [ 'progress', '^1.1.8' ]
-534 info addNameTag [ 'promptly', '^0.2.0' ]
-535 info addNameTag [ 'read', '^1.0.5' ]
-536 info addNameTag [ 'regular', '^0.1.6' ]
-537 info addNameTag [ 'request', '^2.44.0' ]
-538 info addNameTag [ 'sizer', '^0.1.1' ]
-539 info addNameTag [ 'slash', '^1.0.0' ]
+514 info addNameTag [ 'copy-files', '^0.1.0' ]
+515 silly addNameRange { name: 'divshot-api',
+515 silly addNameRange   range: '>=1.3.0- <1.4.0-',
+515 silly addNameRange   hasData: false }
+516 info addNameTag [ 'exit-hook', '^1.1.1' ]
+517 info addNameTag [ 'feedback', '^0.3.2' ]
+518 info addNameTag [ 'fs-extra', '^0.18.0' ]
+519 info addNameTag [ 'home-dir', '^1.0.0' ]
+520 info addNameTag [ 'inquirer', '^0.8.0' ]
+521 info addNameTag [ 'join-path', '^1.0.0' ]
+522 info addNameTag [ 'jsonlint', '^1.6.2' ]
+523 info addNameTag [ 'lodash', '^2.4.1' ]
+524 info addNameTag [ 'marked', '^0.3.2' ]
+525 info addNameTag [ 'marked-terminal', '^1.1.1' ]
+526 info addNameTag [ 'mime-types', '^2.0.2' ]
+527 silly addNameRange { name: 'mkdirp', range: '>=0.5.0- <0.6.0-', hasData: false }
+528 info addNameTag [ 'moment', '^2.8.3' ]
+529 silly addNameRange { name: 'nash', range: '>=0.3.0- <0.4.0-', hasData: false }
+530 info addNameTag [ 'pluralize', '^1.0.3' ]
+531 info addNameTag [ 'pretty-print', '^1.0.0' ]
+532 info addNameTag [ 'progress', '^1.1.8' ]
+533 info addNameTag [ 'promptly', '^0.2.0' ]
+534 info addNameTag [ 'read', '^1.0.5' ]
+535 info addNameTag [ 'regular', '^0.1.6' ]
+536 info addNameTag [ 'request', '^2.44.0' ]
+537 info addNameTag [ 'sizer', '^0.1.1' ]
+538 info addNameTag [ 'slash', '^1.0.0' ]
+539 info addNameTag [ 'clone', '^1.0.0' ]
 540 info addNameTag [ 'update-notifier', '^0.2.2' ]
-541 info addNameTag [ 'writestreamp', '^0.1.0' ]
-542 verbose url raw async
-543 verbose url resolving [ 'https://registry.npmjs.org/', './async' ]
-544 verbose url resolved https://registry.npmjs.org/async
-545 info trying registry request attempt 1 at 01:55:36
-546 verbose etag "E2FY7F8V5B68KWQBLE89RZZCX"
-547 http GET https://registry.npmjs.org/async
-548 verbose url raw booly
-549 verbose url resolving [ 'https://registry.npmjs.org/', './booly' ]
-550 verbose url resolved https://registry.npmjs.org/booly
-551 info trying registry request attempt 1 at 01:55:36
-552 verbose etag "5OKJ89U8ZRILOIYEL4AB33UKG"
-553 http GET https://registry.npmjs.org/booly
-554 verbose url raw bytes
-555 verbose url resolving [ 'https://registry.npmjs.org/', './bytes' ]
-556 verbose url resolved https://registry.npmjs.org/bytes
-557 info trying registry request attempt 1 at 01:55:36
-558 verbose etag "2SXVXOK6OLSMCAOQB3FX7P63P"
-559 http GET https://registry.npmjs.org/bytes
-560 verbose url raw chalk
-561 verbose url resolving [ 'https://registry.npmjs.org/', './chalk' ]
-562 verbose url resolved https://registry.npmjs.org/chalk
-563 info trying registry request attempt 1 at 01:55:36
-564 verbose etag "2M22XAZD4BRYG4HDAHZLLMMFU"
-565 http GET https://registry.npmjs.org/chalk
-566 verbose url raw clone
-567 verbose url resolving [ 'https://registry.npmjs.org/', './clone' ]
-568 verbose url resolved https://registry.npmjs.org/clone
-569 info trying registry request attempt 1 at 01:55:36
-570 verbose etag "1CJ8DLJLQWKB53SNXENRMGFC9"
-571 http GET https://registry.npmjs.org/clone
-572 verbose url raw copy-files
-573 verbose url resolving [ 'https://registry.npmjs.org/', './copy-files' ]
-574 verbose url resolved https://registry.npmjs.org/copy-files
-575 info trying registry request attempt 1 at 01:55:36
-576 verbose etag "BBKYEX7AOOKZBLTN5MNR2OEY7"
-577 http GET https://registry.npmjs.org/copy-files
-578 verbose url raw cozy-slug/0.2.2
-579 verbose url resolving [ 'https://registry.npmjs.org/', './cozy-slug/0.2.2' ]
-580 verbose url resolved https://registry.npmjs.org/cozy-slug/0.2.2
-581 info trying registry request attempt 1 at 01:55:36
-582 verbose etag "BKC38JHB9WB4BRNU1OZUIAHZI"
-583 http GET https://registry.npmjs.org/cozy-slug/0.2.2
-584 verbose url raw divshot-api
-585 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-api' ]
-586 verbose url resolved https://registry.npmjs.org/divshot-api
-587 info trying registry request attempt 1 at 01:55:36
-588 verbose etag "8F8OM0IDFYGF1KZ1SY4FL5YO8"
-589 http GET https://registry.npmjs.org/divshot-api
-590 verbose url raw divshot-dumper/1.1.0
-591 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-dumper/1.1.0' ]
-592 verbose url resolved https://registry.npmjs.org/divshot-dumper/1.1.0
-593 info trying registry request attempt 1 at 01:55:36
-594 verbose etag "DZ0WOK6Z46TZ5FA8T8KIUIPD9"
-595 http GET https://registry.npmjs.org/divshot-dumper/1.1.0
-596 verbose url raw divshot-push/1.4.2
-597 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-push/1.4.2' ]
-598 verbose url resolved https://registry.npmjs.org/divshot-push/1.4.2
-599 info trying registry request attempt 1 at 01:55:36
-600 verbose etag "BVXOWU0JB9J4DUMYX79R9L4OD"
-601 http GET https://registry.npmjs.org/divshot-push/1.4.2
-602 verbose url raw exit-hook
-603 verbose url resolving [ 'https://registry.npmjs.org/', './exit-hook' ]
-604 verbose url resolved https://registry.npmjs.org/exit-hook
-605 info trying registry request attempt 1 at 01:55:36
-606 verbose etag "7ZGPVWQOP76VZYQ3T2ZF93N7K"
-607 http GET https://registry.npmjs.org/exit-hook
-608 verbose url raw feedback
-609 verbose url resolving [ 'https://registry.npmjs.org/', './feedback' ]
-610 verbose url resolved https://registry.npmjs.org/feedback
-611 info trying registry request attempt 1 at 01:55:36
-612 verbose etag "B0THWTEO5ET7OON571GWYKLI3"
-613 http GET https://registry.npmjs.org/feedback
-614 verbose url raw home-dir
-615 verbose url resolving [ 'https://registry.npmjs.org/', './home-dir' ]
-616 verbose url resolved https://registry.npmjs.org/home-dir
-617 info trying registry request attempt 1 at 01:55:36
-618 verbose etag "BUKZVIPOFXIHQPM5UL6N8LHVG"
-619 http GET https://registry.npmjs.org/home-dir
-620 verbose url raw fs-extra
-621 verbose url resolving [ 'https://registry.npmjs.org/', './fs-extra' ]
-622 verbose url resolved https://registry.npmjs.org/fs-extra
-623 info trying registry request attempt 1 at 01:55:36
-624 verbose etag "EA8P5XDX36THZCMI09V5TXKYH"
-625 http GET https://registry.npmjs.org/fs-extra
-626 verbose url raw inquirer
-627 verbose url resolving [ 'https://registry.npmjs.org/', './inquirer' ]
-628 verbose url resolved https://registry.npmjs.org/inquirer
-629 info trying registry request attempt 1 at 01:55:36
-630 verbose etag "54HE6OADBCLE0LQ7FTLSGK4SW"
-631 http GET https://registry.npmjs.org/inquirer
-632 verbose url raw join-path
-633 verbose url resolving [ 'https://registry.npmjs.org/', './join-path' ]
-634 verbose url resolved https://registry.npmjs.org/join-path
-635 info trying registry request attempt 1 at 01:55:36
-636 verbose etag "6SC2A38CIACBL95GXSCRBW3V9"
-637 http GET https://registry.npmjs.org/join-path
-638 verbose url raw jsonlint
-639 verbose url resolving [ 'https://registry.npmjs.org/', './jsonlint' ]
-640 verbose url resolved https://registry.npmjs.org/jsonlint
-641 info trying registry request attempt 1 at 01:55:36
-642 verbose etag "3BEFY97P5GBM0MLA0LTLUDO2M"
-643 http GET https://registry.npmjs.org/jsonlint
-644 verbose url raw lodash
-645 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
-646 verbose url resolved https://registry.npmjs.org/lodash
-647 info trying registry request attempt 1 at 01:55:36
-648 verbose etag "38SQ0I9GZIR7FR1JS0UMTGFJR"
-649 http GET https://registry.npmjs.org/lodash
-650 verbose url raw marked
-651 verbose url resolving [ 'https://registry.npmjs.org/', './marked' ]
-652 verbose url resolved https://registry.npmjs.org/marked
-653 info trying registry request attempt 1 at 01:55:36
-654 verbose etag "75HEDEUUB63LGXZ307SBGUZAI"
-655 http GET https://registry.npmjs.org/marked
-656 verbose url raw marked-terminal
-657 verbose url resolving [ 'https://registry.npmjs.org/', './marked-terminal' ]
-658 verbose url resolved https://registry.npmjs.org/marked-terminal
-659 info trying registry request attempt 1 at 01:55:36
-660 verbose etag "6HY6PHKK9DMZZUAGWZ84GKMI5"
-661 http GET https://registry.npmjs.org/marked-terminal
-662 verbose url raw mime-types
-663 verbose url resolving [ 'https://registry.npmjs.org/', './mime-types' ]
-664 verbose url resolved https://registry.npmjs.org/mime-types
-665 info trying registry request attempt 1 at 01:55:36
-666 verbose etag "D48KYGEH6ANBWYSE5K1OA6B86"
-667 http GET https://registry.npmjs.org/mime-types
-668 verbose url raw mkdirp
-669 verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp' ]
-670 verbose url resolved https://registry.npmjs.org/mkdirp
-671 info trying registry request attempt 1 at 01:55:36
-672 verbose etag "9PT3APOPCTG7ZB8ZHKLNLHQ2T"
-673 http GET https://registry.npmjs.org/mkdirp
-674 verbose url raw moment
-675 verbose url resolving [ 'https://registry.npmjs.org/', './moment' ]
-676 verbose url resolved https://registry.npmjs.org/moment
-677 info trying registry request attempt 1 at 01:55:36
-678 verbose etag "CDPW9VTNVG1R0WXZWEDNQCDHK"
-679 http GET https://registry.npmjs.org/moment
-680 verbose url raw nash
-681 verbose url resolving [ 'https://registry.npmjs.org/', './nash' ]
-682 verbose url resolved https://registry.npmjs.org/nash
-683 info trying registry request attempt 1 at 01:55:36
-684 verbose etag "QSZYWVJWWA7D6EMZFC2ET0GT"
-685 http GET https://registry.npmjs.org/nash
-686 verbose url raw open/0.0.5
-687 verbose url resolving [ 'https://registry.npmjs.org/', './open/0.0.5' ]
-688 verbose url resolved https://registry.npmjs.org/open/0.0.5
-689 info trying registry request attempt 1 at 01:55:36
-690 verbose etag "3RUW33RLNGEIP4U4TW90AEOL7"
-691 http GET https://registry.npmjs.org/open/0.0.5
-692 verbose url raw pluralize
-693 verbose url resolving [ 'https://registry.npmjs.org/', './pluralize' ]
-694 verbose url resolved https://registry.npmjs.org/pluralize
-695 info trying registry request attempt 1 at 01:55:36
-696 verbose etag "BTWLANYB4XD973KCDBTDFTS7U"
-697 http GET https://registry.npmjs.org/pluralize
-698 verbose url raw pretty-print
-699 verbose url resolving [ 'https://registry.npmjs.org/', './pretty-print' ]
-700 verbose url resolved https://registry.npmjs.org/pretty-print
-701 info trying registry request attempt 1 at 01:55:36
-702 verbose etag "2JNS8TJ5G324FV0VWV5ETBPYB"
-703 http GET https://registry.npmjs.org/pretty-print
-704 verbose url raw progress
-705 verbose url resolving [ 'https://registry.npmjs.org/', './progress' ]
-706 verbose url resolved https://registry.npmjs.org/progress
-707 info trying registry request attempt 1 at 01:55:36
-708 verbose etag "EHJ94QBI8POMIN1U32Z5ENQ1H"
-709 http GET https://registry.npmjs.org/progress
-710 verbose url raw promptly
-711 verbose url resolving [ 'https://registry.npmjs.org/', './promptly' ]
-712 verbose url resolved https://registry.npmjs.org/promptly
-713 info trying registry request attempt 1 at 01:55:36
-714 verbose etag "40SC03GB6O1IVT6177XAQ22FY"
-715 http GET https://registry.npmjs.org/promptly
-716 verbose url raw read
-717 verbose url resolving [ 'https://registry.npmjs.org/', './read' ]
-718 verbose url resolved https://registry.npmjs.org/read
-719 info trying registry request attempt 1 at 01:55:36
-720 verbose etag "9GYM5O024VX6PBTGOP9S8QGUX"
-721 http GET https://registry.npmjs.org/read
-722 verbose url raw regular
-723 verbose url resolving [ 'https://registry.npmjs.org/', './regular' ]
-724 verbose url resolved https://registry.npmjs.org/regular
-725 info trying registry request attempt 1 at 01:55:36
-726 verbose etag "A71DQTBGW1R18RRBRFA4QAGXJ"
-727 http GET https://registry.npmjs.org/regular
+541 verbose url raw async
+542 verbose url resolving [ 'https://registry.npmjs.org/', './async' ]
+543 verbose url resolved https://registry.npmjs.org/async
+544 info trying registry request attempt 1 at 03:27:07
+545 verbose etag "1LZ9GAL1129FOEJOL1IWC62KA"
+546 http GET https://registry.npmjs.org/async
+547 verbose url raw bytes
+548 verbose url resolving [ 'https://registry.npmjs.org/', './bytes' ]
+549 verbose url resolved https://registry.npmjs.org/bytes
+550 info trying registry request attempt 1 at 03:27:07
+551 verbose etag "2SXVXOK6OLSMCAOQB3FX7P63P"
+552 http GET https://registry.npmjs.org/bytes
+553 verbose url raw booly
+554 verbose url resolving [ 'https://registry.npmjs.org/', './booly' ]
+555 verbose url resolved https://registry.npmjs.org/booly
+556 info trying registry request attempt 1 at 03:27:07
+557 verbose etag "5OKJ89U8ZRILOIYEL4AB33UKG"
+558 http GET https://registry.npmjs.org/booly
+559 verbose url raw chalk
+560 verbose url resolving [ 'https://registry.npmjs.org/', './chalk' ]
+561 verbose url resolved https://registry.npmjs.org/chalk
+562 info trying registry request attempt 1 at 03:27:07
+563 verbose etag "2M22XAZD4BRYG4HDAHZLLMMFU"
+564 http GET https://registry.npmjs.org/chalk
+565 verbose url raw copy-files
+566 verbose url resolving [ 'https://registry.npmjs.org/', './copy-files' ]
+567 verbose url resolved https://registry.npmjs.org/copy-files
+568 info trying registry request attempt 1 at 03:27:07
+569 verbose etag "BBKYEX7AOOKZBLTN5MNR2OEY7"
+570 http GET https://registry.npmjs.org/copy-files
+571 verbose url raw cozy-slug/0.2.2
+572 verbose url resolving [ 'https://registry.npmjs.org/', './cozy-slug/0.2.2' ]
+573 verbose url resolved https://registry.npmjs.org/cozy-slug/0.2.2
+574 info trying registry request attempt 1 at 03:27:07
+575 verbose etag "BKC38JHB9WB4BRNU1OZUIAHZI"
+576 http GET https://registry.npmjs.org/cozy-slug/0.2.2
+577 verbose url raw divshot-api
+578 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-api' ]
+579 verbose url resolved https://registry.npmjs.org/divshot-api
+580 info trying registry request attempt 1 at 03:27:07
+581 verbose etag "8F8OM0IDFYGF1KZ1SY4FL5YO8"
+582 http GET https://registry.npmjs.org/divshot-api
+583 verbose url raw divshot-dumper/1.1.0
+584 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-dumper/1.1.0' ]
+585 verbose url resolved https://registry.npmjs.org/divshot-dumper/1.1.0
+586 info trying registry request attempt 1 at 03:27:07
+587 verbose etag "DZ0WOK6Z46TZ5FA8T8KIUIPD9"
+588 http GET https://registry.npmjs.org/divshot-dumper/1.1.0
+589 verbose url raw divshot-push/1.4.2
+590 verbose url resolving [ 'https://registry.npmjs.org/', './divshot-push/1.4.2' ]
+591 verbose url resolved https://registry.npmjs.org/divshot-push/1.4.2
+592 info trying registry request attempt 1 at 03:27:07
+593 verbose etag "BVXOWU0JB9J4DUMYX79R9L4OD"
+594 http GET https://registry.npmjs.org/divshot-push/1.4.2
+595 verbose url raw exit-hook
+596 verbose url resolving [ 'https://registry.npmjs.org/', './exit-hook' ]
+597 verbose url resolved https://registry.npmjs.org/exit-hook
+598 info trying registry request attempt 1 at 03:27:07
+599 verbose etag "7ZGPVWQOP76VZYQ3T2ZF93N7K"
+600 http GET https://registry.npmjs.org/exit-hook
+601 verbose url raw feedback
+602 verbose url resolving [ 'https://registry.npmjs.org/', './feedback' ]
+603 verbose url resolved https://registry.npmjs.org/feedback
+604 info trying registry request attempt 1 at 03:27:07
+605 verbose etag "B0THWTEO5ET7OON571GWYKLI3"
+606 http GET https://registry.npmjs.org/feedback
+607 verbose url raw fs-extra
+608 verbose url resolving [ 'https://registry.npmjs.org/', './fs-extra' ]
+609 verbose url resolved https://registry.npmjs.org/fs-extra
+610 info trying registry request attempt 1 at 03:27:07
+611 verbose etag "2DKFA52TF4U4YYGK93W4JHYFE"
+612 http GET https://registry.npmjs.org/fs-extra
+613 verbose url raw home-dir
+614 verbose url resolving [ 'https://registry.npmjs.org/', './home-dir' ]
+615 verbose url resolved https://registry.npmjs.org/home-dir
+616 info trying registry request attempt 1 at 03:27:07
+617 verbose etag "BUKZVIPOFXIHQPM5UL6N8LHVG"
+618 http GET https://registry.npmjs.org/home-dir
+619 verbose url raw inquirer
+620 verbose url resolving [ 'https://registry.npmjs.org/', './inquirer' ]
+621 verbose url resolved https://registry.npmjs.org/inquirer
+622 info trying registry request attempt 1 at 03:27:07
+623 verbose etag "54HE6OADBCLE0LQ7FTLSGK4SW"
+624 http GET https://registry.npmjs.org/inquirer
+625 verbose url raw join-path
+626 verbose url resolving [ 'https://registry.npmjs.org/', './join-path' ]
+627 verbose url resolved https://registry.npmjs.org/join-path
+628 info trying registry request attempt 1 at 03:27:07
+629 verbose etag "6SC2A38CIACBL95GXSCRBW3V9"
+630 http GET https://registry.npmjs.org/join-path
+631 verbose url raw jsonlint
+632 verbose url resolving [ 'https://registry.npmjs.org/', './jsonlint' ]
+633 verbose url resolved https://registry.npmjs.org/jsonlint
+634 info trying registry request attempt 1 at 03:27:07
+635 verbose etag "3BEFY97P5GBM0MLA0LTLUDO2M"
+636 http GET https://registry.npmjs.org/jsonlint
+637 verbose url raw lodash
+638 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+639 verbose url resolved https://registry.npmjs.org/lodash
+640 info trying registry request attempt 1 at 03:27:07
+641 verbose etag "DPVLY5XZRZF6JFEWNQZJJWQJH"
+642 http GET https://registry.npmjs.org/lodash
+643 verbose url raw marked
+644 verbose url resolving [ 'https://registry.npmjs.org/', './marked' ]
+645 verbose url resolved https://registry.npmjs.org/marked
+646 info trying registry request attempt 1 at 03:27:07
+647 verbose etag "80GEHON6RWD0VFFIMC30DI0LQ"
+648 http GET https://registry.npmjs.org/marked
+649 verbose url raw marked-terminal
+650 verbose url resolving [ 'https://registry.npmjs.org/', './marked-terminal' ]
+651 verbose url resolved https://registry.npmjs.org/marked-terminal
+652 info trying registry request attempt 1 at 03:27:07
+653 verbose etag "6HY6PHKK9DMZZUAGWZ84GKMI5"
+654 http GET https://registry.npmjs.org/marked-terminal
+655 verbose url raw mime-types
+656 verbose url resolving [ 'https://registry.npmjs.org/', './mime-types' ]
+657 verbose url resolved https://registry.npmjs.org/mime-types
+658 info trying registry request attempt 1 at 03:27:07
+659 verbose etag "D48KYGEH6ANBWYSE5K1OA6B86"
+660 http GET https://registry.npmjs.org/mime-types
+661 verbose url raw mkdirp
+662 verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp' ]
+663 verbose url resolved https://registry.npmjs.org/mkdirp
+664 info trying registry request attempt 1 at 03:27:07
+665 verbose etag "9PT3APOPCTG7ZB8ZHKLNLHQ2T"
+666 http GET https://registry.npmjs.org/mkdirp
+667 verbose url raw moment
+668 verbose url resolving [ 'https://registry.npmjs.org/', './moment' ]
+669 verbose url resolved https://registry.npmjs.org/moment
+670 info trying registry request attempt 1 at 03:27:07
+671 verbose etag "57EQDSLV58W6RH956ALV3Y3WJ"
+672 http GET https://registry.npmjs.org/moment
+673 verbose url raw nash
+674 verbose url resolving [ 'https://registry.npmjs.org/', './nash' ]
+675 verbose url resolved https://registry.npmjs.org/nash
+676 info trying registry request attempt 1 at 03:27:07
+677 verbose etag "QSZYWVJWWA7D6EMZFC2ET0GT"
+678 http GET https://registry.npmjs.org/nash
+679 verbose url raw open/0.0.5
+680 verbose url resolving [ 'https://registry.npmjs.org/', './open/0.0.5' ]
+681 verbose url resolved https://registry.npmjs.org/open/0.0.5
+682 info trying registry request attempt 1 at 03:27:07
+683 verbose etag "3RUW33RLNGEIP4U4TW90AEOL7"
+684 http GET https://registry.npmjs.org/open/0.0.5
+685 verbose url raw pluralize
+686 verbose url resolving [ 'https://registry.npmjs.org/', './pluralize' ]
+687 verbose url resolved https://registry.npmjs.org/pluralize
+688 info trying registry request attempt 1 at 03:27:07
+689 verbose etag "BTWLANYB4XD973KCDBTDFTS7U"
+690 http GET https://registry.npmjs.org/pluralize
+691 verbose url raw pretty-print
+692 verbose url resolving [ 'https://registry.npmjs.org/', './pretty-print' ]
+693 verbose url resolved https://registry.npmjs.org/pretty-print
+694 info trying registry request attempt 1 at 03:27:07
+695 verbose etag "2JNS8TJ5G324FV0VWV5ETBPYB"
+696 http GET https://registry.npmjs.org/pretty-print
+697 verbose url raw progress
+698 verbose url resolving [ 'https://registry.npmjs.org/', './progress' ]
+699 verbose url resolved https://registry.npmjs.org/progress
+700 info trying registry request attempt 1 at 03:27:07
+701 verbose etag "EHJ94QBI8POMIN1U32Z5ENQ1H"
+702 http GET https://registry.npmjs.org/progress
+703 verbose url raw promptly
+704 verbose url resolving [ 'https://registry.npmjs.org/', './promptly' ]
+705 verbose url resolved https://registry.npmjs.org/promptly
+706 info trying registry request attempt 1 at 03:27:07
+707 verbose etag "40SC03GB6O1IVT6177XAQ22FY"
+708 http GET https://registry.npmjs.org/promptly
+709 verbose url raw read
+710 verbose url resolving [ 'https://registry.npmjs.org/', './read' ]
+711 verbose url resolved https://registry.npmjs.org/read
+712 info trying registry request attempt 1 at 03:27:07
+713 verbose etag "9GYM5O024VX6PBTGOP9S8QGUX"
+714 http GET https://registry.npmjs.org/read
+715 verbose url raw regular
+716 verbose url resolving [ 'https://registry.npmjs.org/', './regular' ]
+717 verbose url resolved https://registry.npmjs.org/regular
+718 info trying registry request attempt 1 at 03:27:07
+719 verbose etag "A71DQTBGW1R18RRBRFA4QAGXJ"
+720 http GET https://registry.npmjs.org/regular
+721 verbose url raw request
+722 verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
+723 verbose url resolved https://registry.npmjs.org/request
+724 info trying registry request attempt 1 at 03:27:07
+725 verbose etag "20GPM8M7S7Z3YK6UKX5L40TTL"
+726 http GET https://registry.npmjs.org/request
+727 info addNameTag [ 'writestreamp', '^0.1.0' ]
 728 verbose url raw sizer
 729 verbose url resolving [ 'https://registry.npmjs.org/', './sizer' ]
 730 verbose url resolved https://registry.npmjs.org/sizer
-731 info trying registry request attempt 1 at 01:55:36
+731 info trying registry request attempt 1 at 03:27:07
 732 verbose etag "4AHWA3BLDM62KYKAJB09QJZJ7"
 733 http GET https://registry.npmjs.org/sizer
 734 verbose url raw slash
 735 verbose url resolving [ 'https://registry.npmjs.org/', './slash' ]
 736 verbose url resolved https://registry.npmjs.org/slash
-737 info trying registry request attempt 1 at 01:55:36
+737 info trying registry request attempt 1 at 03:27:07
 738 verbose etag "EW6IQDLAMOH6DMVJEB79Z0MKO"
 739 http GET https://registry.npmjs.org/slash
-740 verbose url raw superstatic/1.2.1
-741 verbose url resolving [ 'https://registry.npmjs.org/', './superstatic/1.2.1' ]
-742 verbose url resolved https://registry.npmjs.org/superstatic/1.2.1
-743 info trying registry request attempt 1 at 01:55:36
-744 verbose etag "ELDO2PV4GPY6G8G9YB8SN6WEP"
-745 http GET https://registry.npmjs.org/superstatic/1.2.1
-746 verbose url raw touch/0.0.3
-747 verbose url resolving [ 'https://registry.npmjs.org/', './touch/0.0.3' ]
-748 verbose url resolved https://registry.npmjs.org/touch/0.0.3
-749 info trying registry request attempt 1 at 01:55:36
-750 verbose etag "BZ27R72CQ7316RETIA3TJIR48"
-751 http GET https://registry.npmjs.org/touch/0.0.3
-752 verbose url raw update-notifier
-753 verbose url resolving [ 'https://registry.npmjs.org/', './update-notifier' ]
-754 verbose url resolved https://registry.npmjs.org/update-notifier
-755 info trying registry request attempt 1 at 01:55:36
-756 verbose etag "9366BU90FKIISC2RNZLKWQVRK"
-757 http GET https://registry.npmjs.org/update-notifier
-758 verbose url raw writestreamp
-759 verbose url resolving [ 'https://registry.npmjs.org/', './writestreamp' ]
-760 verbose url resolved https://registry.npmjs.org/writestreamp
-761 info trying registry request attempt 1 at 01:55:36
-762 verbose etag "CUQVLZA9QM2HQQEGBOXJ8MMRJ"
-763 http GET https://registry.npmjs.org/writestreamp
-764 verbose url raw request
-765 verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
-766 verbose url resolved https://registry.npmjs.org/request
-767 info trying registry request attempt 1 at 01:55:36
-768 verbose etag "6J6IJLU0J2PT73GOBVYFVA862"
-769 http GET https://registry.npmjs.org/request
-770 http 304 https://registry.npmjs.org/async
+740 verbose url raw clone
+741 verbose url resolving [ 'https://registry.npmjs.org/', './clone' ]
+742 verbose url resolved https://registry.npmjs.org/clone
+743 info trying registry request attempt 1 at 03:27:07
+744 verbose etag "1CJ8DLJLQWKB53SNXENRMGFC9"
+745 http GET https://registry.npmjs.org/clone
+746 verbose url raw update-notifier
+747 verbose url resolving [ 'https://registry.npmjs.org/', './update-notifier' ]
+748 verbose url resolved https://registry.npmjs.org/update-notifier
+749 info trying registry request attempt 1 at 03:27:07
+750 verbose etag "4Z79WAVHGIVK22RHA4U3UULZ7"
+751 http GET https://registry.npmjs.org/update-notifier
+752 verbose url raw touch/0.0.3
+753 verbose url resolving [ 'https://registry.npmjs.org/', './touch/0.0.3' ]
+754 verbose url resolved https://registry.npmjs.org/touch/0.0.3
+755 info trying registry request attempt 1 at 03:27:07
+756 verbose etag "BZ27R72CQ7316RETIA3TJIR48"
+757 http GET https://registry.npmjs.org/touch/0.0.3
+758 verbose url raw superstatic/1.2.1
+759 verbose url resolving [ 'https://registry.npmjs.org/', './superstatic/1.2.1' ]
+760 verbose url resolved https://registry.npmjs.org/superstatic/1.2.1
+761 info trying registry request attempt 1 at 03:27:07
+762 verbose etag "ELDO2PV4GPY6G8G9YB8SN6WEP"
+763 http GET https://registry.npmjs.org/superstatic/1.2.1
+764 verbose url raw writestreamp
+765 verbose url resolving [ 'https://registry.npmjs.org/', './writestreamp' ]
+766 verbose url resolved https://registry.npmjs.org/writestreamp
+767 info trying registry request attempt 1 at 03:27:07
+768 verbose etag "CUQVLZA9QM2HQQEGBOXJ8MMRJ"
+769 http GET https://registry.npmjs.org/writestreamp
+770 http 304 https://registry.npmjs.org/booly
 771 silly registry.get cb [ 304,
-771 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
+771 silly registry.get   { date: 'Mon, 11 May 2015 08:27:05 GMT',
 771 silly registry.get     via: '1.1 varnish',
-771 silly registry.get     'last-modified': 'Fri, 08 May 2015 06:55:37 GMT',
 771 silly registry.get     'cache-control': 'max-age=60',
-771 silly registry.get     etag: '"E2FY7F8V5B68KWQBLE89RZZCX"',
-771 silly registry.get     age: '12',
+771 silly registry.get     etag: '"5OKJ89U8ZRILOIYEL4AB33UKG"',
+771 silly registry.get     age: '15',
 771 silly registry.get     connection: 'keep-alive',
-771 silly registry.get     'x-served-by': 'cache-dfw1828-DFW',
+771 silly registry.get     'x-served-by': 'cache-dfw1822-DFW',
 771 silly registry.get     'x-cache': 'HIT',
 771 silly registry.get     'x-cache-hits': '1',
-771 silly registry.get     'x-timer': 'S1431068137.828037,VS0,VE0',
+771 silly registry.get     'x-timer': 'S1431332825.620895,VS0,VE0',
 771 silly registry.get     vary: 'Accept' } ]
-772 verbose etag async from cache
+772 verbose etag booly from cache
 773 http 304 https://registry.npmjs.org/bytes
 774 silly registry.get cb [ 304,
-774 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
+774 silly registry.get   { date: 'Mon, 11 May 2015 08:27:05 GMT',
 774 silly registry.get     via: '1.1 varnish',
-774 silly registry.get     'last-modified': 'Fri, 08 May 2015 06:55:24 GMT',
 774 silly registry.get     'cache-control': 'max-age=60',
 774 silly registry.get     etag: '"2SXVXOK6OLSMCAOQB3FX7P63P"',
-774 silly registry.get     age: '13',
+774 silly registry.get     age: '15',
 774 silly registry.get     connection: 'keep-alive',
-774 silly registry.get     'x-served-by': 'cache-dfw1832-DFW',
+774 silly registry.get     'x-served-by': 'cache-dfw1833-DFW',
 774 silly registry.get     'x-cache': 'HIT',
-774 silly registry.get     'x-cache-hits': '2',
-774 silly registry.get     'x-timer': 'S1431068137.842092,VS0,VE0',
+774 silly registry.get     'x-cache-hits': '55',
+774 silly registry.get     'x-timer': 'S1431332825.621153,VS0,VE0',
 774 silly registry.get     vary: 'Accept' } ]
 775 verbose etag bytes from cache
-776 http 304 https://registry.npmjs.org/clone
+776 http 304 https://registry.npmjs.org/async
 777 silly registry.get cb [ 304,
-777 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
+777 silly registry.get   { date: 'Mon, 11 May 2015 08:27:05 GMT',
 777 silly registry.get     via: '1.1 varnish',
 777 silly registry.get     'cache-control': 'max-age=60',
-777 silly registry.get     etag: '"1CJ8DLJLQWKB53SNXENRMGFC9"',
-777 silly registry.get     age: '12',
+777 silly registry.get     etag: '"1LZ9GAL1129FOEJOL1IWC62KA"',
+777 silly registry.get     age: '31',
 777 silly registry.get     connection: 'keep-alive',
-777 silly registry.get     'x-served-by': 'cache-dfw1825-DFW',
+777 silly registry.get     'x-served-by': 'cache-dfw1823-DFW',
 777 silly registry.get     'x-cache': 'HIT',
-777 silly registry.get     'x-cache-hits': '54',
-777 silly registry.get     'x-timer': 'S1431068137.845640,VS0,VE0',
+777 silly registry.get     'x-cache-hits': '2',
+777 silly registry.get     'x-timer': 'S1431332825.621233,VS0,VE0',
 777 silly registry.get     vary: 'Accept' } ]
-778 verbose etag clone from cache
-779 http 304 https://registry.npmjs.org/chalk
+778 verbose etag async from cache
+779 http 304 https://registry.npmjs.org/copy-files
 780 silly registry.get cb [ 304,
-780 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
+780 silly registry.get   { date: 'Mon, 11 May 2015 08:27:05 GMT',
 780 silly registry.get     via: '1.1 varnish',
-780 silly registry.get     'last-modified': 'Fri, 08 May 2015 06:55:37 GMT',
 780 silly registry.get     'cache-control': 'max-age=60',
-780 silly registry.get     etag: '"2M22XAZD4BRYG4HDAHZLLMMFU"',
-780 silly registry.get     age: '10',
+780 silly registry.get     etag: '"BBKYEX7AOOKZBLTN5MNR2OEY7"',
+780 silly registry.get     age: '15',
 780 silly registry.get     connection: 'keep-alive',
-780 silly registry.get     'x-served-by': 'cache-dfw1835-DFW',
+780 silly registry.get     'x-served-by': 'cache-dfw1827-DFW',
 780 silly registry.get     'x-cache': 'HIT',
 780 silly registry.get     'x-cache-hits': '1',
-780 silly registry.get     'x-timer': 'S1431068137.855768,VS0,VE0',
+780 silly registry.get     'x-timer': 'S1431332825.621205,VS0,VE0',
 780 silly registry.get     vary: 'Accept' } ]
-781 verbose etag chalk from cache
-782 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
-783 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
-784 http 304 https://registry.npmjs.org/booly
-785 silly registry.get cb [ 304,
-785 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
-785 silly registry.get     via: '1.1 varnish',
-785 silly registry.get     'cache-control': 'max-age=60',
-785 silly registry.get     etag: '"5OKJ89U8ZRILOIYEL4AB33UKG"',
-785 silly registry.get     age: '0',
-785 silly registry.get     connection: 'keep-alive',
-785 silly registry.get     'x-served-by': 'cache-dfw1825-DFW',
-785 silly registry.get     'x-cache': 'HIT',
-785 silly registry.get     'x-cache-hits': '1',
-785 silly registry.get     'x-timer': 'S1431068137.831697,VS0,VE62',
-785 silly registry.get     vary: 'Accept' } ]
-786 verbose etag booly from cache
-787 verbose about to build C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli
-788 info C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli unbuild
-789 verbose from cache C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli\package.json
-790 info preuninstall divshot-cli@1.10.5
-791 silly lockFile de98d575-bytes-2-0-0 bytes@^2.0.0
-792 silly lockFile de98d575-bytes-2-0-0 bytes@^2.0.0
-793 silly lockFile 426a23c0-clone-1-0-0 clone@^1.0.0
-794 silly lockFile 426a23c0-clone-1-0-0 clone@^1.0.0
-795 info uninstall divshot-cli@1.10.5
+781 verbose etag copy-files from cache
+782 http 304 https://registry.npmjs.org/chalk
+783 silly registry.get cb [ 304,
+783 silly registry.get   { date: 'Mon, 11 May 2015 08:27:05 GMT',
+783 silly registry.get     via: '1.1 varnish',
+783 silly registry.get     'cache-control': 'max-age=60',
+783 silly registry.get     etag: '"2M22XAZD4BRYG4HDAHZLLMMFU"',
+783 silly registry.get     age: '10',
+783 silly registry.get     connection: 'keep-alive',
+783 silly registry.get     'x-served-by': 'cache-dfw1820-DFW',
+783 silly registry.get     'x-cache': 'HIT',
+783 silly registry.get     'x-cache-hits': '2',
+783 silly registry.get     'x-timer': 'S1431332825.633115,VS0,VE0',
+783 silly registry.get     vary: 'Accept' } ]
+784 verbose etag chalk from cache
+785 silly lockFile 85141985-copy-files-0-1-0 copy-files@^0.1.0
+786 silly lockFile 85141985-copy-files-0-1-0 copy-files@^0.1.0
+787 silly lockFile de98d575-bytes-2-0-0 bytes@^2.0.0
+788 silly lockFile de98d575-bytes-2-0-0 bytes@^2.0.0
+789 verbose about to build C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli
+790 info C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli unbuild
+791 verbose from cache C:\Users\objectbb\AppData\Roaming\npm\node_modules\divshot-cli\package.json
+792 info preuninstall divshot-cli@1.10.5
+793 info uninstall divshot-cli@1.10.5
+794 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
+795 silly lockFile 7f39d2c2-async-0-9-0 async@^0.9.0
 796 verbose true,C:\Users\objectbb\AppData\Roaming\npm\node_modules,C:\Users\objectbb\AppData\Roaming\npm\node_modules unbuild divshot-cli@1.10.5
 797 verbose C:\Users\objectbb\AppData\Roaming\npm,[object Object] binRoot
-798 silly lockFile 2b6848f7-chalk-1-0-0 chalk@^1.0.0
+798 info postuninstall divshot-cli@1.10.5
 799 silly lockFile 2b6848f7-chalk-1-0-0 chalk@^1.0.0
-800 info postuninstall divshot-cli@1.10.5
-801 http 304 https://registry.npmjs.org/divshot-push/1.4.2
-802 silly registry.get cb [ 304,
-802 silly registry.get   { date: 'Fri, 08 May 2015 06:55:37 GMT',
-802 silly registry.get     via: '1.1 varnish',
-802 silly registry.get     'cache-control': 'max-age=60',
-802 silly registry.get     etag: '"BVXOWU0JB9J4DUMYX79R9L4OD"',
-802 silly registry.get     age: '0',
-802 silly registry.get     connection: 'keep-alive',
-802 silly registry.get     'x-served-by': 'cache-dfw1825-DFW',
-802 silly registry.get     'x-cache': 'HIT',
-802 silly registry.get     'x-cache-hits': '1',
-802 silly registry.get     'x-timer': 'S1431068137.935736,VS0,VE70',
-802 silly registry.get     vary: 'Accept' } ]
-803 verbose etag divshot-push/1.4.2 from cache
-804 silly lockFile f1fc81ee-booly-1-0-2 booly@^1.0.2
-805 silly lockFile f1fc81ee-booly-1-0-2 booly@^1.0.2
-806 verbose read json C:\Users\objectbb\AppData\Roaming\npm-cache\divshot-push\1.4.2\package\package.json
-807 silly lockFile c47998fc-divshot-push-1-4-2 divshot-push@1.4.2
-808 silly lockFile c47998fc-divshot-push-1-4-2 divshot-push@1.4.2
-809 error Error: No compatible version found: async@'^0.9.0'
-809 error Valid install targets:
-809 error ["0.1.0","0.1.1","0.1.2","0.1.3","0.1.4","0.1.5","0.1.6","0.1.7","0.1.8","0.1.9","0.1.10","0.1.11","0.1.12","0.1.13","0.1.14","0.1.15","0.1.16","0.1.17","0.1.18","0.1.19","0.1.20","0.1.21","0.1.22","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.2.5","0.2.6","0.2.7","0.2.8","0.2.9","0.2.10","0.3.0","0.4.0","0.4.1","0.5.0","0.6.0","0.6.1","0.6.2","0.7.0","0.8.0","0.9.0"]
-809 error     at installTargetsError (c:\Program Files\nodejs\node_modules\npm\lib\cache.js:719:10)
-809 error     at c:\Program Files\nodejs\node_modules\npm\lib\cache.js:641:10
-809 error     at saved (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\get.js:138:7)
-809 error     at Object.oncomplete (fs.js:107:15)
-810 error If you need help, you may report this log at:
-810 error     <http://github.com/isaacs/npm/issues>
-810 error or email it to:
-810 error     <npm-@googlegroups.com>
-811 error System Windows_NT 6.1.7601
-812 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "divshot-cli" "-g"
-813 error cwd c:\Users\objectbb\taxidriver
-814 error node -v v0.10.11
-815 error npm -v 1.2.30
-816 verbose exit [ 1, true ]
+800 silly lockFile 2b6848f7-chalk-1-0-0 chalk@^1.0.0
+801 silly lockFile f1fc81ee-booly-1-0-2 booly@^1.0.2
+802 silly lockFile f1fc81ee-booly-1-0-2 booly@^1.0.2
+803 error Error: No compatible version found: copy-files@'^0.1.0'
+803 error Valid install targets:
+803 error ["0.1.0"]
+803 error     at installTargetsError (c:\Program Files\nodejs\node_modules\npm\lib\cache.js:719:10)
+803 error     at c:\Program Files\nodejs\node_modules\npm\lib\cache.js:641:10
+803 error     at saved (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\get.js:138:7)
+803 error     at Object.oncomplete (fs.js:107:15)
+804 error If you need help, you may report this log at:
+804 error     <http://github.com/isaacs/npm/issues>
+804 error or email it to:
+804 error     <npm-@googlegroups.com>
+805 error System Windows_NT 6.1.7601
+806 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "divshot-cli" "-g"
+807 error cwd c:\Users\objectbb\taxidriver
+808 error node -v v0.10.11
+809 error npm -v 1.2.30
+810 verbose exit [ 1, true ]

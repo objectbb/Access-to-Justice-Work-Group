@@ -10,7 +10,6 @@
 	color: #ffffff;
 }
 body {
-    background-image: url(../images/blue_woven_nylon_fabric.jpg);
     background-color: #cccccc;
     font-size: 1.1em;
     font-style: Arial;
@@ -36,6 +35,11 @@ code {
   margin: 0px 2px 0px 1px;
   font-size: 12.5px;
   color: #333;
+}
+
+ code.codeheader{
+  background-color: #000000;
+  color: #efefef;
 }
 
 .title {
