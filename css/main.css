@@ -58,5 +58,7 @@ code {
 
 .processmsg{
   font-size: 13px;
-  color: beige;
+  font-weight: bolder;
+  color: #202020;
+  padding: 2px;
 }
