@@ -4,7 +4,7 @@
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
             <link rel="stylesheet" type="text/css" href="css/isteven-multi-select.css">
-            <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+            <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
             <link rel="stylesheet" type="text/css" href="css/main.css">
         </head>
         <body>
@@ -19,26 +19,23 @@
                     <div class="row">
                         <div class="col-md-9">
                             <accordion close-others="oneAtATime">
-                                <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-
-                                <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-
-                                <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-
-                                <accordion-group>
-                                    <accordion-heading class="accordion-heading-adv">
-                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                        Advance SQL Query
-                                    </accordion-heading>
-                                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
-                                    <br>
-                                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendsql(sql,'#sqladvmsg')" >Send</button>
-                                        <br><br>
-                                        <p id="sqladvmsg" class="processmsg"></p>
-                                </accordion-group>
-                            </accordion>
-                <br>
+                            <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                        <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                    <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                <accordion-group>
+                    <accordion-heading class="accordion-heading-adv">
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        Advance SQL Query
+                    </accordion-heading>
+                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+                    <br>
+                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendsql(sql,'#sqladvmsg')" >Send</button>
+                    <br><br>
+                    <p id="sqladvmsg" class="processmsg"></p>
+                </accordion-group>
+            </accordion>
+            <br>
             <div class="row container">
                 <div class="col-md-12 background-white">
                     <table id="rstable" class="display">
@@ -55,7 +52,7 @@
     <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script type="text/javascript" charset="utf8" src="js/libs/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="js/libs/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script type="text/javascript" charset="utf8" src="js/libs/isteven-multi-select.js"></script>
     <script type="text/javascript" src="js/app/main/app.js"></script>
     <script type="text/javascript" src="js/app/main/services/fusiontables/reports.js"></script>
