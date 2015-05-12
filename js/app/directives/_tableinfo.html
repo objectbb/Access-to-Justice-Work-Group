@@ -3,34 +3,36 @@
         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
         <div class="row">
             <div class="col-md-3">
-                <code class="codemainheader">{{title}}</code>
-            </div>
-            <div class="col-md-8">
-                
+            <code class="codemainheader">{{title}}</code>
+        </div>
+        <div class="col-md-8">
+
                     <code class="codeheader">Fusion Table Id:</code><code>{{fusiontbl}}</code>
                     <br>
                     <code class="codeheader">Columns:</code>
-                        <code ng-repeat="item in columns">
+                    <code ng-repeat="item in columns">
                         {{item.name}}
-                        </code>
-                   
+                    </code>
+
+            </div>
         </div>
-    </div>
-</accordion-heading>
-<span>
-Group by:
-<isteven-multi-select
-input-model="columns"
-output-model="sqlcols"
-button-label="icon name"
-item-label="icon name maker"
-orientation="horizontal"
-tick-property="ticked"
->
-</isteven-multi-select>
-</span>
-<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span>
-<a href="#" ng-click="send(fusiontbl,sqlcols)"> Run query </a>
-</span>
+    </accordion-heading>
+    <span>
+        Group by:
+        <isteven-multi-select
+        input-model="columns"
+        output-model="sqlcols"
+        button-label="icon name"
+        item-label="icon name maker"
+        orientation="horizontal"
+        tick-property="ticked"
+        >
+        </isteven-multi-select>
+    </span>
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span>
+    <a href="#" ng-click="send(fusiontbl,sqlcols)"> Run query </a>
+    </span>
+    <br><br>
+    <p id="{{fusiontbl}}msg" class="background-green processmsg"></p>
 </accordion-group>

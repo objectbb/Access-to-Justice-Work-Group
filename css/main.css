@@ -55,3 +55,8 @@ code {
   font: 80px 'Oswald';
   letter-spacing: 10px;
 }
+
+.processmsg{
+  font-size: 13px;
+  color: beige;
+}

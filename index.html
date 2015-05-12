@@ -19,25 +19,24 @@
                     <div class="row">
                         <div class="col-md-9">
                             <accordion close-others="oneAtATime">
-                            <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
 
-                            <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
 
-                            <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                            
-                            <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                  <accordion-group>
-                    <accordion-heading class="accordion-heading-adv">
-                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                        Advance SQL Query
-                    </accordion-heading>
-                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
-                    <br>
-                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send(sql)" >Send</button>
-                </accordion-group>
-            </accordion>
-            <br>
-            <h1 class="background-green font-white">{{msg}}</h1>
+                                <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+
+                                <accordion-group>
+                                    <accordion-heading class="accordion-heading-adv">
+                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                        Advance SQL Query
+                                    </accordion-heading>
+                                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+                                    <br>
+                                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send(sql)" >Send</button>
+                                </accordion-group>
+                            </accordion>
+                <br>
             <div class="row container">
                 <div class="col-md-12 background-white">
                     <table id="rstable" class="display">

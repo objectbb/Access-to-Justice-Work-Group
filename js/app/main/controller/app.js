@@ -27,6 +27,7 @@
         });
 
         $scope.send = function(table, inputcols) {
+            var msgid = "#" + table + "msg";
             var formcols = inputcols;
 
             var cols = (_.map(formcols, function(item){
@@ -36,16 +37,15 @@
             var groupbyquery =  (formcols === null || formcols.length > 0) ? " group by " +  cols : "";
             var query = "select " + colsquery + " from " + table + groupbyquery;
 
-
-            $scope.msg = "Processing...";
+            $(msgid).html("Processing...");
             ReportService.request(query).
             success(function(data, status) {
                 loaddatatatable(data);
-                $scope.msg = "";
+                $(msgid).html("Results at bottom");
             }).
             error(function(data, status) {
                 var msg = data.error.errors[0].message;
-                $scope.msg = "Error:" + msg;
+                 $(msgid).html("Error:" + msg);
             });
         }
         var loaddatatatable = function(dataset) {
