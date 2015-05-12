@@ -41,7 +41,7 @@
             ReportService.request(query).
             success(function(data, status) {
                 loaddatatatable(data);
-                $(msgid).html("Results at the bottom...");
+                $(msgid).html("Results at the bottom..." + data.rows.length + " rows returned");
             }).
             error(function(data, status) {
                 var msg = data.error.errors[0].message;
