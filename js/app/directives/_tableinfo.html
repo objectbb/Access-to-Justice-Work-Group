@@ -2,14 +2,14 @@
     <accordion-heading>
         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <code class="codemainheader">{{title}}</code>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 
-                    <code class="codeheader">Fusion Table Id:</code><br><code>{{fusiontbl}}</code>
+                    <code class="codeheader">Fusion Table Id:</code><code>{{fusiontbl}}</code>
                     <br>
-                    <code class="codeheader">Columns:</code><br>
+                    <code class="codeheader">Columns:</code>
                         <code ng-repeat="item in columns">
                         {{item.name}}
                         </code>
