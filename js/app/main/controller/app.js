@@ -25,18 +25,19 @@
         getcolumns('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ').then(function(data) {
             $scope.tmht = data;
         });
-
         $scope.send = function(table, inputcols) {
             var msgid = "#" + table + "msg";
             var formcols = inputcols;
-
-            var cols = (_.map(formcols, function(item){
-             return "'" + item.name + "'";
-         })).join(',');
+            var cols = (_.map(formcols, function(item) {
+                return "'" + item.name + "'";
+            })).join(',');
             var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
-            var groupbyquery =  (formcols === null || formcols.length > 0) ? " group by " +  cols : "";
+            var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
             var query = "select " + colsquery + " from " + table + groupbyquery;
-
+            
+            $scope.sendsql(query, msgid);
+        }
+        $scope.sendsql = function(query, msgid) {
             $(msgid).html("Processing...");
             ReportService.request(query).
             success(function(data, status) {
@@ -45,7 +46,7 @@
             }).
             error(function(data, status) {
                 var msg = data.error.errors[0].message;
-                 $(msgid).html("Error:" + msg);
+                $(msgid).html("Error:" + msg);
             });
         }
         var loaddatatatable = function(dataset) {
@@ -62,6 +63,5 @@
                 "columns": cols
             });
         }
-
     }]);
 }());

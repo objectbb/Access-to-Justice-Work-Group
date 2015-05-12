@@ -33,7 +33,9 @@
                                     </accordion-heading>
                                     <textarea class="form-control" rows="5" ng-model="sql"></textarea>
                                     <br>
-                                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="send(sql)" >Send</button>
+                                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendsql(sql,'#sqladvmsg')" >Send</button>
+                                        <br><br>
+                                        <p id="sqladvmsg" class="processmsg"></p>
                                 </accordion-group>
                             </accordion>
                 <br>
