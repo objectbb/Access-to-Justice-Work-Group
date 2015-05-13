@@ -57,3 +57,6 @@ code.codemainheader {
     background-color: #e3dcc0;
     opacity: .75;
 }
+.panel-default {
+border-color: #e3dcc0;
+  }
