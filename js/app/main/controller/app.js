@@ -8,14 +8,14 @@
             var deferred = $q.defer();
             var rs;
             ReportService.requestcolumns(id).then(function (data, status) {
-                rs = deferred.resolve(data.data.items);
+                rs = deferred.resolve(_.sortByAll(data.data.items,'name'));
             }, function (updates) {
                 deferred.update(updates);
             });
             return deferred.promise;
         }
         getcolumns('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i').then(function (data) {
-            $scope.tmhs = data;
+            $scope.tmhs = data;     
         });
         getcolumns('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt').then(function (data) {
             $scope.anovs = data;
