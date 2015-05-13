@@ -10,7 +10,7 @@
 	color: #ffffff;
 }
 body {
-    background-color: #cccccc;
+    background-color: #e3dcc0;
     font-size: 1.1em;
     font-style: Arial;
 }
@@ -61,4 +61,12 @@ code {
   font-weight: bolder;
   color: #202020;
   padding: 2px;
+}
+
+.transparent{
+  opacity: .60;
+}
+
+.notransparent{
+  opacity: 1;
 }

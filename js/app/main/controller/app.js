@@ -26,6 +26,9 @@
         getcolumns('1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ').then(function (data) {
             $scope.tmht = data;
         });
+        getcolumns('14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV').then(function (data) {
+            $scope.dfin = data;
+        });
         $scope.send = function (table, inputcols) {
             var msgid = "#" + table + "msg";
             var formcols = inputcols;
@@ -51,14 +54,13 @@
         }
         var loaddatatatable = function (dataset) {
             if (dataTable) {
-                dataTable.fnDestroy();                
+                dataTable.fnDestroy();
             }
             var cols = _.map(dataset.columns, function (n) {
                 return {
                     'title': n
                 };
             });
-
             dataTable = $('#rstable').empty().dataTable({
                 destroy: true,
                 "data": dataset.rows,
