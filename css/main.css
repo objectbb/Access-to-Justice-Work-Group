@@ -58,5 +58,13 @@ code.codemainheader {
     opacity: .75;
 }
 .panel-default {
-border-color: #e3dcc0;
-  }
+    border-color: #e3dcc0;
+}
+.multiSelect > button {
+    min-height: 16px;
+    padding: 1px 1px 1px 1px;
+}
+.multiSelect .buttonLabel {
+    min-height: 16px;
+    padding: 1px 1px 1px 1px;
+}
