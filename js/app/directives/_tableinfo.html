@@ -33,11 +33,11 @@ tick-property="ticked"
 <span>
 <a href="#" ng-click="send(fusiontbl,sqlcols)"> Run query </a>
 </span>
-
-<span ng-if="containsAddress(columns)" ng-controller="LeafletController">
-
-<leaflet  center="center" markers="markers" height="250px" width="350px"></leaflet>
-</span>
+<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+<span id="{{fusiontbl}}msg" class="processmsg"></span>
 <br><br>
-<p id="{{fusiontbl}}msg" class="processmsg"></p>
+<p ng-if="containsAddress(columns)" ng-controller="LeafletController">
+<leaflet  center="center" markers="markers" height="250px" width="350px"></leaflet>
+</p>
+
 </accordion-group>
