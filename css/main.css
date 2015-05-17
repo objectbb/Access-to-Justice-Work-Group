@@ -1,14 +1,17 @@
 .background-green {
-    background-color: #64AA41;
+    background-color: #0e792b;
 }
 .background-white {
     background-color: #ffffff;
+}
+.background-blue {
+    background-color: #125695;
 }
 .font-white {
     color: #ffffff;
 }
 body {
-    background-color: #e3dcc0;
+    background-color: #ffffff;
     font-size: 1.1em;
     font-style: Arial;
 }
@@ -32,7 +35,7 @@ code {
     color: #333;
 }
 code.codeheader {
-    background-color: #000000;
+    background-color: #125695;
     color: #efefef;
 }
 code.codemainheader {

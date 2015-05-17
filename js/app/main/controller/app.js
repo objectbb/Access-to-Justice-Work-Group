@@ -8,14 +8,14 @@
             var deferred = $q.defer();
             var rs;
             ReportService.requestcolumns(id).then(function (data, status) {
-                rs = deferred.resolve(_.sortByAll(data.data.items,'name'));
+                rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
             }, function (updates) {
                 deferred.update(updates);
             });
             return deferred.promise;
         }
         getcolumns('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i').then(function (data) {
-            $scope.tmhs = data;     
+            $scope.tmhs = data;
         });
         getcolumns('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt').then(function (data) {
             $scope.anovs = data;
@@ -38,19 +38,47 @@
             var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
             var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
             var query = "select " + colsquery + " from " + table + groupbyquery;
-            $scope.sendsql(query, msgid);
+            $scope.sendsql(table, query, msgid);
         }
-        $scope.sendsql = function (query, msgid) {
+        $scope.sendsql = function (table, query, msgid) {
             $(msgid).html("Processing...");
             ReportService.request(query).
             success(function (data, status) {
                 loaddatatatable(data);
+                loadsqltables(table, data);
                 $(msgid).html("Results at the bottom..." + data.rows.length + " rows returned");
             }).
             error(function (data, status) {
                 var msg = data.error.errors[0].message;
                 $(msgid).html("Error:" + msg);
             });
+        }
+        var loadsqltables = function (table, data) {
+            var jsondata = _.map(data.rows, function (n) {
+                var row = {};
+                var len = data.columns.length;
+                for (var i = 0; i < len; i++) row[data.columns[i]] = n[i];
+                return row;
+            });
+
+/*
+            var rsins = squel.insert().into(table).setFieldsRows(jsondata).toParam();
+
+            var rs = squel.select().from(table).toParam();
+            */
+            
+
+// INSERT INTO test (name, age) VALUES ('Thomas', 29), ('Jane', 31)
+var rsin = squel.insert()
+    .into("test")
+    .setFieldsRows([
+        { name: "Thomas", age: 29 },
+        { name: "Jane", age: 31 }    
+    ]).toParam();
+   
+    var rs = squel.select().from("test").toParam();
+
+
         }
         var loaddatatatable = function (dataset) {
             if (dataTable) {
