@@ -1,0 +1,94 @@
+//colors
+$color_fun_green_approx: #0e792b
+$white: #fff
+$color_venice_blue_approx: #125695
+$black: #000
+$gray: #808080
+$color_desert_storm_approx: #f8f8f8
+$color_alto_approx: #ddd
+$color_mine_shaft_approx: #333
+$gallery: #efefef
+$color_stark_white_approx: #e3dcc0
+$color_log_cabin_approx: #202020
+$color_sisal_approx: #d7ceb2
+$color_charade_approx: #2c2e38
+$color_comet_approx: #5c5f72
+
+//fonts
+$font_0: Oswald
+
+.background-green 
+	background-color: $color_fun_green_approx
+
+.background-white 
+	background-color: $white
+
+.background-blue 
+	background-color: $color_venice_blue_approx
+
+.font-white 
+	color: $white
+
+body 
+	background-color: $white
+	font-size: 1.1em
+	font-style: Arial
+
+.accordion-heading-adv 
+	background-color: $black
+	color: $white
+
+.columnborder 
+	border: 1px solid $gray
+	margin: 1px
+	padding: 1px
+	font-size: 8px
+
+code 
+	background-color: $color_desert_storm_approx
+	display: inline-block
+	border: 1px solid $color_alto_approx !important
+	padding: 0 4px 0 4px !important
+	margin: 0 2px 0 1px
+	font-size: 11px
+	color: $color_mine_shaft_approx
+	&.codeheader 
+		background-color: $color_venice_blue_approx
+		color: $gallery
+
+	&.codemainheader 
+		background-color: $color_stark_white_approx
+		color: $color_log_cabin_approx
+		border: 1px solid $color_log_cabin_approx !important
+		font-size: 15px
+
+
+.title 
+	color: $color_sisal_approx
+	//If you use compass, instead of the line below you could use +text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 3px 3px 0 $color_charade_approx, 5px 5px 0 $color_comet_approx
+	font: 80px $font_0
+	letter-spacing: 10px
+
+.processmsg 
+	font-size: 13px
+	font-weight: bolder
+	color: $color_log_cabin_approx
+	padding: 2px
+
+.panel-default 
+	border-color: $color_stark_white_approx
+
+.multiSelect 
+	.buttonLabel 
+		min-height: 16px
+		padding: 1px
+
+	> button 
+		min-height: 16px
+		padding: 1px
+
+
+.panel-default>.panel-heading 
+	background-color: $color_stark_white_approx
+	opacity: .75
