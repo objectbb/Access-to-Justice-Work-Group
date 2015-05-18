@@ -8,12 +8,12 @@
   background-color: #125695; }
 
 .font-white {
-  color: #fff; }
+  color: #fff !important; }
 
 body {
   background-color: #fff;
   font-size: 1.1em;
-  font-style: Arial; }
+  font-family: Oswald; }
 
 .accordion-heading-adv {
   background-color: #000;
