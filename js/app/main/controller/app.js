@@ -1,9 +1,10 @@
 (function () {
     var dataTable;
-    angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', function ($scope, $q, ReportService) {
+    angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 'da', function ($scope, $q, ReportService, da) {
         $scope.sql = null;
         $scope.sqlrs = null;
         $scope.sqlcols = [];
+
         var getcolumns = function (id) {
             var deferred = $q.defer();
             var rs;
@@ -16,6 +17,7 @@
         }
         getcolumns('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i').then(function (data) {
             $scope.tmhs = data;
+            da.createtable("tmhs",$scope.tmhs);
         });
         getcolumns('1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt').then(function (data) {
             $scope.anovs = data;
@@ -44,7 +46,7 @@
             $(msgid).html("Processing...");
             ReportService.request(query).
             success(function (data, status) {
-                loaddatatatable(data);
+                loaddatagrid(data);
                 loadsqltables(table, data);
                 $(msgid).html("Results at the bottom..." + data.rows.length + " rows returned");
             }).
@@ -61,26 +63,10 @@
                 return row;
             });
 
-/*
-            var rsins = squel.insert().into(table).setFieldsRows(jsondata).toParam();
-
-            var rs = squel.select().from(table).toParam();
-            */
-            
-
-// INSERT INTO test (name, age) VALUES ('Thomas', 29), ('Jane', 31)
-var rsin = squel.insert()
-    .into("test")
-    .setFieldsRows([
-        { name: "Thomas", age: 29 },
-        { name: "Jane", age: 31 }    
-    ]).toParam();
-   
-    var rs = squel.select().from("test").toParam();
-
-
+            da.loaddatatable(table,data);
         }
-        var loaddatatatable = function (dataset) {
+
+        var loaddatagrid = function (dataset) {
             if (dataTable) {
                 dataTable.fnDestroy();
             }
