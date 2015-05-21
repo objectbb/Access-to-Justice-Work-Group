@@ -2,18 +2,19 @@
     var dataaccess = function() {
         var schemaBuilder = lf.schema.create('taxidriver', 1);
         return {
-            execute: function(query) {
-                dm.executeQuery(query).then(function(data) {
-                    return data.results;
-                }).
-                catch (function(e) {
-                    alert(e);
-                })
+            execute: function() {
+                schemaBuilder.connect().then(function(db) {
+                    var dfin = schemaBuilder.getSchema.table('dfin');
+                    schemaBuilder.select(dfin.Docket_Number, lf.fn.count(dfin.Violation)).
+                    from(dfin).
+                    groupBy(dfin.Docket_Number).exec();
+                }).then(function(results) {
+                    console.log(results.length);
+                });
             },
             loadtable: function(name, data) {
                 var rs;
                 var table;
-
                 schemaBuilder.connect().then(function(db) {
                     rs = db;
                     table = db.getSchema().table(name);
@@ -36,6 +37,11 @@
                     var name = cols[i].name;
                     var type = cols[i].type;
                     table.addColumn(name, (cols[i].type == "NUMBER") ? lf.Type.INTEGER : lf.Type.STRING);
+                    
+                    if(name == "Docket_Number" || name == "Affiliation" || 
+                            name == "Date" || name == "TotalAmount_Outstanding" || name == "Company_Name" ||
+                                name == "Address")
+                    table.addIndex('idx' + name, [name], false, lf.Order.DESC);
                 }
                 table.addColumn('id', lf.Type.INTEGER);
                 table.addPrimaryKey(['id'], true);

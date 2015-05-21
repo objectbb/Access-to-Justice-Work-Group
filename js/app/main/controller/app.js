@@ -63,10 +63,10 @@
                     return row;
                 });
                 da.loadtable(table, jsondata);
-                runinfotable(table);
+               // runinfotable(table);
             }
             var runinfotable = function(table) {
-
+                    da.execute();
             }
             var loaddatagrid = function(dataset) {
                 if (dataTable) {
