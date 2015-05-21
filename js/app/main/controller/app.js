@@ -66,9 +66,7 @@
                 runinfotable(table);
             }
             var runinfotable = function(table) {
-                var query = new breeze.EntityQuery().from(table).
-                select('Company Name');;
-                da.execute(query);
+
             }
             var loaddatagrid = function(dataset) {
                 if (dataTable) {

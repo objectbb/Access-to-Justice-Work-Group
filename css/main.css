@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 300; }
 
-.font-normal-400 {
+.font-normal-400, h4 {
   font-family: Oswald, Open Sans;
   font-style: normal;
   font-weight: 400; }
@@ -22,8 +22,14 @@
 
 body {
   background-color: #fff;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-family: Oswald, Open Sans; }
+
+.panel-body {
+  font-size: 1.7em; }
+
+.accordion-heading {
+  font-size: 1.7em; }
 
 .accordion-heading-adv {
   background-color: #000;
@@ -33,7 +39,7 @@ body {
   border: 1px solid #808080;
   margin: 1px;
   padding: 1px;
-  font-size: 8px; }
+  font-size: 0.85em; }
 
 code {
   background-color: #f8f8f8;
@@ -41,16 +47,17 @@ code {
   border: 1px solid #ddd !important;
   padding: 0 4px 0 4px !important;
   margin: 0 2px 0 1px;
-  font-size: 11px;
+  font-size: 0.85em;
   color: #333; }
   code.codeheader {
     background-color: #125695;
-    color: #efefef; }
+    color: #efefef;
+    font-size: 1.2em; }
   code.codemainheader {
     background-color: #e3dcc0;
     color: #202020;
     border: 1px solid #202020 !important;
-    font-size: 15px; }
+    font-size: 1.2em; }
 
 .title {
   color: #d7ceb2;
@@ -59,7 +66,6 @@ code {
   letter-spacing: 10px; }
 
 .processmsg {
-  font-size: 13px;
   font-weight: bolder;
   color: #202020;
   padding: 2px; }

@@ -13,6 +13,10 @@ $color_log_cabin_approx: #202020
 $color_sisal_approx: #d7ceb2
 $color_charade_approx: #2c2e38
 $color_comet_approx: #5c5f72
+$standard_font_size: .85em
+$standard_header_font_size: 1.2em
+$standard_main_header_font_size: 1.2em
+$standard_panel_body_font_size: 1.7em
 
 
 //fonts
@@ -26,8 +30,8 @@ $font_0: Oswald, Open Sans
 .font-normal-400 
 	font-family: $font_0 
 	font-style: normal 
-	font-weight: 400	
- 
+	font-weight: 400
+
 .background-green 
 	background-color: $color_fun_green_approx
 
@@ -43,18 +47,26 @@ $font_0: Oswald, Open Sans
 body
 	@extend .font-light-300
 	background-color: $white
-	font-size: 1.1em
+	font-size: $standard_header_font_size 
 	font-family: $font_0
+
+.panel-body
+	font-size: $standard_panel_body_font_size
+
+.accordion-heading 
+	font-size: $standard_panel_body_font_size
 
 .accordion-heading-adv 
 	background-color: $black
 	color: $white
 
+
+
 .columnborder 
 	border: 1px solid $gray
 	margin: 1px
 	padding: 1px
-	font-size: 8px
+	font-size: $standard_font_size
 
 code
 	@extend .font-light-300
@@ -63,17 +75,18 @@ code
 	border: 1px solid $color_alto_approx !important
 	padding: 0 4px 0 4px !important
 	margin: 0 2px 0 1px
-	font-size: 11px
+	font-size: $standard_font_size
 	color: $color_mine_shaft_approx
 	&.codeheader 
 		background-color: $color_venice_blue_approx
 		color: $gallery
+		font-size: $standard_header_font_size
 
 	&.codemainheader 
 		background-color: $color_stark_white_approx
 		color: $color_log_cabin_approx
 		border: 1px solid $color_log_cabin_approx !important
-		font-size: 15px
+		font-size: $standard_main_header_font_size
 
 
 .title 
@@ -84,7 +97,6 @@ code
 	letter-spacing: 10px
 
 .processmsg 
-	font-size: 13px
 	font-weight: bolder
 	color: $color_log_cabin_approx
 	padding: 2px
@@ -108,3 +120,6 @@ code
 
 .padding
 	padding: 20px	
+
+h4
+	@extend .font-normal-400
