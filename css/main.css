@@ -52,7 +52,7 @@ code {
   code.codeheader {
     background-color: #125695;
     color: #efefef;
-    font-size: 1.2em; }
+    font-size: 0.85em; }
   code.codemainheader {
     background-color: #e3dcc0;
     color: #202020;
@@ -86,5 +86,10 @@ code {
 
 .padding {
   padding: 20px; }
+
+.dataTables_wrapper {
+  font-size: 0.55em;
+  border: dotted 1px gray;
+  padding: 2px; }
 
 /*# sourceMappingURL=main.css.map */

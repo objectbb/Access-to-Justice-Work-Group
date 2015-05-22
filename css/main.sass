@@ -13,6 +13,7 @@ $color_log_cabin_approx: #202020
 $color_sisal_approx: #d7ceb2
 $color_charade_approx: #2c2e38
 $color_comet_approx: #5c5f72
+$standard_table_font_size: .55em
 $standard_font_size: .85em
 $standard_header_font_size: 1.2em
 $standard_main_header_font_size: 1.2em
@@ -80,7 +81,7 @@ code
 	&.codeheader 
 		background-color: $color_venice_blue_approx
 		color: $gallery
-		font-size: $standard_header_font_size
+		font-size: $standard_font_size
 
 	&.codemainheader 
 		background-color: $color_stark_white_approx
@@ -123,3 +124,12 @@ code
 
 h4
 	@extend .font-normal-400
+
+.dataTables_wrapper
+	font-size: $standard_table_font_size
+	border: dotted 1px gray
+	padding: 2px
+
+
+	
+

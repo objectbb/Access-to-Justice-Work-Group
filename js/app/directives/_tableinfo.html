@@ -39,5 +39,13 @@ tick-property="ticked"
 <p ng-if="containsAddress(columns)" ng-controller="LeafletController">
 <leaflet  center="center" markers="markers" height="250px" width="350px"></leaflet>
 </p>
-
+<br>
+<div class="dataTable row container">
+    <div class="col-md-10 background-white">
+        <table id="{{fusiontbl}}rstable" class="display compact">
+            <thead>
+            </thead>
+        </table>
+    </div>
+</div>
 </accordion-group>
