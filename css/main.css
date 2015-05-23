@@ -92,4 +92,8 @@ code {
   border: dotted 1px gray;
   padding: 2px; }
 
+.map {
+  width: 600px;
+  height: 400px; }
+
 /*# sourceMappingURL=main.css.map */

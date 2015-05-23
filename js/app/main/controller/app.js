@@ -55,7 +55,7 @@
                 sendsql(query, tableid).then(function (data, status) {
                     if (!data.error) {
                         loaddatagrid(tableid, data);
-                        msg = "Results at the bottom..." + data.rows.length + " rows returned";
+                        msg = "..." + data.rows.length + " rows returned";
                         $(msgid).html(msg);
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
