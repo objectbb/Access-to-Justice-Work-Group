@@ -1,4 +1,5 @@
 (function () {
+    var dataTables = {};
     var dataTable;
     angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 'da',
         function ($scope, $q, ReportService, da) {
@@ -91,15 +92,15 @@
                 return jsondata;
             }
             var loaddatagrid = function (tableid, dataset) {
-                if (dataTable) {
-                    dataTable.fnDestroy();
-                }
+               
+                if (dataTables[tableid]) dataTables[tableid].fnDestroy();
+               
                 var cols = _.map(dataset.columns, function (n) {
                     return {
                         'title': n
                     };
                 });
-                dataTable = $('#' + tableid + "rstable").empty().dataTable({
+                dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
                     destroy: true,
                     "data": dataset.rows,
                     "scrollY": "500px",
