@@ -7,6 +7,7 @@
             <link rel="stylesheet" type="text/css" href="css/leaflet.css">
             <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
             <link rel="stylesheet" type="text/css" href="css/main.css">
+            <link rel="stylesheet" type="text/css" href="css/angular.rangeSlider.css">
         </head>
         <body>
             <div class="page-header">
@@ -22,68 +23,100 @@
                     </div>
 
                     <div ng-controller="MapController">
-                        <a href='javascript:void(0)' ng-click="maptable('14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV')">Violations</a> |
-                        <a href='javascript:void(0)' ng-click="maptable('1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i')">Cab Companies</a>
-                        <div id="controls"></div>
-                        <div id="gmap-fusion" style="width: 300px; height: 200px"></div>
-                    </div>
-                    <br>
-                        <div ng-controller="AppCtrl" class="form-group">
-                            <div class="container-fluid">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">Violations</a>:<br>
+                                    <select ng-model="status">
+                                        <option value="Dismissed">Dismissed</option>
+                                        <option value="Paid">Paid</option>
+                                    </select>
+
+                                    <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
+                                    <br><br>
+                                    <a href='javascript:void(0)' ng-click="maptable({from: '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i', select: 'location'})">Cab Companies</a>
+
+                                   
+                                    <!--
+                                                                        <table class="table"><tr><td> <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">Violations</a></td>
+                                                                        <td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount = 0'})">Amount = 0</a></td><td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 0 and Amount < 26'})">1 and 25</a></td>
+                                                                        <td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 24 and Amount < 51'})">25 and 50</a></td>
+                                                                        <td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 50 and Amount < 101'})">50 and 100</a></td>
+                                                                        <td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 100 and Amount < 151'})">100 and 150</a></td>
+                                                                        <td> <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount >= 150'})">>= 150</a></td>
+                                                                        </tr><tr><td></td><td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Status = \'Dismissed\''})">Dismissed</a></td><td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 0 and Amount < 26 and Status = \'Dismissed\''})">1 and 25</a></td>
+                                                                        <td><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount > 24 and Amount < 51 and Status = \'Dismissed\''})">25 and 50</a></td>
+                                                                        <td> <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location', where: 'Amount >= 200 and Status = \'Dismissed\''})">>= 200</a></td></tr><tr><td><a href='javascript:void(0)' ng-click="maptable({from: '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i', select: 'location'})">Cab Companies</a></td><td></td></tr></table>
+                                    -->
+
+                                </div>
+
                                 <div class="row">
-                                    <div class="col-md-9">
-                                        <accordion close-others="oneAtATime">
-                                        <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                    <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                    <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="
-                                    sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                            <tableinfo ng-attr-fusiontbl="'14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'" ng-attr-title="'deptFin_foia'" ng-attr-columns="dfin" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                            <accordion-group>
-                                <accordion-heading class="accordion-heading-adv">
-                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                            <code class="codemainheader">Advance SQL Query</code>
-                        </accordion-heading>
-                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
-                    <br>
-                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendadvsql(sql,'sqladv')" >Send</button>
-                    <br><br>
-                        <p id="sqladvmsg" class="processmsg"></p>
-                        <div class="dataTable row container">
-                            <div class="col-md-10 background-white">
-                                <table id="sqladvrstable" class="display compact">
-                                    <thead>
-                                    </thead>
-                                </table>
+                                    <div id="controls"></div>
+                                    <div id="gmap-fusion" style="width: 450px; height: 300px"></div>
+                                </div>
                             </div>
                         </div>
-                    </accordion-group>
-                </accordion>
-                <br>
+                    </div>
                 </div>
+
+                <br>
+                    <div ng-controller="AppCtrl" class="form-group">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <accordion close-others="oneAtATime">
+                                    <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="
+                                sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                            <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                        <tableinfo ng-attr-fusiontbl="'14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'" ng-attr-title="'deptFin_foia'" ng-attr-columns="dfin" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                        <accordion-group>
+                            <accordion-heading class="accordion-heading-adv">
+                            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        <code class="codemainheader">Advance SQL Query</code>
+                    </accordion-heading>
+                <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+                <br>
+                <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendadvsql(sql,'sqladv')" >Send</button>
+                <br><br>
+                    <p id="sqladvmsg" class="processmsg"></p>
+                    <div class="dataTable row container">
+                        <div class="col-md-10 background-white">
+                            <table id="sqladvrstable" class="display compact">
+                                <thead>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+            <br>
             </div>
-            <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7">
-            </script>
-            <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
-            <script type="text/javascript" src="js/libs/angular.min.js"></script>
-            <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
-            <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-            <script type="text/javascript" src="js/libs/lodash.min.js"></script>
+        </div>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7">
+        </script>
+        <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular.min.js"></script>
+        <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular.rangeSlider.js"></script>
+        <script type="text/javascript" src="js/libs/lodash.min.js"></script>
 
-            <script type="text/javascript" src="js/libs/maplace-0.1.3.min.js"></script>
-            <script type="text/javascript" src="js/libs/angular-leaflet-directive.min.js"></script>
-            <script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
-            <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-            <script type="text/javascript" src="js/libs/isteven-multi-select.js"></script>
-            <script type="text/javascript" src="js/libs/lovefield.min.js"></script>
+        <script type="text/javascript" src="js/libs/maplace-0.1.3.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular-leaflet-directive.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="js/libs/isteven-multi-select.js"></script>
+        <script type="text/javascript" src="js/libs/lovefield.min.js"></script>
 
 
-            <script type="text/javascript" src="js/app/main/app.js"></script>
-            <script type="text/javascript" src="js/app/services/da.js"></script>
-            <script type="text/javascript" src="js/app/main/services/fusiontables/reports.js"></script>
-            <script type="text/javascript" src="js/app/directives/tableinfo.js"></script>
-            <script type="text/javascript" src="js/app/main/controller/app.js"></script>
-            <script type="text/javascript" src="js/app/map/controller/map.js"></script>
-
-        </body>
-    </html>
+        <script type="text/javascript" src="js/app/main/app.js"></script>
+        <script type="text/javascript" src="js/app/services/da.js"></script>
+        <script type="text/javascript" src="js/app/main/services/fusiontables/reports.js"></script>
+        <script type="text/javascript" src="js/app/directives/tableinfo.js"></script>
+        <script type="text/javascript" src="js/app/main/controller/app.js"></script>
+        <script type="text/javascript" src="js/app/map/controller/map.js"></script>
+    </body>
+</html>
