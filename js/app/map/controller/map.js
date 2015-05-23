@@ -1,6 +1,5 @@
 (function () {
-
-    angular.module('taxidriver').controller('MapController',['$scope',function ($scope) {
+    angular.module('taxidriver').controller('MapController', ['$scope', function ($scope) {
         var mapit = function (id) {
             new Maplace({
                 map_div: '#gmap-fusion',
@@ -19,11 +18,9 @@
             }).Load();
         }
         mapit('14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV');
-        
-            $scope.maptable = function (id) {
-                mapit(id);
-            }
-        
+        $scope.maptable = function (id) {
+            $('#gmap-fusion').empty();
+            mapit(id);
+        }
     }]);
-    
 }());
