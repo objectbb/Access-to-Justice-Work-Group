@@ -96,4 +96,10 @@ code {
   width: 400px;
   height: 300px; }
 
+.blockui {
+  display: block;
+  z-index: 10002;
+  opacity: 0.25;
+  pointer-events: none; }
+
 /*# sourceMappingURL=main.css.map */
