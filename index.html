@@ -60,32 +60,32 @@
                                 <div class="row">
                                     <div class="col-md-9">
                                         <accordion close-others="oneAtATime">
-                                        <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                    <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                    <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="
-                                    sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                                <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                            <tableinfo ng-attr-fusiontbl="'14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'" ng-attr-title="'deptFin_foia'" ng-attr-columns="dfin" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
-                            <accordion-group>
-                                <accordion-heading class="accordion-heading-adv">
-                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                            <code class="codemainheader">Advance SQL Query</code>
-                        </accordion-heading>
-                    <textarea class="form-control" rows="5" ng-model="sql"></textarea>
-                    <br>
-                    <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendadvsql(sql,'sqladv')" >Send</button>
-                    <br><br>
-                        <p id="sqladvmsg" class="processmsg"></p>
-                        <div class="dataTable row container">
-                            <div class="col-md-10 background-white">
-                                <table id="sqladvrstable" class="display compact">
-                                    <thead>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </accordion-group>
-                </accordion>
+                                            <tableinfo ng-attr-fusiontbl="'1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'" ng-attr-title="'Taxi Medallion Holders Summary'" ng-attr-columns="tmhs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                            <tableinfo ng-attr-fusiontbl="'1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt'" ng-attr-title="'Doc & ANOV ers Summary'" ng-attr-columns="anovs" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                            <tableinfo ng-attr-fusiontbl="'1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ'" ng-attr-title="'Violations Report'" ng-attr-columns="vr" ng-attr-sqlcols="
+                                            sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                            <tableinfo ng-attr-fusiontbl="'1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ'" ng-attr-title="'Taxi Medallion Holders Total (Grand)Report'" ng-attr-columns="tmht" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                            <tableinfo ng-attr-fusiontbl="'14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'" ng-attr-title="  'deptFin_foia'" ng-attr-columns="dfin" ng-attr-sqlcols="sqlcols.sqlcols" ng-attr-send="send"></tableinfo>
+                                            <accordion-group>
+                                                <accordion-heading class="accordion-heading-adv">
+                                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                                    <code class="codemainheader">Advance SQL Query</code>
+                                                </accordion-heading>
+                                                <textarea class="form-control" rows="5" ng-model="sql"></textarea>
+                                                <br>
+                                                <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendadvsql(sql,'sqladv')">Send</button>
+                                                <br><br>
+                                                    <p id="sqladvmsg" class="processmsg"></p>
+                                                    <div class="dataTable row container">
+                                                        <div class="col-md-10 background-white">
+                                                            <table id="sqladvrstable" class="display compact">
+                                                                <thead>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                            </accordion-group>
+                                    </accordion>
                 <br>
                 </div>
             </div>
@@ -104,7 +104,6 @@
             <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
             <script type="text/javascript" src="js/libs/isteven-multi-select.js"></script>
             <script type="text/javascript" src="js/libs/lovefield.min.js"></script>
-
 
             <script type="text/javascript" src="js/app/main/app.js"></script>
             <script type="text/javascript" src="js/app/services/da.js"></script>

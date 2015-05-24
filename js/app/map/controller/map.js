@@ -4,9 +4,12 @@
         $scope.minAmount = 0;
         $scope.maxAmount = 250;
         $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
-        var whereclause = function(){
-            return 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + 
-            (($scope.status) ? ' and Status = \'' +  $scope.status +'\'' : "");
+        var whereclause = function () {
+            return {
+                from: $scope.table,
+                select: 'location',
+                where: 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + (($scope.status) ? ' and Status = \'' + $scope.status + '\'' : "")
+            };
         }
         var mapit = function (where) {
             new Maplace({
@@ -34,21 +37,18 @@
             }).Load();
         }
         mapit(whereclause());
+
+        var redraw = function(where){
+            $('#gmap-fusion').empty();
+            mapit((where) ? where : whereclause());
+        } 
+
         $scope.maptable = function (where) {
             $scope.table = where.from;
-            $('#gmap-fusion').empty();
-            mapit(((where) ? where : whereclause()));
+            redraw(where);
         }
-
-
-        $scope.$watchGroup(['minAmount', 'maxAmount','status'], function () {
-            $('#gmap-fusion').html("");
-            mapit({
-                from: $scope.table,
-                select: 'location',
-                where: whereclause()
-            });
+        $scope.$watchGroup(['minAmount', 'maxAmount', 'status'], function () {
+           redraw();
         }, true);
-        
     }]);
 }());
