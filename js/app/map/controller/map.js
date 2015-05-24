@@ -1,13 +1,13 @@
 (function () {
     angular.module('taxidriver').controller('MapController', ['$scope', function ($scope) {
-        $scope.status = "Paid";
+        $scope.status;
         $scope.minAmount = 0;
         $scope.maxAmount = 250;
         $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
-        var defaultwhere = {
-            from: $scope.table,
-            select: 'location'
-        };
+        var whereclause = function(){
+            return 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + 
+            (($scope.status) ? ' and Status = \'' +  $scope.status +'\'' : "");
+        }
         var mapit = function (where) {
             new Maplace({
                 map_div: '#gmap-fusion',
@@ -33,35 +33,22 @@
                 }
             }).Load();
         }
-        mapit(defaultwhere);
+        mapit(whereclause());
         $scope.maptable = function (where) {
             $scope.table = where.from;
             $('#gmap-fusion').empty();
-            mapit(((where) ? where : defaultwhere));
+            mapit(((where) ? where : whereclause()));
         }
-        $scope.$watch('minAmount', function () {
-            $('#gmap-fusion').empty();
+
+
+        $scope.$watchGroup(['minAmount', 'maxAmount','status'], function () {
+            $('#gmap-fusion').html("");
             mapit({
                 from: $scope.table,
                 select: 'location',
-                where: 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + ' and Status = \'' +  $scope.status +'\''
+                where: whereclause()
             });
         }, true);
-        $scope.$watch('maxAmount', function () {
-            $('#gmap-fusion').empty();
-            mapit({
-                from: $scope.table,
-                select: 'location',
-                where: 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + ' and Status = \'' +  $scope.status +'\''
-            });
-        }, true);
-        $scope.$watch('status', function () {
-            $('#gmap-fusion').empty();
-            mapit({
-                from: $scope.table,
-                select: 'location',
-                where: 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + ' and Status = \'' +  $scope.status +'\''
-            });
-        }, true);
+        
     }]);
 }());
