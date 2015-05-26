@@ -26,7 +26,7 @@
                 select: 'location',
                 where: 'Amount >= ' + $scope.minAmount + ' and Amount <=' + $scope.maxAmount + 
                             (($scope.status) ? ' and Status = \'' + $scope.status + '\'' : "")
-                                + (($scope.violations) ? " and Description IN (\'" + _.map($scope.violations, 
+                                + (($scope.violations !== null && $scope.violations.length > 0) ? " and Description IN (\'" + _.map($scope.violations, 
                                         function(item){ return item.name.replace(/'/g,'\\\'');}).join("','") + 
                                             "\')" : "")
             };
