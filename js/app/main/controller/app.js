@@ -31,21 +31,17 @@
                     });
                 })(key);
             }
-             $scope.sendadvsql = function (sql,tableid) {
+            $scope.sendadvsql = function (sql, tableid) {
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");
-               
                 sendsql(sql, tableid).then(function (data, status) {
                     if (!data.error) {
                         loaddatagrid(tableid, data);
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
-                        $(msgid).html(msg);
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
                 });
-                //da.loadtable(tableid, convertcolstojson(table, data));
-                //da.execute();
             }
             $scope.send = function (tableid, inputcols) {
                 var msg;
@@ -56,7 +52,7 @@
                     if (!data.error) {
                         loaddatagrid(tableid, data);
                         msg = "..." + data.rows.length + " rows returned";
-                        $(msgid).html(msg);
+                        // $(msgid).html(msg);
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
                 });
@@ -92,9 +88,7 @@
                 return jsondata;
             }
             var loaddatagrid = function (tableid, dataset) {
-               
                 if (dataTables[tableid]) dataTables[tableid].fnDestroy();
-               
                 var cols = _.map(dataset.columns, function (n) {
                     return {
                         'title': n

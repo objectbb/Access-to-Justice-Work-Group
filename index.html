@@ -25,7 +25,7 @@
                     <div ng-controller="MapController">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
 
                                     <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
                                         <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">
@@ -39,6 +39,15 @@
                                                     <option value="Paid">Paid</option>
                                                 </select>
                                                 <br><br>
+                                                <isteven-multi-select
+                                                    input-model="allviolations"
+                                                    output-model="violations"
+                                                    button-label="icon name"
+                                                    item-label="icon name maker"
+                                                    orientation="horizontal"
+                                                    tick-property="ticked"
+                                                    >
+                                                    </isteven-multi-select><br><br>
                                                 <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
                                             </div>
                                             <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
