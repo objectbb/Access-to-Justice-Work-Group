@@ -1,0 +1,259 @@
+<!doctype html>
+<html ng-app="taxidriver">
+    <head>
+        <link href='https://www.google.com/fonts#ReviewPlace:refine/Collection:Oswald:400,300,700|Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="css/isteven-multi-select.css">
+            <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+            <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+            <link rel="stylesheet" type="text/css" href="css/main.css">
+            <link rel="stylesheet" type="text/css" href="css/angular.rangeSlider.css">
+        </head>
+        <body>
+
+
+
+            <div ng-controller="IfdbCtrl">
+
+            <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="initload()">Send</button>
+        </div>
+
+        <br>
+        </div>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7">
+        </script>
+        <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular.min.js"></script>
+        <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular.rangeSlider.js"></script>
+        <script type="text/javascript" src="js/libs/lodash.min.js"></script>
+
+        <script type="text/javascript" src="js/libs/maplace-0.1.3.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular-leaflet-directive.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="js/libs/isteven-multi-select.js"></script>
+        <script type="text/javascript" src="js/libs/breeze.min.js"></script>
+        <script type="text/javascript" src="js/libs/breeze.bridge.angular.js"></script>
+        <script type="text/javascript" src="js/libs/breeze.metadata-helper.js"></script>
+
+        <script>
+                                (function () {
+                                    angular.module('taxidriver', ['ui.bootstrap', 'isteven-multi-select','ui-rangeSlider','breeze.angular']).
+                                    config(['$httpProvider', function ($httpProvider) {
+                                        // Intercept POST requests, convert to standard form encoding
+                                        $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+                                        $httpProvider.defaults.transformRequest.unshift(function (data, headersGetter) {
+                                            var key, result = [];
+                                            for (key in data) {
+                                                if (data.hasOwnProperty(key)) {
+                                                    result.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+                                                }
+                                            }
+                                            return result.join("&");
+                                        })
+                                    }]).service('da', ['breeze',
+                        function(breeze) {
+                            var dm, addType, DATE, DT, helper, ID, STRING;
+                            var emFactory = function(breeze) {
+                                // Convert properties between server-side PascalCase and client-side camelCase
+                                // breeze.NamingConvention.camelCase.setAsDefault();
+                                // Identify the endpoint for the remote data service
+                                //var serviceRoot = window.location.protocol + '//' + window.location.host + '/';
+                                var serviceName = "nothing"; // breeze Web API controller
+                                // the "factory" services exposes two members
+                                var manager = new breeze.EntityManager(serviceName);
+
+                                options = new breeze.QueryOptions({
+                                    fetchStrategy: breeze.FetchStrategy.FromLocalCache
+                                });
+                                manager.setProperties({
+                                    queryOptions: options
+                                });
+                                // get the MetadataStore from the manager and fill it
+                                var store = manager.metadataStore;
+                                //metadataFactory.fillMetadataStore(store);
+                                //var store = metadataStore; // the metadataStore that we'll be filling
+                                // namespace of the corresponding classes on the server
+                                var namespace = 'Model'; // don't really need it here
+                                // 'Identity' is the default key generation strategy for this app
+                                var keyGen = breeze.AutoGeneratedKeyType.Identity;
+                                // Breeze Labs: breeze.metadata-helper.js
+                                // https://github.com/Breeze/breeze.js.labs/blob/master/breeze.metadata-helper.js
+                                // The helper reduces data entry by applying common conventions
+                                // and converting common abbreviations (e.g., 'type' -> 'dataType')
+                                helper = new breeze.config.MetadataHelper(namespace, keyGen);
+                                helper.addDataService(store, serviceName);
+                                // addType - make it easy to add the type to the store using the helper
+                                addType = function(type) {
+                                    return helper.addTypeToStore(store, type);
+                                };
+                                // DataTypes we'll be using
+                                DT = breeze.DataType;
+                                DATE = DT.DateTime;
+                                ID = DT.Int32;
+                                STRING = DT.String;
+                                return manager;
+                            }
+                            dm = emFactory(breeze);
+                            return {
+                                execute: function(query) {
+                                
+                                    dm.executeQuery(query).then(function(data) {
+                                        console.log(data.results.length + " rows stored");
+                                        return   data.results;
+                                    }).catch(function(e) {
+                                        alert(e);
+                                    })
+                                },
+                                loadtable: function(name, data) {
+                                    for (var i = 0; i < data.length; i++) dm.createEntity(name, data[i]);
+                                },
+                                clearalltables: function() {
+                                _.map(dm.getEntities(), function(item){ item.entityAspect.setDeleted()})
+                                },
+                                createtable: function(name, cols) {
+
+
+                                    if(dm.metadataStore.getEntityType(name, true)) return;
+                                    
+                                
+                                    var objectcols = {
+                                        id: {
+                                            type: ID
+                                        }
+                                    };
+                                    for (var i = 0; i < cols.length; ++i) objectcols[cols[i].name] = {
+                                        type: (cols[i].type == "NUMBER") ? ID : (cols[i].type == "DATETIME") ? DATE : STRING
+                                    };
+                                    addType({
+                                        name: name,
+                                        dataProperties: objectcols
+                                    });
+                                }
+                            }
+                        }
+                    ]).controller('IfdbCtrl', ['$scope', '$q', 'ReportService', 'da',
+                        function ($scope, $q, ReportService, da) {
+                            $scope.sql = null;
+                            $scope.sqlrs = null;
+                            $scope.sqlcols = [];
+                            var fusionmap = {};
+                            
+                            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {name: "tmhs", cols: "Address,Company_Name,Zip"};
+                            fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {name: "anovs", cols: "*"};
+                            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {name: "vr", cols: "Disposition_Description, Imposed_Fine_Detailed,  ViolationDescription"};
+                            fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {name : "tmht", cols: "*"};
+                            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {name : "dfin", cols: "Address,Amount,Description,Date"};
+                        
+                            var getcolumns = function (id) {
+                                var deferred = $q.defer();
+                                var rs;
+                                ReportService.requestcolumns(id).then(function (data, status) {
+                                    rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
+                                }, function (updates) {
+                                    deferred.update(updates);
+                                });
+                                return deferred.promise;
+                            }
+
+
+                            $scope.initload = function(){
+                                
+                                da.clearalltables();
+
+                                for (var key in fusionmap) {
+                                    (function (key) {
+                                        var name = fusionmap[key].name;
+                                        var cols = fusionmap[key].cols;
+                                        getcolumns(key).then(function (data) {
+                                            $scope[name] = data;
+                                            da.createtable(name, data);
+                                            $scope.sendadvsql("select " + cols + " from " + key, name)
+                                        });
+                                    })(key);
+                                }
+                            }
+                            $scope.sendadvsql = function (sql, tableid) {
+                                var msg;
+                                var msgid = "#" + tableid + "msg";
+                                $(msgid).html("Processing...");
+                                sendsql(sql, tableid).then(function (data, status) {
+
+                                    if (!data.error) {
+                                        da.clearalltables();
+                                        da.loadtable(tableid, convertcolstojson(data));
+                                        da.execute(new breeze.EntityQuery().from(tableid));
+
+                                        msg = "Results at the bottom..." + data.rows.length + " rows returned";
+                                    } else msg = data.error.errors[0].message;
+                                    ;
+                                });
+                            }
+                            $scope.send = function (tableid, inputcols) {
+                                var msg;
+                                var msgid = "#" + tableid + "msg";
+                                $(msgid).html("Processing...");
+                                var query = buildquery(tableid, inputcols);
+                                sendsql(query, tableid).then(function (data, status) {
+                                    if (!data.error) {
+                                        loaddatagrid(tableid, data);
+                                        msg = "..." + data.rows.length + " rows returned";
+
+                                    } else msg = data.error.errors[0].message;
+                                    $(msgid).html(msg);
+                                });
+                            }
+                            var buildquery = function (tableid, inputcols) {
+                                var formcols = inputcols;
+                                var cols = (_.map(formcols, function (item) {
+                                    return "'" + item.name + "'";
+                                })).join(',');
+                                var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
+                                var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
+                                return "select " + colsquery + " from " + tableid + groupbyquery;
+                            }
+                            var sendsql = function (query, tableid) {
+                                var deferred = $q.defer();
+                                ReportService.request(query).success(function (data, status) {
+                                    return deferred.resolve(data);
+                                }).
+                                error(function (data, status) {
+                                    return deferred.resolve(data);
+                                });
+                                return deferred.promise;
+                            }
+                            var convertcolstojson = function (data) {
+                                var jsondata = _.map(data.rows, function (n) {
+                                    var row = {};
+                                    var len = data.columns.length;
+                                    for (var i = 0; i < len; i++) row[data.columns[i]] = n[i];
+                                    return row;
+                                });
+                                return jsondata;
+                            }
+                            var loaddatagrid = function (tableid, dataset) {
+                                if (dataTables[tableid]) dataTables[tableid].fnDestroy();
+                                var cols = _.map(dataset.columns, function (n) {
+                                    return {
+                                        'title': n
+                                    };
+                                });
+                                dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
+                                    destroy: true,
+                                    "data": dataset.rows,
+                                    "scrollY": "500px",
+                                    "scrollCollapse": true,
+                                    "columns": cols
+                                });
+                            }
+                        }
+                    ]);
+                                }());
+        </script>
+
+        <script type="text/javascript" src="js/app/main/services/fusiontables/reports.js"></script>
+
+    </body>
+</html>
