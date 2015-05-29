@@ -10,11 +10,7 @@
             <link rel="stylesheet" type="text/css" href="css/angular.rangeSlider.css">
         </head>
         <body>
-
-
-
             <div ng-controller="IfdbCtrl">
-
             <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="initload()">Send</button>
         </div>
 
@@ -111,7 +107,7 @@
                                     for (var i = 0; i < data.length; i++) dm.createEntity(name, data[i]);
                                 },
                                 clearalltables: function() {
-                                _.map(dm.getEntities(), function(item){ item.entityAspect.setDeleted()})
+                                    _.map(dm.getEntities(), function(item){ item.entityAspect.setDeleted()})
                                 },
                                 createtable: function(name, cols) {
 
@@ -129,7 +125,13 @@
                                     };
                                     addType({
                                         name: name,
-                                        dataProperties: objectcols
+                                        dataProperties: objectcols,
+                                         navigationProperties: {
+            category: {
+                entityTypeName: "Category",
+                associationName: "Product_Category",
+                foreignKeyNames: ["categoryID"] 
+            }}
                                     });
                                 }
                             }
@@ -161,8 +163,6 @@
 
                             $scope.initload = function(){
                                 
-                                da.clearalltables();
-
                                 for (var key in fusionmap) {
                                     (function (key) {
                                         var name = fusionmap[key].name;

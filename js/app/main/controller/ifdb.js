@@ -7,13 +7,15 @@
             $scope.sqlrs = null;
             $scope.sqlcols = [];
             var fusionmap = {};
-            
-            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {name: "tmhs", cols: "Address,Company_Name,Zip"};
+            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
+                name: "tmhs",
+                cols: "*"
+            };
             /*
             fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {name: "anovs", cols: "*"};
-            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {name: "vr", cols: "Disposition_Description, Imposed_Fine_Detailed,  ViolationDescription"};
+            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {name: "vr", cols: "*"};
             fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {name : "tmht", cols: "*"};
-            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {name : "dfin", cols: "Address,Amount,Description,Date"};
+            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {name : "dfin", cols: "*"};
             */
             var getcolumns = function (id) {
                 var deferred = $q.defer();
@@ -25,27 +27,28 @@
                 });
                 return deferred.promise;
             }
-            for (var key in fusionmap) {
-                (function (key) {
-                    var name = fusionmap[key].name;
-                    var cols = fusionmap[key].cols;
-                    getcolumns(key).then(function (data) {
-                        $scope[name] = data;
-                        da.createtable(name, data);
-                        $scope.sendadvsql("select " + cols + " from " + key, name)
-                    });
-                })(key);
+            $scope.initload = function () {
+                for (var key in fusionmap) {
+                    (function (key) {
+                        var name = fusionmap[key].name;
+                        var cols = fusionmap[key].cols;
+                        getcolumns(key).then(function (data) {
+                            $scope[name] = data;
+                            da.createtable(name, data);
+                            $scope.sendadvsql("select " + cols + " from " + key, name);
+                            //da.execute();
+                        });
+                    })(key);
+                }
+                
             }
             $scope.sendadvsql = function (sql, tableid) {
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");
                 sendsql(sql, tableid).then(function (data, status) {
-
                     if (!data.error) {
- 
-                       da.loadtable(tableid, convertcolstojson(data));
-+                       da.execute();
+                        da.loadtable(tableid, convertcolstojson(data));
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
@@ -60,11 +63,9 @@
                     if (!data.error) {
                         loaddatagrid(tableid, data);
                         msg = "..." + data.rows.length + " rows returned";
-   
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
                 });
-
             }
             var buildquery = function (tableid, inputcols) {
                 var formcols = inputcols;
