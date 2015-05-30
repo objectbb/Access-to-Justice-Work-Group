@@ -7,11 +7,46 @@
             $scope.sqlrs = null;
             $scope.sqlcols = [];
             var fusionmap = {};
-            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = "tmhs";
-            fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = "anovs";
-            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = "vr";
-            fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = "tmht";
-            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = "dfin";
+
+            /*
+            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
+                name: "tmhs",
+                cols: "*"
+            };
+            */
+            fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
+                name: "anovs",
+                cols: "*"
+            };
+            /*
+            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {
+                name: "vr",
+                cols: "Disposition_Description,Docket_Number",
+                navigationProperties: {
+                    category: {
+                        entityTypeName: "anovs",
+                        associationName: "vr_anovs",
+                        foreignKeyNames: ["Docket_Number"]
+                    }
+                }
+            };
+            
+            fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
+                name: "tmht",
+                cols: "*"
+            };
+            */
+            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
+                name: "dfin",
+                cols: "*",
+                navigationProperties: {
+                    category: {
+                        entityTypeName: "anovs",
+                        associationName: "dfin_anovs",
+                        foreignKeyNames: ["Docket_Number"]
+                    }
+                }
+            };
             var getcolumns = function (id) {
                 var deferred = $q.defer();
                 var rs;
@@ -24,14 +59,28 @@
             }
             for (var key in fusionmap) {
                 (function (key) {
-                    var name = fusionmap[key];
+                    var name = fusionmap[key].name;
+                    var cols = fusionmap[key].cols;
                     getcolumns(key).then(function (data) {
                         $scope[name] = data;
-                        da.createtable(name, data);
+                        da.createtable(fusionmap[key], data);
+                        $scope.loadcachetables("select " + cols + " from " + key, name)
                     });
                 })(key);
             }
+            $scope.loadcachetables = function (sql, tableid) {
+                sendsql(sql, tableid).then(function (data, status) {
+                    if (!data.error) {
+                        da.clearalltables();
+                        da.loadtable(tableid, convertcolstojson(data));
+                        da.execute(new breeze.EntityQuery().from(tableid));
+                        msg = "Results at the bottom..." + data.rows.length + " rows returned";
+                    } else msg = data.error.errors[0].message;
+                    console.log(msg);
+                });
+            }
             $scope.sendadvsql = function (sql, tableid) {
+                da.execute(new breeze.EntityQuery().from("dfin").expand("dfin_anovs"));
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");
@@ -52,11 +101,9 @@
                     if (!data.error) {
                         loaddatagrid(tableid, data);
                         msg = "..." + data.rows.length + " rows returned";
-   
                     } else msg = data.error.errors[0].message;
                     $(msgid).html(msg);
                 });
-
             }
             var buildquery = function (tableid, inputcols) {
                 var formcols = inputcols;
@@ -77,7 +124,7 @@
                 });
                 return deferred.promise;
             }
-            var convertcolstojson = function (tableid, data) {
+            var convertcolstojson = function (data) {
                 var jsondata = _.map(data.rows, function (n) {
                     var row = {};
                     var len = data.columns.length;

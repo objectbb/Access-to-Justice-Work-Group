@@ -56,7 +56,10 @@
                 loadtable: function(name, data) {
                     for (var i = 0; i < data.length; i++) dm.createEntity(name, data[i]);
                 },
-                createtable: function(name, cols) {
+                clearalltables: function() {
+                                    _.map(dm.getEntities(), function(item){ item.entityAspect.setDeleted()})
+                                },
+                createtable: function(item, cols) {
                     var objectcols = {
                         id: {
                             type: ID
@@ -66,8 +69,9 @@
                         type: (cols[i].type == "NUMBER") ? ID : (cols[i].type == "DATETIME") ? DATE : STRING
                     };
                     addType({
-                        name: name,
-                        dataProperties: objectcols
+                        name: item.name,
+                        dataProperties: objectcols,
+                        navigationProperties: item.navigationProperties
                     });
                 }
             }
