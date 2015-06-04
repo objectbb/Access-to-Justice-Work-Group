@@ -27,6 +27,8 @@
                             } else msg = data.error.errors[0].message;
                             $(msgid).html(msg);
                         });
+
+                        return false;
                     }
                     var buildquery = function(tableid) {
                         var formcols = $scope.sqlcols.sqlcols;

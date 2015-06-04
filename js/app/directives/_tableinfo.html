@@ -31,11 +31,12 @@ tick-property="ticked"
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span>
-<a href="#" ng-click="send(Id)"> Run query </a>
+<a href="#{{Id}}" ng-click="send(Id)"> Run query </a>
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span id="{{Id}}msg" class="processmsg"></span>
 <br><br>
+
 <div class="dataTable row container">
 <div class="col-md-10 background-white">
     <table id="{{Id}}rstable" class="display compact">
@@ -44,4 +45,5 @@ tick-property="ticked"
     </table>
 </div>
 </div>
+<a name="{{Id}}" />
 </accordion-group>
