@@ -96,10 +96,47 @@ code {
   width: 400px;
   height: 300px; }
 
-.blockui {
+.repeated-item.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0; }
+  .repeated-item.ng-enter.ng-enter-active {
+    opacity: 1; }
+.repeated-item.ng-move {
+  transition: 0.5s linear all;
+  opacity: 0; }
+  .repeated-item.ng-move.ng-move-active {
+    opacity: 1; }
+.repeated-item.ng-leave {
+  animation: 0.5s my_animation; }
+
+.blockui, .fadeblockui {
   display: block;
   z-index: 10002;
   opacity: 0.25;
   pointer-events: none; }
+
+.fadeblockui {
+  transition: 0.5s linear all; }
+
+@keyframes my_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-webkit-keyframes my_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-moz-keyframes my_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-o-keyframes my_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
 
 /*# sourceMappingURL=main.css.map */

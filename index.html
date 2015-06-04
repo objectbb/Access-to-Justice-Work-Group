@@ -31,7 +31,7 @@
                                         <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">
                                         <span class="glyphicon glyphicon-asterisk" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
                                         Violations</a>:<br>
-                                            <div ng-class="{blockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                            <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
                                                 <select ng-model="status">
                                                     <option></option>
                                                     <option value="Outstanding">Outstanding</option>
@@ -105,6 +105,7 @@
                     </script>
                     <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
                     <script type="text/javascript" src="js/libs/angular.min.js"></script>
+                    <script type="text/javascript" src="js/libs/angular-animate.min.js"></script>
                     <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
                     <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
                     <script type="text/javascript" src="js/libs/angular.rangeSlider.js"></script>

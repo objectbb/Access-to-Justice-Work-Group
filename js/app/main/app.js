@@ -1,5 +1,5 @@
 (function () {
-    angular.module('taxidriver', ['ui.bootstrap', 'isteven-multi-select','ui-rangeSlider','breeze.angular']).
+    angular.module('taxidriver', ['ui.bootstrap', 'isteven-multi-select','ui-rangeSlider','breeze.angular', 'ngAnimate']).
     config(['$httpProvider', function ($httpProvider) {
         // Intercept POST requests, convert to standard form encoding
         $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";

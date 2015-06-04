@@ -13,131 +13,167 @@ $color_log_cabin_approx: #202020
 $color_sisal_approx: #d7ceb2
 $color_charade_approx: #2c2e38
 $color_comet_approx: #5c5f72
-$standard_table_font_size: .55em
-$standard_font_size: .85em
+$standard_table_font_size: 0.55em
+$standard_font_size: 0.85em
 $standard_header_font_size: 1.2em
 $standard_main_header_font_size: 1.2em
 $standard_panel_body_font_size: 1.7em
 
-
 //fonts
 $font_0: Oswald, Open Sans
 
-.font-light-300 
-	font-family: $font_0 
-	font-style: normal 
-	font-weight: 300
+.font-light-300
+    font-family: $font_0
+    font-style: normal
+    font-weight: 300
 
-.font-normal-400 
-	font-family: $font_0 
-	font-style: normal 
-	font-weight: 400
+.font-normal-400
+    font-family: $font_0
+    font-style: normal
+    font-weight: 400
 
-.background-green 
-	background-color: $color_fun_green_approx
+.background-green
+    background-color: $color_fun_green_approx
 
-.background-white 
-	background-color: $white
+.background-white
+    background-color: $white
 
-.background-blue 
-	background-color: $color_venice_blue_approx
+.background-blue
+    background-color: $color_venice_blue_approx
 
-.font-white 
-	color: $white !important
+.font-white
+    color: $white !important
 
 body
-	@extend .font-light-300
-	background-color: $white
-	font-size: $standard_header_font_size 
-	font-family: $font_0
+    @extend .font-light-300
+    background-color: $white
+    font-size: $standard_header_font_size
+    font-family: $font_0
 
 .panel-body
-	font-size: $standard_panel_body_font_size
+    font-size: $standard_panel_body_font_size
 
-.accordion-heading 
-	font-size: $standard_panel_body_font_size
+.accordion-heading
+    font-size: $standard_panel_body_font_size
 
-.accordion-heading-adv 
-	background-color: $black
-	color: $white
+.accordion-heading-adv
+    background-color: $black
+    color: $white
 
-
-
-.columnborder 
-	border: 1px solid $gray
-	margin: 1px
-	padding: 1px
-	font-size: $standard_font_size
+.columnborder
+    border: 1px solid $gray
+    margin: 1px
+    padding: 1px
+    font-size: $standard_font_size
 
 code
-	@extend .font-light-300
-	background-color: $color_desert_storm_approx
-	display: inline-block
-	border: 1px solid $color_alto_approx !important
-	padding: 0 4px 0 4px !important
-	margin: 0 2px 0 1px
-	font-size: $standard_font_size
-	color: $color_mine_shaft_approx
-	&.codeheader 
-		background-color: $color_venice_blue_approx
-		color: $gallery
-		font-size: $standard_font_size
+    @extend .font-light-300
+    background-color: $color_desert_storm_approx
+    display: inline-block
+    border: 1px solid $color_alto_approx !important
+    padding: 0 4px 0 4px !important
+    margin: 0 2px 0 1px
+    font-size: $standard_font_size
+    color: $color_mine_shaft_approx
+    &.codeheader
+        background-color: $color_venice_blue_approx
+        color: $gallery
+        font-size: $standard_font_size
+    &.codemainheader
+        background-color: $color_stark_white_approx
+        color: $color_log_cabin_approx
+        border: 1px solid $color_log_cabin_approx !important
+        font-size: $standard_main_header_font_size
 
-	&.codemainheader 
-		background-color: $color_stark_white_approx
-		color: $color_log_cabin_approx
-		border: 1px solid $color_log_cabin_approx !important
-		font-size: $standard_main_header_font_size
+.title
+    color: $color_sisal_approx
+    //If you use compass, instead of the line below you could use +text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    text-shadow: 3px 3px 0 $color_charade_approx, 5px 5px 0 $color_comet_approx
+    font: 80px $font_0
+    letter-spacing: 10px
 
+.processmsg
+    font-weight: bolder
+    color: $color_log_cabin_approx
+    padding: 2px
 
-.title 
-	color: $color_sisal_approx
-	//If you use compass, instead of the line below you could use +text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-	text-shadow: 3px 3px 0 $color_charade_approx, 5px 5px 0 $color_comet_approx
-	font: 80px $font_0
-	letter-spacing: 10px
+.panel-default
+    border-color: $color_stark_white_approx
 
-.processmsg 
-	font-weight: bolder
-	color: $color_log_cabin_approx
-	padding: 2px
+.multiSelect
+    .buttonLabel
+        min-height: 16px
+        padding: 1px
+    > button
+        min-height: 16px
+        padding: 1px
 
-.panel-default 
-	border-color: $color_stark_white_approx
-
-.multiSelect 
-	.buttonLabel 
-		min-height: 16px
-		padding: 1px
-
-	> button 
-		min-height: 16px
-		padding: 1px
-
-
-.panel-default>.panel-heading 
-	background-color: $color_stark_white_approx
-	opacity: .75
+.panel-default > .panel-heading
+    background-color: $color_stark_white_approx
+    opacity: 0.75
 
 .padding
-	padding: 20px	
+    padding: 20px
 
 h4
-	@extend .font-normal-400
+    @extend .font-normal-400
 
 .dataTables_wrapper
-	font-size: $standard_table_font_size
-	border: dotted 1px gray
-	padding: 2px
+    font-size: $standard_table_font_size
+    border: dotted 1px gray
+    padding: 2px
 
 .map
-	width: 400px	
-	height: 300px
+    width: 400px
+    height: 300px
+
+.repeated-item
+    &.ng-enter
+        transition: 0.5s linear all
+        opacity: 0
+        &.ng-enter-active
+            opacity: 1
+    &.ng-move
+        transition: 0.5s linear all
+        opacity: 0
+        &.ng-move-active
+            opacity: 1
+    &.ng-leave
+        animation: 0.5s my_animation
 
 .blockui
-	display: block
-	z-index: 10002
-	opacity: 0.25
-	pointer-events: none
-	
+    display: block
+    z-index: 10002
+    opacity: 0.25
+    pointer-events: none
 
+.fadeblockui
+    @extend .blockui
+    transition: 0.5s linear all
+
+@keyframes my_animation
+    from
+        opacity: 1
+    to
+        opacity: 0
+
+
+@-webkit-keyframes my_animation
+    from
+        opacity: 1
+    to
+        opacity: 0
+
+
+@-moz-keyframes my_animation
+    from
+        opacity: 1
+    to
+        opacity: 0
+
+
+@-o-keyframes my_animation
+    from
+        opacity: 1
+    to
+        opacity: 0
