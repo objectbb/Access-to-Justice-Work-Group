@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-7">
 
-    <code class="codeheader">Fusion Table Id:</code><code>{{fusiontbl}}</code>
+    <code class="codeheader">Fusion Table Id:</code><code>{{Id}}</code>
     <br>
     <code class="codeheader">Columns:</code>
     <code ng-repeat="item in columns">
@@ -21,7 +21,7 @@
 Group by:
 <isteven-multi-select
 input-model="columns"
-output-model="sqlcols"
+output-model="sqlcols.sqlcols"
 button-label="icon name"
 item-label="icon name maker"
 orientation="horizontal"
@@ -31,14 +31,14 @@ tick-property="ticked"
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span>
-<a href="#" ng-click="send(fusiontbl,sqlcols)"> Run query </a>
+<a href="#" ng-click="send(Id)"> Run query </a>
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span id="{{fusiontbl}}msg" class="processmsg"></span>
+<span id="{{Id}}msg" class="processmsg"></span>
 <br><br>
 <div class="dataTable row container">
 <div class="col-md-10 background-white">
-    <table id="{{fusiontbl}}rstable" class="display compact">
+    <table id="{{Id}}rstable" class="display compact">
         <thead>
         </thead>
     </table>

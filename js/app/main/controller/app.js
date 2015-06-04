@@ -5,22 +5,27 @@
         function ($scope, $q, ReportService, da) {
             $scope.sql = null;
             $scope.sqlrs = null;
-            $scope.sqlcols = [];
-            var fusionmap = {};
-
-            /*
-            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
+           // $scope.sqlcols = [];
+            $scope.fusionmap = {};
+            
+            $scope.fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
+                Id : "1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i",
                 name: "tmhs",
+                title: "Taxi Medallion Holders Summary",
                 cols: "*"
             };
-            */
-            fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
+          
+            $scope.fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
+                Id: "1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt",
                 name: "anovs",
+                title: "Doc & ANOV ers Summary",
                 cols: "*"
             };
-            /*
-            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {
+          
+            $scope.fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {
+                id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
                 name: "vr",
+                title: "Violations Report",
                 cols: "Disposition_Description,Docket_Number",
                 navigationProperties: {
                     category: {
@@ -31,14 +36,25 @@
                 }
             };
             
-            fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
+            $scope.fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
+                Id: "1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ",
                 name: "tmht",
-                cols: "*"
+                title: "Taxi Medallion Holders Total (Grand)Report",
+                cols: "*",
+                navigationProperties: {
+                    category: {
+                        entityTypeName: "tmht",
+                        associationName: "tmht_tmht",
+                        foreignKeyNames: ["Grand_Total"]
+                    }
+                }
             };
-            */
-            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
+            
+            $scope.fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
+                Id : "14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV",
                 name: "dfin",
                 cols: "*",
+                title: "deptFin_foia",
                 navigationProperties: {
                     category: {
                         entityTypeName: "anovs",
@@ -57,21 +73,28 @@
                 });
                 return deferred.promise;
             }
-            for (var key in fusionmap) {
-                (function (key) {
-                    var name = fusionmap[key].name;
-                    var cols = fusionmap[key].cols;
-                    getcolumns(key).then(function (data) {
-                        $scope[name] = data;
-                        da.createtable(fusionmap[key], data);
-                        $scope.loadcachetables("select " + cols + " from " + key, name)
-                    });
-                })(key);
+            var initload = function () {
+                da.clearalltables();
+                var ft = $scope.fusionmap;
+
+                for (var key in ft) {
+                    (function (key) {
+                        var name = ft[key].name;
+                        var cols = ft[key].cols;
+                        getcolumns(key).then(function (data) {
+                            //$scope[name] = data;
+                            ft[key].columns = data;
+                            //da.createtable(fusionmap[key], data);
+                            //$scope.loadcachetables("select " + cols + " from " + key, name)
+                        });
+                    })(key);
+                }
             }
+
+            initload();
             $scope.loadcachetables = function (sql, tableid) {
                 sendsql(sql, tableid).then(function (data, status) {
                     if (!data.error) {
-                        da.clearalltables();
                         da.loadtable(tableid, convertcolstojson(data));
                         da.execute(new breeze.EntityQuery().from(tableid));
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
@@ -80,7 +103,8 @@
                 });
             }
             $scope.sendadvsql = function (sql, tableid) {
-                da.execute(new breeze.EntityQuery().from("dfin").expand("dfin_anovs"));
+               // da.execute(eval("new breeze.EntityQuery().from('dfin').expand('dfin_anovs')"));
+              //  da.execute(eval(sql));
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");
@@ -92,28 +116,7 @@
                     $(msgid).html(msg);
                 });
             }
-            $scope.send = function (tableid, inputcols) {
-                var msg;
-                var msgid = "#" + tableid + "msg";
-                $(msgid).html("Processing...");
-                var query = buildquery(tableid, inputcols);
-                sendsql(query, tableid).then(function (data, status) {
-                    if (!data.error) {
-                        loaddatagrid(tableid, data);
-                        msg = "..." + data.rows.length + " rows returned";
-                    } else msg = data.error.errors[0].message;
-                    $(msgid).html(msg);
-                });
-            }
-            var buildquery = function (tableid, inputcols) {
-                var formcols = inputcols;
-                var cols = (_.map(formcols, function (item) {
-                    return "'" + item.name + "'";
-                })).join(',');
-                var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
-                var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
-                return "select " + colsquery + " from " + tableid + groupbyquery;
-            }
+  
             var sendsql = function (query, tableid) {
                 var deferred = $q.defer();
                 ReportService.request(query).success(function (data, status) {
@@ -133,6 +136,7 @@
                 });
                 return jsondata;
             }
+            
             var loaddatagrid = function (tableid, dataset) {
                 if (dataTables[tableid]) dataTables[tableid].fnDestroy();
                 var cols = _.map(dataset.columns, function (n) {
