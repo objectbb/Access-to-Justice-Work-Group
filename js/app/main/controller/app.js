@@ -1,29 +1,29 @@
-(function () {
+(function() {
     var dataTables = {};
     var dataTable;
     angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 'da',
-        function ($scope, $q, ReportService, da) {
+        function($scope, $q, ReportService, da,$animate) {
             $scope.sql = null;
             $scope.sqlrs = null;
-           // $scope.sqlcols = [];
+            // $scope.sqlcols = [];
             $scope.fusionmap = {};
-            
+
             $scope.fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
-                Id : "1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i",
+                Id: "1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i",
                 name: "tmhs",
                 title: "Taxi Medallion Holders Summary",
                 cols: "*"
             };
-          
+
             $scope.fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
                 Id: "1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt",
                 name: "anovs",
                 title: "Doc & ANOV ers Summary",
                 cols: "*"
             };
-          
+
             $scope.fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {
-                id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
+                Id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
                 name: "vr",
                 title: "Violations Report",
                 cols: "Disposition_Description,Docket_Number",
@@ -35,7 +35,7 @@
                     }
                 }
             };
-            
+
             $scope.fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
                 Id: "1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ",
                 name: "tmht",
@@ -49,9 +49,9 @@
                     }
                 }
             };
-            
+
             $scope.fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
-                Id : "14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV",
+                Id: "14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV",
                 name: "dfin",
                 cols: "*",
                 title: "deptFin_foia",
@@ -63,25 +63,25 @@
                     }
                 }
             };
-            var getcolumns = function (id) {
+            var getcolumns = function(id) {
                 var deferred = $q.defer();
                 var rs;
-                ReportService.requestcolumns(id).then(function (data, status) {
+                ReportService.requestcolumns(id).then(function(data, status) {
                     rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
-                }, function (updates) {
+                }, function(updates) {
                     deferred.update(updates);
                 });
                 return deferred.promise;
             }
-            var initload = function () {
+            var initload = function() {
                 da.clearalltables();
                 var ft = $scope.fusionmap;
 
                 for (var key in ft) {
-                    (function (key) {
+                    (function(key) {
                         var name = ft[key].name;
                         var cols = ft[key].cols;
-                        getcolumns(key).then(function (data) {
+                        getcolumns(key).then(function(data) {
                             //$scope[name] = data;
                             ft[key].columns = data;
                             //da.createtable(fusionmap[key], data);
@@ -92,8 +92,8 @@
             }
 
             initload();
-            $scope.loadcachetables = function (sql, tableid) {
-                sendsql(sql, tableid).then(function (data, status) {
+            $scope.loadcachetables = function(sql, tableid) {
+                sendsql(sql, tableid).then(function(data, status) {
                     if (!data.error) {
                         da.loadtable(tableid, convertcolstojson(data));
                         da.execute(new breeze.EntityQuery().from(tableid));
@@ -102,13 +102,13 @@
                     console.log(msg);
                 });
             }
-            $scope.sendadvsql = function (sql, tableid) {
-               // da.execute(eval("new breeze.EntityQuery().from('dfin').expand('dfin_anovs')"));
-              //  da.execute(eval(sql));
+            $scope.sendadvsql = function(sql, tableid) {
+                // da.execute(eval("new breeze.EntityQuery().from('dfin').expand('dfin_anovs')"));
+                //  da.execute(eval(sql));
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");
-                sendsql(sql, tableid).then(function (data, status) {
+                sendsql(sql, tableid).then(function(data, status) {
                     if (!data.error) {
                         loaddatagrid(tableid, data);
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
@@ -116,19 +116,19 @@
                     $(msgid).html(msg);
                 });
             }
-  
-            var sendsql = function (query, tableid) {
+
+            var sendsql = function(query, tableid) {
                 var deferred = $q.defer();
-                ReportService.request(query).success(function (data, status) {
+                ReportService.request(query).success(function(data, status) {
                     return deferred.resolve(data);
                 }).
-                error(function (data, status) {
+                error(function(data, status) {
                     return deferred.resolve(data);
                 });
                 return deferred.promise;
             }
-            var convertcolstojson = function (data) {
-                var jsondata = _.map(data.rows, function (n) {
+            var convertcolstojson = function(data) {
+                var jsondata = _.map(data.rows, function(n) {
                     var row = {};
                     var len = data.columns.length;
                     for (var i = 0; i < len; i++) row[data.columns[i]] = n[i];
@@ -136,10 +136,10 @@
                 });
                 return jsondata;
             }
-            
-            var loaddatagrid = function (tableid, dataset) {
+
+            var loaddatagrid = function(tableid, dataset) {
                 if (dataTables[tableid]) dataTables[tableid].fnDestroy();
-                var cols = _.map(dataset.columns, function (n) {
+                var cols = _.map(dataset.columns, function(n) {
                     return {
                         'title': n
                     };
