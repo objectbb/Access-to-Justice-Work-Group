@@ -74,6 +74,7 @@
                 return deferred.promise;
             }
             var initload = function() {
+                // $('.selectpicker').selectpicker();
                 da.clearalltables();
                 var ft = $scope.fusionmap;
 

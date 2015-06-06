@@ -4,6 +4,7 @@
         <link href='https://www.google.com/fonts#ReviewPlace:refine/Collection:Oswald:400,300,700|Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
             <link rel="stylesheet" type="text/css" href="css/isteven-multi-select.css">
+            <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
             <link rel="stylesheet" type="text/css" href="css/leaflet.css">
             <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
             <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -33,15 +34,17 @@
                                         Violations</a>
                                     </legend>
                                     <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
-                                        <select ng-model="status">
+                                        <select ng-model="status" class="selectpicker" title='Select status...'>
                                             <option></option>
                                             <option value="Outstanding">Outstanding</option>
                                             <option value="Dismissed">Dismissed</option>
                                             <option value="Paid">Paid</option>
                                         </select>
                                         <br><br>
-                                        <isteven-multi-select
-                                        class="animate-show"
+                                        <!--
+                                        <select ng-model="violations" ng-options="item.name for item in allviolations" class="selectpicker" title="Select violation(s)..." data-live-search="true" multiple data-max-options="15" data-size="15"></select>
+                                        -->
+                                        <isteven-multi-select                                       
                                         input-model="allviolations"
                                         output-model="violations"
                                         button-label="icon name"
@@ -51,7 +54,8 @@
                                         max-height="250px",
                                         min-search-length="3"
                                         >
-                                        </isteven-multi-select><br><br>
+                                        </isteven-multi-select>
+                                        <br><br>
                                         <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
                                     </div>
                                 </fieldset>
@@ -110,6 +114,7 @@
                 <script type="text/javascript" src="js/libs/angular.min.js"></script>
                 <script type="text/javascript" src="js/libs/angular-animate.min.js"></script>
                 <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.13.0.min.js"></script>
+                <script type="text/javascript" src="js/libs/bootstrap-select.min.js"></script>
                 <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
                 <script type="text/javascript" src="js/libs/angular.rangeSlider.js"></script>
                 <script type="text/javascript" src="js/libs/lodash.min.js"></script>

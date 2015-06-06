@@ -93,13 +93,6 @@ code {
 .panel-default {
   border-color: #e3dcc0; }
 
-.multiSelect .buttonLabel {
-  min-height: 16px;
-  padding: 1px; }
-.multiSelect > button {
-  min-height: 16px;
-  padding: 1px; }
-
 .panel-default > .panel-heading {
   background-color: #e3dcc0;
   opacity: 0.75; }

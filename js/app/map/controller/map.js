@@ -4,11 +4,13 @@
         $scope.minAmount = 0;
         $scope.maxAmount = 250;
         $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
-        $scope.violations = null;
+        $scope.violations = [];
         $scope.allviolations = null;
+
         var loadViolations = function () {
             var query = "select Description from 14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV group by Description";
             ReportService.request(query).success(function (data, status) {
+               
                 $scope.allviolations = _.map(data.rows, function (item) {
                     return {
                         name: item[0]
@@ -42,7 +44,7 @@
                 fusion_options: {
                     query: where,
                     styles: [{
-                        where: "Amount < 100",
+                        where: "Amount < 50",
                         markerOptions: {
                             iconName: "small_green"
                         }
