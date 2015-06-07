@@ -142,4 +142,9 @@ code {
     opacity: 0;
     max-height: 0; }
 
+.animate_control {
+  -vendor-animation-duration: 10s !important;
+  -vendor-animation-delay: 2s;
+  -vendor-animation-iteration-count: infinite; }
+
 /*# sourceMappingURL=main.css.map */

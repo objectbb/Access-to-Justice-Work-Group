@@ -15,18 +15,28 @@
             },
             controller: function($scope) {
                 $scope.sqlcols = [];
+                $scope.isprocessing = false;
                 $scope.send = function(tableid) {
                     var msg;
                     var msgid = "#" + tableid + "msg";
+
                     $(msgid).html("Processing...");
+                    $(msgid).addClass("flash animated animate_control");
+                    $scope.isprocessing = true;               
                     var query = buildquery(tableid);
                     sendsql(query, tableid).then(function(data, status) {
+                       
                         if (!data.error) {
                             loaddatagrid(tableid, data);
                             msg = "..." + data.rows.length + " rows returned";
                         } else msg = data.error.errors[0].message;
                         $(msgid).html(msg);
+
+                        $(msgid).removeClass("flash animated animate_control");
                     });
+
+
+                      $scope.isprocessing = false;
 
                     return false;
                 }
