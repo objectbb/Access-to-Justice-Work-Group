@@ -33,7 +33,8 @@ fieldset {
   padding-bottom: 0.625em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-  border: 1px dotted; }
+  border: 1px dotted;
+  border-radius: 4px; }
 
 a {
   text-decoration: none;

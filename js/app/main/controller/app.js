@@ -2,7 +2,7 @@
     var dataTables = {};
     var dataTable;
     angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 'da',
-        function($scope, $q, ReportService, da,$animate) {
+        function($scope, $q, ReportService, da, $animate) {
             $scope.sql = null;
             $scope.sqlrs = null;
             // $scope.sqlcols = [];
@@ -14,14 +14,12 @@
                 title: "Taxi Medallion Holders Summary",
                 cols: "*"
             };
-
             $scope.fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
                 Id: "1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt",
                 name: "anovs",
                 title: "Doc & ANOV ers Summary",
                 cols: "*"
             };
-
             $scope.fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {
                 Id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
                 name: "vr",
@@ -35,7 +33,6 @@
                     }
                 }
             };
-
             $scope.fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
                 Id: "1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ",
                 name: "tmht",
@@ -49,7 +46,6 @@
                     }
                 }
             };
-
             $scope.fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
                 Id: "14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV",
                 name: "dfin",
@@ -74,10 +70,8 @@
                 return deferred.promise;
             }
             var initload = function() {
-                // $('.selectpicker').selectpicker();
                 da.clearalltables();
                 var ft = $scope.fusionmap;
-
                 for (var key in ft) {
                     (function(key) {
                         var name = ft[key].name;
@@ -88,10 +82,14 @@
                             //da.createtable(fusionmap[key], data);
                             //$scope.loadcachetables("select " + cols + " from " + key, name)
                         });
+                        ft[key].hashcode = function() {
+                            return _.map(ft[key].columns, function(item) {
+                                return item.name;
+                            }).join("").concat(ft[key].title).toLowerCase();
+                        }
                     })(key);
                 }
             }
-
             initload();
             $scope.loadcachetables = function(sql, tableid) {
                 sendsql(sql, tableid).then(function(data, status) {
@@ -117,7 +115,6 @@
                     $(msgid).html(msg);
                 });
             }
-
             var sendsql = function(query, tableid) {
                 var deferred = $q.defer();
                 ReportService.request(query).success(function(data, status) {
@@ -137,7 +134,6 @@
                 });
                 return jsondata;
             }
-
             var loaddatagrid = function(tableid, dataset) {
                 if (dataTables[tableid]) dataTables[tableid].fnDestroy();
                 var cols = _.map(dataset.columns, function(n) {
