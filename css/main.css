@@ -143,8 +143,16 @@ code {
     max-height: 0; }
 
 .animate_control {
-  -vendor-animation-duration: 10s !important;
+  -vendor-animation-duration: 20s !important;
   -vendor-animation-delay: 2s;
   -vendor-animation-iteration-count: infinite; }
+
+section.tables {
+  background: #125695; }
+
+.background_asphalt {
+  width: 100%;
+  background-image: url("../images/seamless-asphalt-texture.jpg");
+  background-size: cover; }
 
 /*# sourceMappingURL=main.css.map */
