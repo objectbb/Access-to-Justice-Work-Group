@@ -1,20 +1,18 @@
 <accordion-group>
-    <accordion-heading>
-    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-    <div class="row">
-        <div class="col-md-3">
+<accordion-heading>
+<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+<div class="row">
+    <div class="col-md-3">
         <code class="codemainheader">{{title}}</code>
     </div>
     <div class="col-md-7">
-
-    <code class="codeheader">Fusion Table Id:</code><code>{{Id}}</code>
-    <br>
-    <code class="codeheader">Columns:</code>
-    <code ng-repeat="item in columns">
+        <code class="codeheader">Fusion Table Id:</code><code>{{Id}}</code>
+        <br>
+        <code class="codeheader">Columns:</code>
+        <code ng-repeat="item in columns">
         {{item.name}}
-    </code>
-
-</div>
+        </code>
+    </div>
 </div>
 </accordion-heading>
 <span>
@@ -36,14 +34,13 @@ tick-property="ticked"
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span id="{{Id}}msg"></span>
 <br><br>
-
-<div class="dataTable row container">
-<div class="col-md-10 background-white">
-    <table id="{{Id}}rstable" class="display compact">
-        <thead>
-        </thead>
-    </table>
-</div>
+<div id="{{Id}}tablecontainer" class="dataTable row container">
+    <div class="col-md-10 background-white">
+        <table id="{{Id}}rstable" class="display compact">
+            <thead>
+            </thead>
+        </table>
+    </div>
 </div>
 <a name="{{Id}}" />
 </accordion-group>

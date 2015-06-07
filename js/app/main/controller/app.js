@@ -151,6 +151,8 @@
                         'title': n
                     };
                 });
+
+                $('#tablecontainer').addClass("fadeIn animated animate_control");
                 dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
                     destroy: true,
                     "data": dataset.rows,

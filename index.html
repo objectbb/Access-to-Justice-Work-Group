@@ -100,7 +100,7 @@
                             <button type="button" class="btn btn-primary " ng-model="singleModel" ng-click="sendadvsql(sql,'sqladv')">Send</button>
                             <br><br>
                             <p id="sqladvmsg" class="processmsg"></p>
-                            <div class="dataTable row container">
+                            <div id="tablecontainer" class="dataTable row container">
                                 <div class="col-md-10 background-white">
                                     <table id="sqladvrstable" class="display compact">
                                         <thead>
@@ -133,7 +133,7 @@
                 <script type="text/javascript" src="js/libs/breeze.min.js"></script>
                 <script type="text/javascript" src="js/libs/breeze.bridge.angular.js"></script>
                 <script type="text/javascript" src="js/libs/breeze.metadata-helper.js"></script>
-                
+
                 <script type="text/javascript" src="js/app/main/app.js"></script>
                 <script type="text/javascript" src="js/app/filters/defaultfilter.js"></script>
                 <script type="text/javascript" src="js/app/services/dabreezee.js"></script>
