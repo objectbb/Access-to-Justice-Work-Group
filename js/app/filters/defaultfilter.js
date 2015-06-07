@@ -6,14 +6,11 @@
             }
             var result = {};
             //angular.forEach(filter, function(filterVal, filterKey) {
-            	 var filterVal = filter.toLowerCase();
-                angular.forEach(items, function(item, key) {
-                    var fieldVal = item.hashcode();
-                    if (fieldVal && fieldVal.indexOf(filterVal.toLowerCase()) > -1) {
-                        result[key] = item;
-                    }
-                });
-            //});
+            var filterVal = filter.toLowerCase();
+            angular.forEach(items, function(item, key) {
+                var fieldVal = item.hashcode();
+                if (fieldVal && _.intersection(fieldVal, filterVal.split(' ')).length == filterVal.split(' ').length) result[key] = item;
+            });
             return result;
         };
     })

@@ -124,7 +124,6 @@ code
 .panel-default
     border-color: $color_stark_white_approx
 
-
 .panel-default > .panel-heading
     background-color: $color_stark_white_approx
     opacity: 0.75
@@ -150,27 +149,6 @@ h4
     -moz-transition: $fadein_time linear all
     -o-transition: $fadein_time linear all
 
-.repeated-item
-    &.ng-enter
-        @extend .std_transition
-        opacity: 0
-        &.ng-enter-active
-            opacity: 1
-    &.ng-move
-        @extend .std_transition
-        opacity: 0
-        &.ng-move-active
-            opacity: 1
-    &.ng-leave
-        animation: $fadein_time my_animation
-
-.animate-show
-    opacity: 1
-    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove.ng-hide-remove-active
-        @extend .std_transition
-    &.ng-hide
-        opacity: 0
-
 .blockui
     display: block
     z-index: 10002
@@ -181,29 +159,28 @@ h4
     @extend .blockui
     @extend .std_transition
 
-@keyframes my_animation
-    from
-        opacity: 1
-    to
+.animate-repeat
+    &.ng-move
+        //If you use compass, instead of the line below you could use +transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        @extend .std_transition
         opacity: 0
-
-
-@-webkit-keyframes my_animation
-    from
-        opacity: 1
-    to
+        max-height: 0
+        &.ng-move-active
+            opacity: 1
+            max-height: 40px
+    &.ng-enter
+        //If you use compass, instead of the line below you could use +transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        @extend .std_transition
         opacity: 0
-
-
-@-moz-keyframes my_animation
-    from
+        max-height: 0
+        &.ng-enter-active
+            opacity: 1
+            max-height: 40px
+    &.ng-leave
+        //If you use compass, instead of the line below you could use +transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        @extend .std_transition
         opacity: 1
-    to
-        opacity: 0
-
-
-@-o-keyframes my_animation
-    from
-        opacity: 1
-    to
-        opacity: 0
+        max-height: 40px
+        &.ng-leave-active
+            opacity: 0
+            max-height: 0

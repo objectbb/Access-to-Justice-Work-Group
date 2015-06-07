@@ -42,7 +42,7 @@
                                         </select>
                                         <br><br>
                                         <!--
-                                                                            <select ng-model="violations" ng-options="item.name for item in allviolations" class="selectpicker" title="Select violation(s)..." data-live-search="true" multiple data-max-options="15" data-size="15"></select>
+                                                                                                                <select ng-model="violations" ng-options="item.name for item in allviolations" class="selectpicker" title="Select violation(s)..." data-live-search="true" multiple data-max-options="15" data-size="15"></select>
                                     -->
                                     <isteven-multi-select
                                     input-model="allviolations"
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <accordion close-others="oneAtATime">
-                        <div ng-repeat="table in fusionmap | defaultFilter: filtertables_cols">
+                        <div class="animate-repeat" ng-repeat="table in fusionmap | defaultFilter: filtertables_cols">
                         <tableinfo ng-attr-fusiontbl="{{table}}"></tableinfo>
                     </div>
                     <accordion-group>

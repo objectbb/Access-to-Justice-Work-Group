@@ -82,11 +82,17 @@
                             //da.createtable(fusionmap[key], data);
                             //$scope.loadcachetables("select " + cols + " from " + key, name)
                         });
+
                         ft[key].hashcode = function() {
-                            return _.map(ft[key].columns, function(item) {
-                                return item.name;
-                            }).join("").concat(ft[key].title).toLowerCase();
-                        }
+
+                            var tree = _.map(ft[key].columns, function(item) {
+                                return item.name.toLowerCase().split(/[_# -]/g);
+                            });
+
+                            return _.flatten(tree);
+                        };
+
+
                     })(key);
                 }
             }
