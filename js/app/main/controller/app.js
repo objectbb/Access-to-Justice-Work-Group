@@ -89,6 +89,8 @@
                                 return item.name.toLowerCase().split(/[_# -]/g);
                             });
 
+                            tree = tree.concat(ft[key].title.toLowerCase().split(/[_# -]/g));
+
                             return _.flatten(tree);
                         };
 
