@@ -70,6 +70,8 @@
                 return deferred.promise;
             }
             var initload = function() {
+
+
                 da.clearalltables();
                 var ft = $scope.fusionmap;
                 for (var key in ft) {
