@@ -147,12 +147,20 @@ code {
   -vendor-animation-delay: 2s;
   -vendor-animation-iteration-count: infinite; }
 
-section.tables {
-  background: #125695; }
-
 .background_asphalt {
   width: 100%;
   background-image: url("../images/asphalt_yellow.jpg");
   background-size: cover; }
+
+.midsection {
+  background: rgba(255, 255, 255, 0.95); }
+
+.page-header {
+  border-bottom: 0px; }
+
+section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgba(18, 86, 149, 0.95); }
 
 /*# sourceMappingURL=main.css.map */

@@ -11,10 +11,10 @@
             <link rel="stylesheet" type="text/css" href="css/main.css">
             <link rel="stylesheet" type="text/css" href="css/angular.rangeSlider.css">
         </head>
-        <body>
-            <div class="page-header background_asphalt">
+        <body class="background_asphalt">
+            <div class="page-header">
                 <div class="row container">
-                    <br>                  
+                    <br>
                     <div class="col-md-5">
                         <img class="img-responsive" src="images/header.png"/>
                     </div>
@@ -24,59 +24,59 @@
                     </div>
                 </div>
             </div>
-            <div ng-controller="MapController">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
-                                <fieldset>
-                                    <legend>
-                                        <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">
-                                        <span class="glyphicon glyphicon-asterisk" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
-                                        Violations</a>
-                                    </legend>
-                                    <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
-                                        <select ng-model="status" class="selectpicker" title='Select status...'>
-                                            <option></option>
-                                            <option value="Outstanding">Outstanding</option>
-                                            <option value="Dismissed">Dismissed</option>
-                                            <option value="Paid">Paid</option>
-                                        </select>
-                                        <br><br>
-                                        <isteven-multi-select
-                                        input-model="allviolations"
-                                        output-model="violations"
-                                        button-label="icon name"
-                                        item-label="icon name maker"
-                                        orientation="horizontal"
-                                        tick-property="ticked",
-                                        max-height="250px",
-                                        min-search-length="3"
-                                        >
-                                        </isteven-multi-select>
-                                        <br><br>
-                                        <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
-                                    </div>
-                                </fieldset>
-                                <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
+            <section class="midsection">
+                <div ng-controller="MapController">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
                                     <fieldset>
                                         <legend>
-                                            <a href='javascript:void(0)' ng-click="maptable({from: '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i', select: 'location'})"> <span class="glyphicon glyphicon-asterisk" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a>
+                                            <a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">
+                                            <span class="glyphicon glyphicon-asterisk" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
+                                            Violations</a>
                                         </legend>
+                                        <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                            <select ng-model="status" class="selectpicker" title='Select status...'>
+                                                <option></option>
+                                                <option value="Outstanding">Outstanding</option>
+                                                <option value="Dismissed">Dismissed</option>
+                                                <option value="Paid">Paid</option>
+                                            </select>
+                                            <br><br>
+                                            <isteven-multi-select
+                                            input-model="allviolations"
+                                            output-model="violations"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            orientation="horizontal"
+                                            tick-property="ticked",
+                                            max-height="250px",
+                                            min-search-length="3"
+                                            >
+                                            </isteven-multi-select>
+                                            <br><br>
+                                            <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
+                                        </div>
                                     </fieldset>
+                                    <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
+                                        <fieldset>
+                                            <legend>
+                                                <a href='javascript:void(0)' ng-click="maptable({from: '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i', select: 'location'})"> <span class="glyphicon glyphicon-asterisk" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a>
+                                            </legend>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div id="controls"></div>
-                            <div id="gmap-fusion" class="map"></div>
+                            <div class="col-sm-7">
+                                <div id="controls"></div>
+                                <div id="gmap-fusion" class="map"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
+            </section>
             <section class="tables">
-                <br>
                 <div ng-controller="AppCtrl" class="form-group">
                     <div class="container-fluid">
                         <div class="row">
@@ -134,7 +134,6 @@
                 <script type="text/javascript" src="js/libs/breeze.min.js"></script>
                 <script type="text/javascript" src="js/libs/breeze.bridge.angular.js"></script>
                 <script type="text/javascript" src="js/libs/breeze.metadata-helper.js"></script>
-
                 <script type="text/javascript" src="js/app/main/app.js"></script>
                 <script type="text/javascript" src="js/app/filters/defaultfilter.js"></script>
                 <script type="text/javascript" src="js/app/services/dabreezee.js"></script>
