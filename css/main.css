@@ -103,8 +103,9 @@ code {
 
 .dataTables_wrapper {
   font-size: 0.55em;
-  border: dotted 1px gray;
-  padding: 2px; }
+  border: 1px gray;
+  padding: 2px;
+  box-shadow: -1px -1px 3px #888888; }
 
 .map {
   width: 400px;

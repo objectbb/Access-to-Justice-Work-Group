@@ -29,97 +29,97 @@
 
 
         <script>
-                                                        (function () {
-                                                            angular.module('taxidriver', []).
-                                                            config(['$httpProvider', function ($httpProvider) {
-                                                                // Intercept POST requests, convert to standard form encoding
-                                                                $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-                                                                $httpProvider.defaults.transformRequest.unshift(function (data, headersGetter) {
-                                                                    var key, result = [];
-                                                                    for (key in data) {
-                                                                        if (data.hasOwnProperty(key)) {
-                                                                            result.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
-                                                                        }
-                                                                    }
-                                                                    return result.join("&");
-                                                                })
-                                                            }]).controller('IfdbCtrl', ['$scope', '$q', 'ReportService', 'da', function ($scope, $q, ReportService, da) {
-                                                            $scope.sql = null;
-                                                            $scope.sqlrs = null;
-                                                            $scope.sqlcols = [];
-                                                            var fusionmap = {};
-                                                            fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
-                                                                name: "tmhs",
-                                                                cols: "*"
-                                                            };
-                                                            
-                                                            /*
-                                                            fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {name: "anovs", cols: "*"};
-                                                        
-                                                            fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {name: "vr", cols: "*"};
-                                                            fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {name : "tmht", cols: "*"};
-                                                            fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {name : "dfin", cols: "*"};
-                                                            */
+            (function () {
+                angular.module('taxidriver', []).
+                config(['$httpProvider', function ($httpProvider) {
+                    // Intercept POST requests, convert to standard form encoding
+                    $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+                    $httpProvider.defaults.transformRequest.unshift(function (data, headersGetter) {
+                        var key, result = [];
+                        for (key in data) {
+                            if (data.hasOwnProperty(key)) {
+                                result.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+                            }
+                        }
+                        return result.join("&");
+                    })
+                }]).controller('IfdbCtrl', ['$scope', '$q', 'ReportService', 'da', function ($scope, $q, ReportService, da) {
+                $scope.sql = null;
+                $scope.sqlrs = null;
+                $scope.sqlcols = [];
+                var fusionmap = {};
+                fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
+                    name: "tmhs",
+                    cols: "*"
+                };
+                
+                /*
+                fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {name: "anovs", cols: "*"};
+            
+                fusionmap["1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ"] = {name: "vr", cols: "*"};
+                fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {name : "tmht", cols: "*"};
+                fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {name : "dfin", cols: "*"};
+                */
 
-                                                            var getcolumns = function (id) {
+                var getcolumns = function (id) {
 
-                                                                var deferred = $q.defer();
-                                                                var rs;
-                                                                ReportService.requestcolumns(id).then(function (data, status) {
-                                                                    rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
-                                                                }, function (updates) {
-                                                                    deferred.update(updates);
-                                                                });
-                                                                return deferred.promise;
+                    var deferred = $q.defer();
+                    var rs;
+                    ReportService.requestcolumns(id).then(function (data, status) {
+                        rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
+                    }, function (updates) {
+                        deferred.update(updates);
+                    });
+                    return deferred.promise;
 
-                                                            }
-                                                            $scope.initload = function () {
-                                                                for (var key in fusionmap) {
-                                                                    (function (key) {
-                                                                        var name = fusionmap[key].name;
-                                                                        var cols = fusionmap[key].cols;
-                                                                        getcolumns(key).then(function (data) {
-                                                                            da.createtable(name, data);
-                                                                
-                                                                            sendsql("select " + cols + " from " + key, name).
-                                                                                then(function (data, status) {
-                                                                                   
-                                                                                    da.loadtable(name, convertcolstojson(data));
-                                                                                    
-                                                                                });
-                                                                            });
-                                                                    })(key);
-                                                                }
+                }
+                $scope.initload = function () {
+                    for (var key in fusionmap) {
+                        (function (key) {
+                            var name = fusionmap[key].name;
+                            var cols = fusionmap[key].cols;
+                            getcolumns(key).then(function (data) {
+                                da.createtable(name, data);
+                    
+                                sendsql("select " + cols + " from " + key, name).
+                                    then(function (data, status) {
+                                       
+                                        da.loadtable(name, convertcolstojson(data));
+                                        
+                                    });
+                                });
+                        })(key);
+                    }
 
-                                                            }
+                }
 
-                                                            var sendsql = function (query, tableid) {
-                                                                var deferred = $q.defer();
-                                                                ReportService.request(query).success(function (data, status) {
-                                                                    return deferred.resolve(data);
-                                                                }).
-                                                                error(function (data, status) {
-                                                                    return deferred.resolve(data);
-                                                                });
-                                                                return deferred.promise;
-                                                            }
-                                                            var convertcolstojson = function (data) {
-                                                                var jsondata = _.map(data.rows, function (n) {
-                                                                    var row = {};
-                                                                    var len = data.columns.length;
-                                                                    for (var i = 0; i < len; i++) row[data.columns[i]] = n[i];
-                                                                    return row;
-                                                                });
-                                                                return jsondata;
-                                                            }
+                var sendsql = function (query, tableid) {
+                    var deferred = $q.defer();
+                    ReportService.request(query).success(function (data, status) {
+                        return deferred.resolve(data);
+                    }).
+                    error(function (data, status) {
+                        return deferred.resolve(data);
+                    });
+                    return deferred.promise;
+                }
+                var convertcolstojson = function (data) {
+                    var jsondata = _.map(data.rows, function (n) {
+                        var row = {};
+                        var len = data.columns.length;
+                        for (var i = 0; i < len; i++) row[data.columns[i]] = n[i];
+                        return row;
+                    });
+                    return jsondata;
+                }
 
 
-                                                             $scope.initload();
-                                                        }
-                                                    ]);
-                                                        }());
+                 $scope.initload();
+            }
+        ]);
+            }());
         </script>
-        <script type="text/javascript" src="js/app/services/da.js"></script>
+        <script type="text/javascript" src="js/app/services/dalovefield.js"></script>
         <script type="text/javascript" src="js/app/main/services/fusiontables/reports.js"></script>
     </body>
 </html>
