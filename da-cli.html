@@ -65,14 +65,14 @@
                                                                     return deferred.promise;
                                                                 }
                                                                 $scope.initload = function () {
-                                                                    (function() {
+                                                                    var deferred = $q.defer();
                                                                         for (var key in fusionmap) {
                                                                             //(function (key) {
                                                                                 var name = fusionmap[key].name;
                                                                                 var cols = fusionmap[key].cols;
                                                                                 getcolumns(key).then(function (data) {
                                                                                     //da.createtable(name, data);
-                                                                                    fusionmap[key].columns = data;
+                                                                                        fusionmap[key].columns = data;
                                                                                                                                 
                                                                                     }).then(function(data){
                                                                                         sendsql("select " + cols + " from " + key, name).
@@ -80,14 +80,16 @@
                                                                                         
                                                                                             //da.loadtable(name, convertcolstojson(data));
                                                                                             fusionmap[key].data = data.rows;
+
+                                                                                            deferred.resolve(fusionmap);
                                                                                         });
                                                                                     });
                                                                         // })(key);
                                                                             }
-                                                                        }).bind(this);
+                                                                      
                                                                 
-                                                                        da.createtables(fusionmap);
-                                                                
+                                                                        
+                                                                        return deferred.promise;
                                                                 }
                                                                 var sendsql = function (query, tableid) {
                                                                     var deferred = $q.defer();
@@ -108,7 +110,11 @@
                                                                     });
                                                                     return jsondata;
                                                                 }
-                                                                $scope.initload();
+
+                                                                $scope.initload().then(function(data){
+                                                                     da.createtables(data);
+                                                                });
+                                                               
                                                             }
                                                         ]);
                                                             }());
