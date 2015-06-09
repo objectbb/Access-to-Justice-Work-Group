@@ -19,7 +19,7 @@ request({
     console.log("now geocoding...");
     var len = addrarray.length;
     for (var i = 37000; i < 41000; i++) {
-        setTimeout(function() {}, 1200);
+        setTimeout(function() {}, 1000);
         var gourl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addrarray[i] + "&key=AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE";
         request({
             url: gourl,
