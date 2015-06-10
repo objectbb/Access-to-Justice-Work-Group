@@ -22,11 +22,9 @@
                     rs = db
                     table = db.getSchema().table(name);
 
-                    /*
                     db.delete().from(name).exec().then(function (results) {
                         console.log("deleted " + results.length);
-                    });*/
-
+                    });
                     
                     var rows = _.map(data, function (item) {
                         return table.createRow(item);
@@ -48,7 +46,7 @@
                     if (name == "Docket_Number" || name == "Affiliation" || name == "Date" || name == "TotalAmount_Outstanding" || name == "Company_Name" || name == "Address") table.addIndex('idx' + name, [name], false, lf.Order.DESC);
                 }
                 table.addColumn('id', lf.Type.INTEGER);
-                table.addPrimaryKey(['id'], true);
+               // table.addPrimaryKey(['id'], true);
             }
         }
     }

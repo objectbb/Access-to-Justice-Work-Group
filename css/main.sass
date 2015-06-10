@@ -22,7 +22,7 @@ $standard_panel_body_font_size: 1.7em
 //fonts
 $font_0: Oswald, Open Sans
 
-$fadein_time: 0.5s
+$fadein_time: 1.0s
 $fadeout_time: 0.5s
 
 .font-light-300
@@ -188,8 +188,8 @@ h4
             max-height: 0
 
 .animate_control
-    -vendor-animation-duration: 20s !important
-    -vendor-animation-delay: 2s
+    -vendor-animation-duration: 10s !important
+    -vendor-animation-delay: 1s
     -vendor-animation-iteration-count: infinite
 
 .background_asphalt
@@ -212,10 +212,28 @@ section
 .form-control
     padding-right: 30px
 
-
 .form-control + .glyphicon
     position: absolute
     right: 0
     padding: 8px 27px
 
-   
+subtitle
+    font-size: 2em
+    color: #5f5e61
+    text-transform: uppercase
+    border: .125em solid #5f5e61
+    display: inline-block
+    border-radius: .2em
+    padding: .15em .15em 0.075em
+
+    -webkit-mask-image: url(../images/a.png)
+    -webkit-transform: rotate(-3deg)
+
+    -moz-mask-image: url(../images/a.png)
+    -moz-transform: rotate(-3deg)
+
+    -o-mask-image: url(../images/a.png)
+    -o-transform: rotate(-3deg)
+
+    mask-image: url(../images/a.png)
+    transform: rotate(-3deg)

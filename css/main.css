@@ -112,10 +112,10 @@ code {
   height: 300px; }
 
 .std_transition, .fadeblockui, .animate-repeat.ng-move, .animate-repeat.ng-enter, .animate-repeat.ng-leave {
-  transition: 0.5s linear all;
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all; }
+  transition: 1s linear all;
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all; }
 
 .blockui, .fadeblockui {
   display: block;
@@ -144,8 +144,8 @@ code {
     max-height: 0; }
 
 .animate_control {
-  -vendor-animation-duration: 20s !important;
-  -vendor-animation-delay: 2s;
+  -vendor-animation-duration: 10s !important;
+  -vendor-animation-delay: 1s;
   -vendor-animation-iteration-count: infinite; }
 
 .background_asphalt {
@@ -172,5 +172,22 @@ section {
   position: absolute;
   right: 0;
   padding: 8px 27px; }
+
+subtitle {
+  font-size: 2em;
+  color: #5f5e61;
+  text-transform: uppercase;
+  border: 0.125em solid #5f5e61;
+  display: inline-block;
+  border-radius: 0.2em;
+  padding: 0.15em 0.15em 0.075em;
+  -webkit-mask-image: url(../images/a.png);
+  -webkit-transform: rotate(-3deg);
+  -moz-mask-image: url(../images/a.png);
+  -moz-transform: rotate(-3deg);
+  -o-mask-image: url(../images/a.png);
+  -o-transform: rotate(-3deg);
+  mask-image: url(../images/a.png);
+  transform: rotate(-3deg); }
 
 /*# sourceMappingURL=main.css.map */

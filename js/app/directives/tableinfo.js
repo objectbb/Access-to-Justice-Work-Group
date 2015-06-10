@@ -21,7 +21,7 @@
                     var msgid = "#" + tableid + "msg";
 
                     $(msgid).html("Processing...");
-                    $(msgid).addClass("flash animated animate_control");
+                    $(msgid).addClass("flash animated");
                     $scope.isprocessing = true;               
                     var query = buildquery(tableid);
                     sendsql(query, tableid).then(function(data, status) {
@@ -32,7 +32,7 @@
                         } else msg = data.error.errors[0].message;
                         $(msgid).html(msg);
 
-                        $(msgid).removeClass("flash animated animate_control");
+                        $(msgid).removeClass("flash animated");
                     });
 
 

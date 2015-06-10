@@ -5,11 +5,15 @@
                 return items;
             }
             var result = {};
-            //angular.forEach(filter, function(filterVal, filterKey) {
+           
             var filterVal = filter.toLowerCase();
             angular.forEach(items, function(item, key) {
                 var fieldVal = item.hashcode();
-                if (fieldVal && _.intersection(fieldVal, filterVal.split(' ')).length == filterVal.split(' ').length) result[key] = item;
+                var splitinput = filterVal.split(' ');
+
+                if (fieldVal && 
+                    _.intersection(fieldVal, splitinput).length == splitinput.length) 
+                        result[key] = item;
             });
             return result;
         };
