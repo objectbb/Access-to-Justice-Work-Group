@@ -22,7 +22,7 @@ $standard_panel_body_font_size: 1.7em
 //fonts
 $font_0: Oswald, Open Sans
 
-$fadein_time: 1.0s
+$fadein_time: 1s
 $fadeout_time: 0.5s
 
 .font-light-300
@@ -35,6 +35,11 @@ $fadeout_time: 0.5s
     font-style: normal
     font-weight: 400
 
+.font-bold-700
+    font-family: $font_0
+    font-style: bold
+    font-weight: 700    
+
 .background-green
     background-color: $color_fun_green_approx
 
@@ -46,6 +51,12 @@ $fadeout_time: 0.5s
 
 .font-white
     color: $white !important
+
+.font-blue
+    color: $color_venice_blue_approx !important
+
+.font-green
+    color: $color_fun_green_approx !important    
 
 body
     @extend .font-light-300
@@ -138,7 +149,7 @@ h4
     font-size: $standard_table_font_size
     border: 1px gray
     padding: 2px
-    box-shadow: -1px -1px 3px #888888
+    box-shadow: (-1px) -1px 3px #888888
 
 .map
     width: 400px
@@ -207,7 +218,7 @@ h4
 section
     padding-top: 10px
     padding-bottom: 10px
-    background: rgba(18, 86, 149, 0.95)  
+    background: rgba(18, 86, 149, 0.95)
 
 .form-control
     padding-right: 30px
@@ -221,27 +232,57 @@ subtitle
     font-size: 2em
     color: #5f5e61
     text-transform: uppercase
-    border: .125em solid #5f5e61
+    border: 0.125em solid #5f5e61
     display: inline-block
-    border-radius: .2em
-    padding: .15em .15em 0.075em
-
+    border-radius: 0.2em
+    padding: 0.15em 0.15em 0.075em
     -webkit-mask-image: url(../images/a.png)
     -webkit-transform: rotate(-3deg)
-
     -moz-mask-image: url(../images/a.png)
     -moz-transform: rotate(-3deg)
-
     -o-mask-image: url(../images/a.png)
     -o-transform: rotate(-3deg)
-
+    -ms-mask-image: url(../images/a.png)
+    -ms-transform: rotate(-3deg)
     mask-image: url(../images/a.png)
     transform: rotate(-3deg)
+
+headertitle
+    @extend .font-bold-700
+    line-height: 1
+    font-size: 8em
+    text-transform: uppercase
+    display: inline-block
+    border-radius: 0.2em
+    padding: 0.15em 0.15em 0.075em
+    background: rgba(255, 255, 255, 0.70)    
+    -webkit-transform: rotate(3deg)
+    -moz-transform: rotate(3deg)
+    -o-transform: rotate(3deg)
+    -ms-transform: rotate(3deg)
+    transform: rotate(3deg)    
 
 .rotateright
     -moz-transform: rotate(2deg)
     -webkit-transform: rotate(2deg)
     -o-transform: rotate(2deg)
-    transform: rotate(2deg)         
+    transform: rotate(2deg)
+
+.rotateleft90
+    -moz-transform: rotate(-90deg)
+    -webkit-transform: rotate(-90deg)
+    -o-transform: rotate(\-90deg)
+    transform: rotate(-90deg)    
+
+.theintitle
+    @extend .font-green
+    @extend .font-light-300
+    font-size: $standard_table_font_size
+
+.glyphicons-taxi
+    background-image: url("../images/glyphicons-569-taxi.png")
+    width: 27px
+    height: 27px
+
 
 

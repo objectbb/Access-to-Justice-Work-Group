@@ -1,4 +1,4 @@
-.font-light-300, body, code {
+.font-light-300, body, code, .theintitle {
   font-family: Oswald, Open Sans;
   font-style: normal;
   font-weight: 300; }
@@ -7,6 +7,11 @@
   font-family: Oswald, Open Sans;
   font-style: normal;
   font-weight: 400; }
+
+.font-bold-700, headertitle {
+  font-family: Oswald, Open Sans;
+  font-style: bold;
+  font-weight: 700; }
 
 .background-green {
   background-color: #0e792b; }
@@ -19,6 +24,12 @@
 
 .font-white {
   color: #fff !important; }
+
+.font-blue {
+  color: #125695 !important; }
+
+.font-green, .theintitle {
+  color: #0e792b !important; }
 
 body {
   background-color: #fff;
@@ -187,13 +198,43 @@ subtitle {
   -moz-transform: rotate(-3deg);
   -o-mask-image: url(../images/a.png);
   -o-transform: rotate(-3deg);
+  -ms-mask-image: url(../images/a.png);
+  -ms-transform: rotate(-3deg);
   mask-image: url(../images/a.png);
   transform: rotate(-3deg); }
+
+headertitle {
+  line-height: 1;
+  font-size: 8em;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 0.2em;
+  padding: 0.15em 0.15em 0.075em;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg); }
 
 .rotateright {
   -moz-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   -o-transform: rotate(2deg);
   transform: rotate(2deg); }
+
+.rotateleft90 {
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -o-transform: rotate(\-90deg);
+  transform: rotate(-90deg); }
+
+.theintitle {
+  font-size: 0.55em; }
+
+.glyphicons-taxi {
+  background-image: url("../images/glyphicons-569-taxi.png");
+  width: 27px;
+  height: 27px; }
 
 /*# sourceMappingURL=main.css.map */
