@@ -10,13 +10,12 @@
                 scope.title = scope.fusiontbl.title;
                 scope.Id = scope.fusiontbl.Id;
                 scope.columns = scope.fusiontbl.columns;
-                //scope.sqlcols = [];
-                //scope.send = attrs.send;
+                scope.collection = scope.fusiontbl.collection;
             },
             controller: function($scope) {
                 $scope.sqlcols = [];
                 $scope.isprocessing = false;
-                $scope.send = function(tableid) {
+                $scope.send = function(tableid, columns) {
                     var msg;
                     var msgid = "#" + tableid + "msg";
 
@@ -24,10 +23,10 @@
                     $(msgid).addClass("flash animated");
                     $scope.isprocessing = true;               
                     var query = buildquery(tableid);
-                    sendsql(query, tableid).then(function(data, status) {
+                    sendsql(query).then(function(data, status) {
                        
                         if (!data.error) {
-                            loaddatagrid(tableid, data);
+                            loaddatagrid(tableid, data, columns);
                             msg = "..." + data.rows.length + " rows returned";
                         } else msg = data.error.errors[0].message;
                         $(msgid).html(msg);
@@ -41,15 +40,22 @@
                     return false;
                 }
                 var buildquery = function(tableid) {
+                    //my-coll?f={"firstName": 1, "lastName": 1}
                     var formcols = $scope.sqlcols.sqlcols;
-                    var cols = (_.map(formcols, function(item) {
-                        return "'" + item.name + "'";
-                    })).join(',');
-                    var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
-                    var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
-                    return "select " + colsquery + " from " + tableid + groupbyquery;
+
+        
+                    var cols = _.map(formcols, function(item) {
+                         return  item.name + ":1";
+                    });
+
+
+                    //var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
+                    //var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
+
+
+                    return tableid + "?f={" + cols.join(",") + "}";
                 }
-                var sendsql = function(query, tableid) {
+                var sendsql = function(query) {
                     var deferred = $q.defer();
                     ReportService.request(query).success(function(data, status) {
                         return deferred.resolve(data);
@@ -59,11 +65,11 @@
                     });
                     return deferred.promise;
                 }
-                var loaddatagrid = function(tableid, dataset) {
+                var loaddatagrid = function(tableid, dataset,columns) {
                     if (dataTables[tableid]) dataTables[tableid].fnDestroy();
-                    var cols = _.map(dataset.columns, function(n) {
+                    var cols = _.map(columns, function(item) {
                         return {
-                            'title': n
+                            'data': item.name, 'title': item.name
                         };
                     });
 
@@ -71,7 +77,7 @@
 
                     dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
                         destroy: true,
-                        "data": dataset.rows,
+                        "data": dataset,
                         "scrollY": "500px",
                         "scrollCollapse": true,
                         "columns": cols

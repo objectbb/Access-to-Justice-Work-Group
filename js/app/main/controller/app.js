@@ -8,15 +8,19 @@
             // $scope.sqlcols = [];
             $scope.fusionmap = {};
 
+ // [ "anov" , "medallions" , "system.indexes" , "violation_arbitration" , "violations" ]          
+
             $scope.fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
                 Id: "1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i",
                 name: "tmhs",
+                collection: "medallions",
                 title: "Taxi Medallion Holders Summary",
                 cols: "*"
             };
             $scope.fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
                 Id: "1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt",
                 name: "anovs",
+                collection: "anov",                
                 title: "Doc & ANOV ers Summary",
                 cols: "*"
             };
@@ -24,6 +28,7 @@
                 Id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
                 name: "vr",
                 title: "Violations Report",
+                collection: "violation_arbitration",     
                 cols: "Disposition_Description,Docket_Number",
                 navigationProperties: {
                     category: {
@@ -33,24 +38,12 @@
                     }
                 }
             };
-            $scope.fusionmap["1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ"] = {
-                Id: "1UCyBNGAL7544gB8Se2QaPwRWRmsSZ0c5aeD2m6hJ",
-                name: "tmht",
-                title: "Taxi Medallion Holders Total (Grand)Report",
-                cols: "*",
-                navigationProperties: {
-                    category: {
-                        entityTypeName: "tmht",
-                        associationName: "tmht_tmht",
-                        foreignKeyNames: ["Grand_Total"]
-                    }
-                }
-            };
             $scope.fusionmap["14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV"] = {
                 Id: "14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV",
                 name: "dfin",
                 cols: "*",
                 title: "deptFin_foia",
+                collection: "violations",                 
                 navigationProperties: {
                     category: {
                         entityTypeName: "anovs",
@@ -62,8 +55,9 @@
             var getcolumns = function(id) {
                 var deferred = $q.defer();
                 var rs;
-                ReportService.requestcolumns(id).then(function(data, status) {
-                    rs = deferred.resolve(_.sortByAll(data.data.items, 'name'));
+                ReportService.requestcolumns(id).success(function(data, status) {
+
+                    rs = deferred.resolve(_.map(_.keys(data).sort(), function(item){return {name: item}}));
                 }, function(updates) {
                     deferred.update(updates);
                 });
@@ -78,7 +72,8 @@
                     (function(key) {
                         var name = ft[key].name;
                         var cols = ft[key].cols;
-                        getcolumns(key).then(function(data) {
+                        var collection = ft[key].collection;
+                        getcolumns(collection).then(function(data) {
                             //$scope[name] = data;
                             ft[key].columns = data;
                             //da.createtable(fusionmap[key], data);

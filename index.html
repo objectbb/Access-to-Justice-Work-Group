@@ -86,7 +86,7 @@
                         <div class="col-md-9">
                             <accordion close-others="oneAtATime">
                             <div class="animate-repeat" ng-repeat="table in fusionmap | defaultFilter: filtertables_cols">
-                            <tableinfo ng-attr-fusiontbl="{{table}}"></tableinfo>
+                            <tableinfo id={{table.Id}} ng-attr-fusiontbl="{{table}}"></tableinfo>
                         </div>
                         <accordion-group>
                         <accordion-heading class="accordion-heading-adv">

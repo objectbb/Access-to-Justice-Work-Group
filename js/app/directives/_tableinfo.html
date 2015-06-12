@@ -6,7 +6,7 @@
         <code class="codemainheader">{{title}}</code>
     </div>
     <div class="col-md-7">
-        <code class="codeheader">Fusion Table Id:</code><code>{{Id}}</code>
+        <code class="codeheader">Collection:</code><code>{{collection}}</code>
         <br>
         <code class="codeheader">Columns:</code>
         <code ng-repeat="item in columns">
@@ -23,24 +23,23 @@ output-model="sqlcols.sqlcols"
 button-label="icon name"
 item-label="icon name maker"
 orientation="horizontal"
-tick-property="ticked"
->
+tick-property="ticked">
 </isteven-multi-select>
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span>
-<button ng-click="send(Id)"> Run query </button>
+<button ng-click="send(collection,sqlcols.sqlcols)"> Run query </button>
 </span>
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span id="{{Id}}msg"></span>
+<span id="{{collection}}msg"></span>
 <br><br>
-<div id="{{Id}}tablecontainer" class="dataTable row container">
+<div id="{{collection}}tablecontainer" class="dataTable row container">
     <div class="col-md-10 background-white">
-        <table id="{{Id}}rstable" class="display compact">
+        <table id="{{collection}}rstable" class="display compact">
             <thead>
             </thead>
         </table>
     </div>
 </div>
-<a name="{{Id}}" />
+<a name="{{collection}}" />
 </accordion-group>

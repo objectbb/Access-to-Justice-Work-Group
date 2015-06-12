@@ -8,12 +8,12 @@
         $scope.allviolations = null;
 
         var loadViolations = function () {
-            var query = "select Description from 14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV group by Description";
+            var query = "violations?f={Description:1}";
             ReportService.request(query).success(function (data, status) {
                
-                $scope.allviolations = _.map(data.rows, function (item) {
+                $scope.allviolations = _.map(data, function (item) {
                     return {
-                        name: item[0]
+                        name: item.Description
                     }
                 });
             }).
