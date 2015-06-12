@@ -14,6 +14,7 @@ mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c medallions -u taxidr
 mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c violation_arbitration -u taxidriver -p taxidriver --type csv --headerline --file "C:\\Users\\objectbb\\Downloads\\Violations_Report.csv"
 */
 //https://api.mongolab.com/api/1/databases/taxidriver/collections?apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL
+/*
 requestp({
     url: url,
     method: "GET",
@@ -32,27 +33,66 @@ requestp({
     console.log("now geocoding..." + addrarray.length);
     var len = addrarray.length;
 
-    function done(){
-        for (var i = 0; i < 1; i++) {
+    
+       // for (var i = 0; i < 3; i++) {
+        addrarray.foreach(function(item) {
             //setTimeout(function() {}, 1000);
-            var gourl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addrarray[i].address + "&key=AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE";
-            console.log()
+            var gourl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + item.address + 
+                                "&key=AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE";
+
+            console.log(gourl);
+
             requestp({
                 url: gourl,
                 method: "GET",
                 json: true
             }).then(function(body) {
                 console.log("wtf");
-                returnlatlog(body, addrarray[i]);
+                returnlatlog(body, item);
             }, function(err) {
                 console.error("%s", err.message);
                 console.log("%j", err.res.statusCode);
             });
-        }
-    }
+        });
+    
 }, function(err) {
     console.error("%s", err.message);
     console.log("%j", err.res.statusCode);
+});
+*/
+request({
+    url: url,
+    method: "GET",
+    json: true
+}, function(error, response, body) {
+    console.log("push into array");
+    console.log(body.length);
+    for (var i = 0; i < 3; i++) {
+        addrarray.push({
+            Id: body[i]._id.$oid,
+            address: body[i].Address + ",Chicago, IL"
+        });
+    }
+    // } else console.log(response.statusCode)
+    console.log(addrarray.length + " count..." + addrarray[0].Id);
+    console.log("now geocoding..." + addrarray.length);
+    var len = addrarray.length;
+     //for (var i = 0; i < 3; i++) {
+       // item = addrarray[i];
+    addrarray.forEach(function(item) {
+        //setTimeout(function() {}, 1000);
+        var gourl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + item.address + "&key=AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE";
+        console.log(gourl);
+        requestp({
+            url: gourl,
+            method: "GET",
+            json: true
+        }, function(error, response, body) {
+            console.log("wtf");
+            returnlatlog(body, item);
+        });
+        setTimeout(function() {}, 5000);
+    });
 });
 
 function returnlatlog(body, row) {

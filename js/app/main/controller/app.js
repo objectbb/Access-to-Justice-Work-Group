@@ -144,7 +144,8 @@
                     "data": dataset.rows,
                     "scrollY": "500px",
                     "scrollCollapse": true,
-                    "columns": cols
+                    "columns": cols,
+                    "deferRender": true
                 });
             }
         }
