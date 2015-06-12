@@ -34,13 +34,12 @@
                     return false;
                 }
                 var buildquery = function(tableid) {
-                    //my-coll?f={"firstName": 1, "lastName": 1}
+
                     var formcols = $scope.sqlcols.sqlcols;
                     var cols = _.map(formcols, function(item) {
                         return item.name + ":1";
                     });
-                    //var colsquery = (formcols === null || formcols.length > 0) ? cols + ",count()" : " * ";
-                    //var groupbyquery = (formcols === null || formcols.length > 0) ? " group by " + cols : "";
+
                     return tableid + "?f={" + cols.join(",") + "}";
                 }
                 var sendsql = function(query) {

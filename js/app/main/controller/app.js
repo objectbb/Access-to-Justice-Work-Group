@@ -52,6 +52,7 @@
             var getcolumns = function(id) {
                 var deferred = $q.defer();
                 var rs;
+                
                 ReportService.requestcolumns(id).success(function(data, status) {
                     rs = deferred.resolve(_.map(_.keys(data).sort(), function(item) {
                         return {
@@ -62,6 +63,7 @@
                     deferred.update(updates);
                 });
                 return deferred.promise;
+
             }
             var initload = function() {
 
