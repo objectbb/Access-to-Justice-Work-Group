@@ -7,9 +7,6 @@
             $scope.sqlrs = null;
             // $scope.sqlcols = [];
             $scope.fusionmap = {};
-
- // [ "anov" , "medallions" , "system.indexes" , "violation_arbitration" , "violations" ]          
-
             $scope.fusionmap["1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i"] = {
                 Id: "1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i",
                 name: "tmhs",
@@ -20,7 +17,7 @@
             $scope.fusionmap["1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt"] = {
                 Id: "1T1uO4iCjVUps7Ihzc2_avzW2ZGCZR6ciF7IG3lHt",
                 name: "anovs",
-                collection: "anov",                
+                collection: "anov",
                 title: "Doc & ANOV ers Summary",
                 cols: "*"
             };
@@ -28,7 +25,7 @@
                 Id: "1An33ZqdkTpqMM1UjNy1cW0QDfAUhR0Hdtad0vkpJ",
                 name: "vr",
                 title: "Violations Report",
-                collection: "violation_arbitration",     
+                collection: "violation_arbitration",
                 cols: "Disposition_Description,Docket_Number",
                 navigationProperties: {
                     category: {
@@ -43,7 +40,7 @@
                 name: "dfin",
                 cols: "*",
                 title: "deptFin_foia",
-                collection: "violations",                 
+                collection: "violations",
                 navigationProperties: {
                     category: {
                         entityTypeName: "anovs",
@@ -56,16 +53,17 @@
                 var deferred = $q.defer();
                 var rs;
                 ReportService.requestcolumns(id).success(function(data, status) {
-
-                    rs = deferred.resolve(_.map(_.keys(data).sort(), function(item){return {name: item}}));
+                    rs = deferred.resolve(_.map(_.keys(data).sort(), function(item) {
+                        return {
+                            name: item
+                        }
+                    }));
                 }, function(updates) {
                     deferred.update(updates);
                 });
                 return deferred.promise;
             }
             var initload = function() {
-
-
                 da.clearalltables();
                 var ft = $scope.fusionmap;
                 for (var key in ft) {
@@ -79,19 +77,13 @@
                             //da.createtable(fusionmap[key], data);
                             //$scope.loadcachetables("select " + cols + " from " + key, name)
                         });
-
                         ft[key].hashcode = function() {
-
                             var tree = _.map(ft[key].columns, function(item) {
                                 return item.name.toLowerCase().split(/[_# -]/g);
                             });
-
                             tree = tree.concat(ft[key].title.toLowerCase().split(/[_# -]/g));
-
                             return _.flatten(tree);
                         };
-
-
                     })(key);
                 }
             }
@@ -146,7 +138,6 @@
                         'title': n
                     };
                 });
-
                 $('#tablecontainer').addClass("fadeIn animate_control");
                 dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
                     destroy: true,

@@ -10,12 +10,14 @@
         var loadViolations = function () {
             var query = "violations?f={Description:1}";
             ReportService.request(query).success(function (data, status) {
-               
-                $scope.allviolations = _.map(data, function (item) {
+             
+                $scope.allviolations = _.uniq(_.map(data, function (item) {
                     return {
                         name: item.Description
                     }
-                });
+                }), "name");
+                
+
             }).
             error(function (data, status) {
                 alert("error");
@@ -58,7 +60,7 @@
                 }
             }).Load();
         }
-        mapit(whereclause());
+       // mapit(whereclause());
         var redraw = function (where) {
             $('#gmap-fusion').empty();
             mapit((where) ? where : whereclause());

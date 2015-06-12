@@ -7,12 +7,16 @@
                 var urlrequest = url + query + "&l=1000000&apiKey=" + key;
                 return $http.get(urlrequest).success(function(data){
                     return data;
+                }).error(function(err){
+                    console.log(err);
                 });
             },
             requestcolumns: function(id) {
                 var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/" + id + "?fo=true&apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
                 return $http.get(url).success(function(data){
                     return data;
+                }).error(function(err){
+                    console.log(err);
                 });
             }
         }
