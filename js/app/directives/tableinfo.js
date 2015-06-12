@@ -25,7 +25,7 @@
                     sendsql(query).then(function(data, status) {
                         if (!data.error) {
                             loaddatagrid(tableid, data, columns);
-                            msg = "..." + data.rows.length + " rows returned";
+                            //msg = "..." + data.rows.length + " rows returned";
                         } else msg = data.error.errors[0].message;
                         $(msgid).html(msg);
                         $(msgid).removeClass("flash animated");
@@ -62,13 +62,23 @@
                         };
                     });
                     $('#' + tableid + "tablecontainer").addClass("fadeIn animated animate_control");
-                    dataTables[tableid] = $('#' + tableid + "rstable").empty().dataTable({
+                    dataTables[tableid] = $('#' + tableid + "rstable").dataTable({
                         destroy: true,
                         "data": dataset,
                         "scrollY": "500px",
                         "scrollCollapse": true,
-                        "columns": cols
-                    });
+                        "columns": cols,
+                        "deferRender": true,
+                         "searchHighlight": true
+                    }).on( 'draw.dt', function () {
+                        var body = $(this);
+                 
+                        body.unhighlight();
+                        body.highlight( body.DataTable().search() );  
+
+                        msg = "..." + dataset.length + " rows returned";
+                        $("#" + tableid + "msg").html(msg);
+                    } );
                 }
             }
         };

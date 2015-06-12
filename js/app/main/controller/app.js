@@ -64,6 +64,7 @@
                 return deferred.promise;
             }
             var initload = function() {
+
                 da.clearalltables();
                 var ft = $scope.fusionmap;
                 for (var key in ft) {
@@ -114,8 +115,11 @@
             }
             var sendsql = function(query, tableid) {
                 var deferred = $q.defer();
-                ReportService.request(query).success(function(data, status) {
+                ReportService.request(query).
+                success(function(data, status) {
                     return deferred.resolve(data);
+                }, function(updates) {
+                    deferred.update(updates);
                 }).
                 error(function(data, status) {
                     return deferred.resolve(data);
@@ -146,6 +150,10 @@
                     "scrollCollapse": true,
                     "columns": cols,
                     "deferRender": true
+                }).on('draw.dt', function() {
+                    var body = $(this);
+                    body.unhighlight();
+                    body.highlight(body.DataTable().search());
                 });
             }
         }
