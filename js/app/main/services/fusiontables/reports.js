@@ -1,23 +1,24 @@
 (function() {
     angular.module('taxidriver').service('ReportService', ['$http', function($http) {
-        var key = "mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
+        var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
         return {
             request: function(query) {
-                var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/";
-                var urlrequest = url + query + "&l=1000000&apiKey=" + key;
-                return $http.get(urlrequest).success(function(data){
-                    return data;
-                }).error(function(err){
-                    console.log(err);
-                });
+                var url = "https://www.googleapis.com/fusiontables/v2/query";
+                var urlrequest = url + query + "&" + key;
+                var req = {
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        key: key,
+                        sql: query
+                    }
+                }
+                return $http(req);
             },
             requestcolumns: function(id) {
-                var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/" + id + "?fo=true&apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
-                return $http.get(url).success(function(data){
-                    return data;
-                }).error(function(err){
-                    console.log(err);
-                });
+                var url = "https://www.googleapis.com/fusiontables/v2/tables/";
+                var urlrequest = url + id + "/columns?key=" + key;
+                return $http.get(urlrequest);
             }
         }
     }]);

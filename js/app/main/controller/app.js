@@ -67,7 +67,7 @@
             }
             var initload = function() {
 
-                da.clearalltables();
+                //da.clearalltables();
                 var ft = $scope.fusionmap;
                 for (var key in ft) {
                     (function(key) {
