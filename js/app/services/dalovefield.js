@@ -60,9 +60,9 @@
                     for (var i = 0; i < cols.length; ++i) {
                         var name = cols[i].name;
                         var type = cols[i].type;
-                        table.addColumn(name, (cols[i].type == "NUMBER") ? lf.Type.INTEGER : lf.Type.STRING);
-                        if (name == "Docket_Number" || name == "Affiliation" || name == "Date" || 
-                            name == "TotalAmount_Outstanding" || name == "Company_Name" || name == "Address")
+                        table.addColumn(name, (cols[i].type === "NUMBER") ? lf.Type.INTEGER : lf.Type.STRING);
+                        if (name === "Docket_Number" || name === "Affiliation" || name === "Date" || 
+                            name === "TotalAmount_Outstanding" || name === "Company_Name" || name === "Address")
                              table.addIndex('idx' + name, [name], false, lf.Order.DESC);
                     }
                     table.addColumn('id', lf.Type.INTEGER);
