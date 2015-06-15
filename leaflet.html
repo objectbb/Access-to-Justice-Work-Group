@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html ng-app="demoapp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/leaflet.js"></script>
+    <script src="js/libs/lodash.min.js"></script>
+    <script src="js/libs/angular-leaflet-directive.min.js"></script>
+    <script src="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>  
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
+    <script>
+        var app = angular.module("demoapp", ["leaflet-directive"]);
+
+        angular.module('demoapp').service('ReportService', ['$http', function($http) {
+            var key = "mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
+            return {
+                request: function(query) {
+                    var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/";
+                    var urlrequest = url + query + "&l=1000000&apiKey=" + key;
+                    return $http.get(urlrequest).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        console.log(err);
+                    });
+                }
+            }
+        }]);
+        app.controller("LayersSimpleController", [ "$scope","ReportService", function($scope,ReportService) {
+
+        var local_icons = {
+            default_icon: {},
+            leaf_icon: {
+                iconUrl: 'examples/img/leaf-green.png',
+                shadowUrl: 'examples/img/leaf-shadow.png',
+                 iconSize:     [38, 95], // size of the icon
+                shadowSize:   [50, 64], // size of the shadow
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            },
+            div_icon: {
+                type: 'div',
+                iconSize: [230, 0],
+                html: 'Using <strong>Bold text as an icon</strong>: Lisbon',
+                popupAnchor:  [0, 0]
+            },
+            orange_leaf_icon: {
+                iconUrl: 'examples/img/leaf-orange.png',
+                shadowUrl: 'examples/img/leaf-shadow.png',
+                iconSize:     [38, 95],
+                shadowSize:   [50, 64],
+                iconAnchor:   [22, 94],
+                shadowAnchor: [4, 62]
+            }
+        };
+
+        var addressPointsToMarkers = function(points) {
+
+
+              return points.map(function(ap) {
+                return {
+                  layer: 'realworld',
+                  lat: ap.lat,
+                  lng: ap.lng,
+                  message: _.values(ap).join("<br>"),
+                  label: {
+                            message: _.values(ap).join("<br>"),
+                            options: {
+                                noHide: true
+                            }
+                        },
+                };
+              });
+            };
+
+            angular.extend($scope, {
+                center: {
+                    lat: 41.8369,
+                    lng:  -87.6847,
+                    zoom: 9
+                },
+                events: {
+                    map: {
+                        enable: ['moveend', 'popupopen'],
+                        logic: 'emit'
+                    },
+                    marker: {
+                        enable: [],
+                        logic: 'emit'
+                    }
+                },
+                layers: {
+                    baselayers: {
+                        osm: {
+                            name: 'OpenStreetMap',
+                            type: 'xyz',
+                            url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        }
+                    },
+                    overlays: {
+                        realworld: {
+                            name: "Real world data",
+                            type: "markercluster",
+                            visible: true
+                        }
+                    }
+                }
+            });
+
+            var query = "violations?q={Status: 'Dismissed'}";
+            ReportService.request(query).success(function(data, status) {
+                $scope.markers =addressPointsToMarkers(data);
+            }).
+            error(function(data, status) {
+                alert("error");
+            });
+
+/*
+            $http.get("json/realworld.10000.json").success(function(data) {
+                $scope.markers = addressPointsToMarkers(data);
+            });
+*/
+/*
+            angular.extend($scope, {
+                center: {
+                    lat: 41.8369,
+                    lng:  -87.6847,
+                    zoom: 9
+                },
+                markers: {
+                     m1: {
+                        lat: 41.8369,
+                        lng:  -87.6847,
+                        message: "I'm a static marker",
+                    },
+                },
+                layers: {
+                    baselayers: {
+                        mapbox_light: {
+                            name: 'Mapbox Light',
+                            url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+                            type: 'xyz',
+                            layerOptions: {
+                                apikey: 'pk.eyJ1IjoiYnVmYW51dm9scyIsImEiOiJLSURpX0pnIn0.2_9NrLz1U9bpwMQBhVk97Q',
+                                mapid: 'bufanuvols.lia22g09'
+                            }
+                        },
+                        osm: {
+                            name: 'OpenStreetMap',
+                            url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                            type: 'xyz'
+                        }
+                    }
+                }
+            });
+*/
+        }]);
+    </script>
+</head>
+<body ng-controller="LayersSimpleController">
+    <leaflet center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
+    <h1>Layers simple example</h1>
+    <p>You can easily add various layers to your map, including a layer selector on the top right, defining <strong>layers</strong> object.</p>
+</body>
+</html>

@@ -10,6 +10,15 @@
 module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
+        watch: {
+            scripts: {
+               files: ['./js/**/*.js','./js/**/*.html'],             
+                tasks: ['concat', 'uglify', 'cssmin'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
         cssmin: {
             target: {
                 files: [{
@@ -63,7 +72,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     // "npm test" runs these tasks
     grunt.registerTask('wtf', ['concat']);
-    grunt.registerTask('minime', ['concat', 'uglify','cssmin']);
+    grunt.registerTask('minime', ['concat', 'uglify', 'cssmin']);
 };
