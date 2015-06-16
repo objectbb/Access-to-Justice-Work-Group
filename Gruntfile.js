@@ -45,11 +45,11 @@ module.exports = function(grunt) {
         },
         concat: {
             lib: {
-                src: ['./js/libs/jquery-2.1.4.min.js', './js/libs/jquery.highlight.js', './js/libs/angular.min.js', './js/libs/angular-animate.min.js', './js/libs/ui-bootstrap-tpls-0.13.0.min.js', './js/libs/bootstrap-select.min.js', './js/libs/bootstrap.min.js', './js/libs/angular.rangeSlider.js', './js/libs/angular.rangeSlider.js', './js/libs/lodash.min.js', './js/libs/maplace-0.1.3.min.js', './js/libs/angular-leaflet-directive.min.js', './js/libs/jquery.dataTables.min.js', './js/libs/isteven-multi-select.js', './js/libs/breeze.min.js', './js/libs/breeze.bridge.angular.js', './js/libs/breeze.metadata-helper.js'],
+                src: ['./js/libs/jquery-2.1.4.min.js', './js/libs/jquery.highlight.js', './js/libs/angular.min.js', './js/libs/angular-animate.min.js', './js/libs/ui-bootstrap-tpls-0.13.0.min.js', './js/libs/bootstrap-select.min.js', './js/libs/bootstrap.min.js', './js/libs/angular.rangeSlider.js', './js/libs/angular.rangeSlider.js', './js/libs/lodash.min.js', './js/libs/maplace-0.1.3.min.js', './js/libs/leaflet.js', './js/libs/angular-leaflet-directive.min.js', './js/libs/jquery.dataTables.min.js', './js/libs/isteven-multi-select.js'],
                 dest: './dist/taxidriver.lib.js'
             },
             app: {
-                src: ['./js/app/main/app.js', './js/app/filters/defaultfilter.js', './js/app/services/dabreezee.js', './js/app/main/services/mongo/reports.js', './js/app/directives/tableinfo.js', './js/app/main/controller/app.js', './js/app/map/controller/map.js'],
+                src: ['./js/app/main/app.js', './js/app/filters/defaultfilter.js','./js/app/main/services/mongo/reports.js', './js/app/directives/tableinfo.js', './js/app/main/controller/app.js', './js/app/map/controller/leafletmap.js'],
                 dest: './dist/taxidriver.app.js'
             },
             css: {

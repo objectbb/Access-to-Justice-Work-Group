@@ -1,8 +1,8 @@
 (function() {
     var dataTables = {};
     var dataTable;
-    angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 'da',
-        function($scope, $q, ReportService, da, $animate) {
+    angular.module('taxidriver').controller('AppCtrl', ['$scope', '$q', 'ReportService', 
+        function($scope, $q, ReportService, $animate) {
             $scope.sql = null;
             $scope.sqlrs = null;
             // $scope.sqlcols = [];
@@ -94,8 +94,8 @@
             $scope.loadcachetables = function(sql, tableid) {
                 sendsql(sql, tableid).then(function(data, status) {
                     if (!data.error) {
-                        da.loadtable(tableid, convertcolstojson(data));
-                        da.execute(new breeze.EntityQuery().from(tableid));
+                        //da.loadtable(tableid, convertcolstojson(data));
+                        //da.execute(new breeze.EntityQuery().from(tableid));
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
                     } else msg = data.error.errors[0].message;
                     console.log(msg);
