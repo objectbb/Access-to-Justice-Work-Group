@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
-                                    <h3><a href='javascript:void(0)' ng-click="maptable({from: '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV', select: 'location'})">
+                                    <h3><a href='javascript:void(0)' ng-click="maptable(\"violations?q={lat:{$gt:0},lng:{$lt:0},Status:'Outstanding'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}\")">
                                     <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
                                     Violations</a></h3>
                                     <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
@@ -52,11 +52,11 @@
                                         <br><br>
                                         <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
                                     </div>
-                                    <!--
+                                    
                                     <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
-                                        <h3><a href='javascript:void(0)' ng-click="maptable({from: '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i', select: 'location'})"> <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a><h3>
+                                        <h3><a href='javascript:void(0)' ng-click="maptable('medallions?q={lat:{$gt:0},lng:{$lt:0}}')"> <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a><h3>
                                     </div>
-                                    -->
+                                 
                                 </div>
                             </div>
                             <div class="col-sm-7">
