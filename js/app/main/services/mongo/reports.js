@@ -3,8 +3,8 @@
         var key = "mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
         return {
             request: function(query) {
-                var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/";
-                var urlrequest = url + query + "&l=1000000&apiKey=" + key;
+                var urlrequest = "https://api.mongolab.com/api/1/databases/taxidriver/collections/" +
+                                    query + "&l=1000000&apiKey=" + key;
                 return $http.get(urlrequest).success(function(data){
                     return data;
                 }).error(function(err){
