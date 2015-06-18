@@ -69,12 +69,9 @@
                 });
                 $scope.filteredMaxFine = maxfine;
                 $scope.filteredMinFine = minfine;
-                _.map($scope.allviolations,function(item){
-
-                       item.ticked= (allvio[item.name]) ? true : false
-                        
+                _.map($scope.allviolations, function(item) {
+                    item.ticked = (allvio[item.name]) ? true : false
                 });
-                
                 return rs;
             }
             var setMapData = function(rawdata) {
@@ -123,7 +120,6 @@
                     rawdata = data;
                     refreshViolationsdd(data);
                     $scope.markers = setMapData(data);
-
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -148,7 +144,7 @@
                 var query = "medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}";
                 refreshMapMedallions.apply(this, [query, ""]);
             }
-            $scope.$watchGroup(['minAmount', 'maxAmount', 'status'], function() {
+            $scope.$watchGroup(['status'], function() {
                 if (rawdata.length == 0) return;
                 $scope.markers = setMapData(rawdata);
             }, true);

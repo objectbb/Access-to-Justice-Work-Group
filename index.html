@@ -33,6 +33,10 @@
                                     <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
                                     <input type="text"  ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
                                     <br><br>
+                                    <input type="text"  ng-model="minAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="maxAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
+
+
+                                    <br><br>
                                         <select ng-model="status" class="selectpicker" title='Select status...'>
                                             <option value="All" ng-selected="status === 'All'">All</option>
                                             <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
@@ -52,8 +56,7 @@
                                         min-search-length="3"
                                         >
                                         </isteven-multi-select>
-                                        <br><br>
-                                        <div range-slider step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
+
                                     </div>
                                     
                                     <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
