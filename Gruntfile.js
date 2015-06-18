@@ -63,8 +63,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    './dist/taxidriver.lib.min.js': ['./dist/taxidriver.lib.js'],
-                    './dist/taxidriver.app.min.js': ['./dist/taxidriver.app.js']
+                    './dist/taxidriver.lib.min.js': ['./dist/taxidriver.lib.min.js'],
+                    './dist/taxidriver.app.min.js': ['./dist/taxidriver.app.min.js']
                 }
             }
         }

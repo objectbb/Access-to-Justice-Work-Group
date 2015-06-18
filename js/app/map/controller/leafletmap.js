@@ -7,6 +7,9 @@
             $scope.fromdate = "01/01/2013";
             $scope.todate = "01/05/2013";
             $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
+            $scope.filteredMaxFine = 250;
+            $scope.filteredMinFine = 0;
+            $scope.filteredViolations = "All";
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
@@ -45,13 +48,33 @@
                 return deferred.promise;
             }
             var filtermarkers = function(rawdata) {
+                var minfine = 250;
+                var maxfine = 0;
+                var allvio = {};
                 if (rawdata.length == 0) return;
                 var rs = _.filter(rawdata, function(item) {
                     var dataprop = item;
-                    return (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
+                    var is = (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
                         'name': dataprop.Description
                     }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == 'All'));
+                    if (is) {
+                        if (dataprop.Amount >= maxfine) maxfine = dataprop.Amount;
+                        if (dataprop.Amount <= minfine) minfine = dataprop.Amount;
+                        allvio[dataprop.Description] = {
+                            name: dataprop.Description,
+                            ticked: true
+                        };
+                    }
+                    return is;
                 });
+                $scope.filteredMaxFine = maxfine;
+                $scope.filteredMinFine = minfine;
+                _.map($scope.allviolations,function(item){
+
+                       item.ticked= (allvio[item.name]) ? true : false
+                        
+                });
+                
                 return rs;
             }
             var setMapData = function(rawdata) {
@@ -98,8 +121,9 @@
                 then(function(data) {
                     if (data.length == 0) return;
                     rawdata = data;
-                    $scope.markers = setMapData(data);
                     refreshViolationsdd(data);
+                    $scope.markers = setMapData(data);
+
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -124,7 +148,7 @@
                 var query = "medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}";
                 refreshMapMedallions.apply(this, [query, ""]);
             }
-            $scope.$watchGroup(['minAmount', 'maxAmount', 'violations', 'status'], function() {
+            $scope.$watchGroup(['minAmount', 'maxAmount', 'status'], function() {
                 if (rawdata.length == 0) return;
                 $scope.markers = setMapData(rawdata);
             }, true);

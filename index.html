@@ -41,6 +41,7 @@
                                         </select>
                                         <br><br>
                                         <isteven-multi-select
+                                        on-item-click="onchangeRedrawmap()"
                                         input-model="allviolations"
                                         output-model="violations"
                                         button-label="icon name"
@@ -61,7 +62,13 @@
                                  
                                 </div>
                             </div>
-                            <div class="col-sm-7">
+                            <div class="col-sm-2">
+                                <div>
+                                     Max fine: <strong>{{filteredMaxFine}}</strong>
+                                     Min fine: <strong>{{filteredMinFine}}</strong>
+                                </div> 
+                            </div>
+                            <div class="col-sm-6">
                                 <div id="controls"></div>
                                 <leaflet async="true" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
 
