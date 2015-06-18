@@ -39,13 +39,13 @@
     angular.module('taxidriver').service('ReportService', ['$http', function($http) {
         var key = "mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
         return {
-            request: function(query) {
-                var urlrequest = "https://api.mongolab.com/api/1/databases/taxidriver/collections/" +
-                                    query + "&l=1000000&apiKey=" + key;
+            request: function(query, datafileurl) {
+                var urlrequest = (query) ? "https://api.mongolab.com/api/1/databases/taxidriver/collections/" +
+                                    query + "&l=1000000&apiKey=" + key : datafileurl;
                 return $http.get(urlrequest).success(function(data){
                     return data;
                 }).error(function(err){
-                    console.log(err);
+                    alert(JSON.stringify(err));
                 });
             },
             requestcolumns: function(id) {
@@ -53,7 +53,7 @@
                 return $http.get(url).success(function(data){
                     return data;
                 }).error(function(err){
-                    console.log(err);
+                     alert(JSON.stringify(err));
                 });
             }
         }
@@ -310,7 +310,7 @@
 (function() {
     angular.module('taxidriver').controller('MapController', ['$scope', 'ReportService', '$q',
         function($scope, ReportService, $q) {
-            $scope.status = "Outstanding";
+            $scope.status = "All";
             $scope.minAmount = 0;
             $scope.maxAmount = 250;
             $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
@@ -334,8 +334,8 @@
                     };
                 });
             };
-            var loadViolations = function(query) {
-                ReportService.request(query).success(function(data, status) {
+            var loadViolations = function(query,datafileurl) {
+                ReportService.request(query,datafileurl).success(function(data, status) {
                     rawdata = data;
                     $scope.markers = addressPointsToMarkers(rawdata);
                     $scope.allviolations = _.uniq(_.map(data, function(item) {
@@ -383,7 +383,7 @@
                     }
                 });
             }
-          //  loadViolations("violations?q={lat:{$gt:0},lng:{$lt:0},Status:'Outstanding'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}");
+            loadViolations("","data/violations_map.js");
             mapit();
             $scope.mapviolations = function() {
                 $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
@@ -401,22 +401,11 @@
                     var dataprop = item;
                     return (dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
                         'name': dataprop.Description
-                    }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == undefined));
+                    }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == 'All'));
                 })));
                 return deferred.promise;
             }
-            $scope.$watchGroup(['minAmount', 'maxAmount', 'violations'], function() {
-                var promise = filtermarkers();
-                promise.then(function(data) {
-                    $scope.markers = data;
-                }, function(reason) {
-                    alert('Failed: ' + reason);
-                });
-            }, true);
-            $scope.$watch('status', function(newvalue, oldvalue) {
-                //$scope.markers = addressPointsToMarkers(data);
-                loadViolations("violations?q={lat:{$gt:0},lng:{$lt:0},Status:'" + 
-                    newvalue + "'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}");
+            $scope.$watchGroup(['minAmount', 'maxAmount', 'violations','status'], function() {
                 var promise = filtermarkers();
                 promise.then(function(data) {
                     $scope.markers = data;

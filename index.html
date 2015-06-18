@@ -27,12 +27,14 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
-                                    <h3><a href='javascript:void(0)' ng-click="mapviolations()">
+                                    <h3><a href='javascript:void(0)' ng-click="mapViolations()">
                                     <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
                                     Violations</a></h3>
                                     <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                    <input type="text"  ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
+                                    <br><br>
                                         <select ng-model="status" class="selectpicker" title='Select status...'>
-                                            <option></option>
+                                            <option value="All" ng-selected="status === 'All'">All</option>
                                             <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
                                             <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
                                             <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
@@ -54,7 +56,7 @@
                                     </div>
                                     
                                     <div id="1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9imap">
-                                        <h3><a href='javascript:void(0)' ng-click="mapmedallions()"> <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a><h3>
+                                        <h3><a href='javascript:void(0)' ng-click="mapMedallions()"> <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>Cab Companies</a><h3>
                                     </div>
                                  
                                 </div>

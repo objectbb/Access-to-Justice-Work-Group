@@ -2,13 +2,13 @@
     angular.module('taxidriver').service('ReportService', ['$http', function($http) {
         var key = "mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
         return {
-            request: function(query) {
-                var urlrequest = "https://api.mongolab.com/api/1/databases/taxidriver/collections/" +
-                                    query + "&l=1000000&apiKey=" + key;
+            request: function(query, datafileurl) {
+                var urlrequest = (query) ? "https://api.mongolab.com/api/1/databases/taxidriver/collections/" +
+                                    query + "&l=1000000&apiKey=" + key : datafileurl;
                 return $http.get(urlrequest).success(function(data){
                     return data;
                 }).error(function(err){
-                    console.log(err);
+                    alert(JSON.stringify(err));
                 });
             },
             requestcolumns: function(id) {
@@ -16,7 +16,7 @@
                 return $http.get(url).success(function(data){
                     return data;
                 }).error(function(err){
-                    console.log(err);
+                     alert(JSON.stringify(err));
                 });
             }
         }

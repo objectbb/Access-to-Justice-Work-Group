@@ -1,9 +1,11 @@
 (function() {
     angular.module('taxidriver').controller('MapController', ['$scope', 'ReportService', '$q',
         function($scope, ReportService, $q) {
-            $scope.status = "Outstanding";
+            $scope.status = "All";
             $scope.minAmount = 0;
             $scope.maxAmount = 250;
+            $scope.fromdate = "01/01/2013";
+            $scope.todate = "01/05/2013";
             $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
             $scope.violations = [];
             $scope.allviolations = null;
@@ -25,21 +27,37 @@
                     };
                 });
             };
-            var loadViolations = function(query) {
-                ReportService.request(query).success(function(data, status) {
-                    rawdata = data;
-                    $scope.markers = addressPointsToMarkers(rawdata);
-                    $scope.allviolations = _.uniq(_.map(data, function(item) {
-                        return {
-                            name: item.Description
-                        }
-                    }), "name");
+            var refreshViolationsdd = function(data) {
+                $scope.allviolations = _.uniq(_.map(data, function(item) {
+                    return {
+                        name: item.Description
+                    }
+                }), "name");
+            }
+            var loadMapData = function(query, datafileurl) {
+                var deferred = $q.defer();
+                ReportService.request(query, datafileurl).success(function(data, status) {
+                    deferred.resolve(data);
                 }).
                 error(function(data, status) {
                     alert("error");
                 });
+                return deferred.promise;
             }
-            var mapit = function() {
+            var filtermarkers = function(rawdata) {
+                if (rawdata.length == 0) return;
+                var rs = _.filter(rawdata, function(item) {
+                    var dataprop = item;
+                    return (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
+                        'name': dataprop.Description
+                    }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == 'All'));
+                });
+                return rs;
+            }
+            var setMapData = function(rawdata) {
+                return addressPointsToMarkers(filtermarkers(rawdata));
+            }
+            var mapIt = function() {
                 angular.extend($scope, {
                     center: {
                         lat: 41.8369,
@@ -74,47 +92,46 @@
                     }
                 });
             }
-          //  loadViolations("violations?q={lat:{$gt:0},lng:{$lt:0},Status:'Outstanding'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}");
-            mapit();
-            $scope.mapviolations = function() {
+            mapIt();
+            var refreshMapViolations = function(url, dataurl) {
+                loadMapData(url, dataurl).
+                then(function(data) {
+                    if (data.length == 0) return;
+                    rawdata = data;
+                    $scope.markers = setMapData(data);
+                    refreshViolationsdd(data);
+                }, function(reason) {
+                    alert('Failed: ' + reason);
+                });
+            }
+            var refreshMapMedallions = function(url, dataurl) {
+                loadMapData(url, dataurl).
+                then(function(data) {
+                    if (data.length == 0) return;
+                    $scope.markers = addressPointsToMarkers(data);
+                }, function(reason) {
+                    alert('Failed: ' + reason);
+                });
+            }
+            refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
+            $scope.mapViolations = function() {
                 $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
-                loadViolations("violations?q={lat:{$gt:0},lng:{$lt:0},Status:'" + 
-                    $scope.status + "'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}");
+                var query = "violations?q={lat:{$gt:0},lng:{$lt:0},Status:'" + $scope.status + "'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}";
+                refreshMapViolations.apply(this, [query, ""]);
             }
-            $scope.mapmedallions = function() {
+            $scope.mapMedallions = function() {
                 $scope.table = '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i';
-                loadViolations("medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}");
+                var query = "medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}";
+                refreshMapMedallions.apply(this, [query, ""]);
             }
-            var filtermarkers = function() {
-                var deferred = $q.defer();
-                deferred.resolve(addressPointsToMarkers(_.filter(rawdata, function(item) {
-                    deferred.notify("Loading data...please be patient.");
-                    var dataprop = item;
-                    return (dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
-                        'name': dataprop.Description
-                    }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == undefined));
-                })));
-                return deferred.promise;
+            $scope.$watchGroup(['minAmount', 'maxAmount', 'violations', 'status'], function() {
+                if (rawdata.length == 0) return;
+                $scope.markers = setMapData(rawdata);
+            }, true);
+            $scope.onchangeRedrawmap = function() {
+                if (rawdata.length == 0) return;
+                $scope.markers = setMapData(rawdata);
             }
-            $scope.$watchGroup(['minAmount', 'maxAmount', 'violations'], function() {
-                var promise = filtermarkers();
-                promise.then(function(data) {
-                    $scope.markers = data;
-                }, function(reason) {
-                    alert('Failed: ' + reason);
-                });
-            }, true);
-            $scope.$watch('status', function(newvalue, oldvalue) {
-                //$scope.markers = addressPointsToMarkers(data);
-                loadViolations("violations?q={lat:{$gt:0},lng:{$lt:0},Status:'" + 
-                    newvalue + "'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}");
-                var promise = filtermarkers();
-                promise.then(function(data) {
-                    $scope.markers = data;
-                }, function(reason) {
-                    alert('Failed: ' + reason);
-                });
-            }, true);
         }
     ]);
 }());

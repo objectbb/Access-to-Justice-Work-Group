@@ -1,0 +1,13 @@
+db.violations.find().forEach(function(vio) {var latlog=db.latlog.find( {id: vio._id});if (latlog !=null) {vio.lng=latlog.lng;vio.lat=latlog.lat;db.violations.save(vio);}});
+
+
+
+db.violations.find().forEach(function(vio) {db.latlog.find( {state: vio._id}).forEach(function(ll) {print(ll.state + " ok " + vio._id); });});
+
+db.latlogmed.find().forEach(function(ll){db.medallions.update({_id : ObjectId(ll.state)},{$set: {lat: ll.lat, lng: ll.lng}});});
+
+db.latlog.find().forEach(function(ll){ delete ll.success;});
+
+
+db.violations.update({ "_id" : { "$oid" : "5579dc9c0db630d7038652df"} ,{$set: {lat: "41.85", lng: "-87.65"}},{upsert:true});
+
