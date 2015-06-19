@@ -10,6 +10,9 @@
             $scope.filteredMaxFine = 250;
             $scope.filteredMinFine = 0;
             $scope.filteredViolations = "All";
+            $scope.filtertotalcount = 0;
+            $scope.filtertotalviolations = 0;
+            $scope.filterstate = "Waiting for Input...";
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
@@ -51,6 +54,7 @@
                 var minfine = 250;
                 var maxfine = 0;
                 var allvio = {};
+                $scope.filterstate = "Calculating...";
                 if (rawdata.length == 0) return;
                 var rs = _.filter(rawdata, function(item) {
                     var dataprop = item;
@@ -69,9 +73,11 @@
                 });
                 $scope.filteredMaxFine = maxfine;
                 $scope.filteredMinFine = minfine;
+                $scope.filtertotalviolations = _.keys(allvio).length;
                 _.map($scope.allviolations, function(item) {
                     item.ticked = (allvio[item.name]) ? true : false
                 });
+                $scope.filterstate = "Finish Calculating...";
                 return rs;
             }
             var setMapData = function(rawdata) {
@@ -119,7 +125,10 @@
                     if (data.length == 0) return;
                     rawdata = data;
                     refreshViolationsdd(data);
+                    $scope.filterstate = "Rendering Map...";
                     $scope.markers = setMapData(data);
+                    $scope.filtertotalcount = $scope.markers.length;
+                    $scope.filterstate = "Done...";
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -128,7 +137,10 @@
                 loadMapData(url, dataurl).
                 then(function(data) {
                     if (data.length == 0) return;
+                    $scope.filterstate = "Rendering Map...";
                     $scope.markers = addressPointsToMarkers(data);
+                    $scope.filtertotalcount = $scope.markers.length;
+                    $scope.filterstate = "Waiting Input...";
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -146,11 +158,17 @@
             }
             $scope.$watchGroup(['status'], function() {
                 if (rawdata.length == 0) return;
+                $scope.filterstate = "Rendering Map...";
                 $scope.markers = setMapData(rawdata);
+                $scope.filtertotalcount = $scope.markers.length;
+                $scope.filterstate = "Waiting Input...";
             }, true);
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
+                $scope.filterstate = "Rendering Map...";
                 $scope.markers = setMapData(rawdata);
+                $scope.filtertotalcount = $scope.markers.length;
+                $scope.filterstate = "Waiting Input...";
             }
         }
     ]);
