@@ -12,7 +12,7 @@
             $scope.filteredViolations = "All";
             $scope.filtertotalcount = 0;
             $scope.filtertotalviolations = 0;
-            $scope.filterstate = "Waiting for Input...";
+            $scope.filterstate = "Waiting...";
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
@@ -162,14 +162,14 @@
                 $scope.filterstate = "Rendering Map...";
                 $scope.markers = setMapData(rawdata);
                 $scope.filtertotalcount = $scope.markers.length;
-                $scope.filterstate = "Waiting Input...";
+                $scope.filterstate = "Waiting...";
             }, true);
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
                 $scope.filterstate = "Rendering Map...";
                 $scope.markers = setMapData(rawdata);
                 $scope.filtertotalcount = $scope.markers.length;
-                $scope.filterstate = "Waiting Input...";
+                $scope.filterstate = "Waiting...";
             }
         }
     ]);
