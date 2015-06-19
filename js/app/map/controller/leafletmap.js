@@ -120,6 +120,7 @@
             }
             mapIt();
             var refreshMapViolations = function(url, dataurl) {
+                $scope.filterstate = "Loading Data...";
                 loadMapData(url, dataurl).
                 then(function(data) {
                     if (data.length == 0) return;
@@ -134,13 +135,14 @@
                 });
             }
             var refreshMapMedallions = function(url, dataurl) {
+                $scope.filterstate = "Loading Data...";
                 loadMapData(url, dataurl).
                 then(function(data) {
                     if (data.length == 0) return;
                     $scope.filterstate = "Rendering Map...";
                     $scope.markers = addressPointsToMarkers(data);
                     $scope.filtertotalcount = $scope.markers.length;
-                    $scope.filterstate = "Waiting Input...";
+                    $scope.filterstate = "Done...";
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -148,8 +150,7 @@
             refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
             $scope.mapViolations = function() {
                 $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
-                var query = "violations?q={lat:{$gt:0},lng:{$lt:0},Status:'" + $scope.status + "'}&f={_id:0,TotalAmount_Outstanding:0,Violation:0,Docket_Number:0,FirstHand_Description:0,TotalAmount_Owed:0}";
-                refreshMapViolations.apply(this, [query, ""]);
+                refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
             }
             $scope.mapMedallions = function() {
                 $scope.table = '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i';
