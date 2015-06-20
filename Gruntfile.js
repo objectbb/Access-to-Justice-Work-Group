@@ -54,7 +54,7 @@ module.exports = function(grunt) {
             },
             css: {
                 src: ['./css/*.css'],
-                dest: './dist/taxidriver.css'
+                dest: './dist/taxidriver.min.css'
             }
         },
         uglify: {

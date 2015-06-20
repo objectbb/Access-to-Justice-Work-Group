@@ -237,4 +237,53 @@ headertitle {
   width: 27px;
   height: 27px; }
 
+.map-marker {
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  background: #444;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  margin-top: 5px;
+  /*Shift by arrow top+height */
+  /*Shift by half the marker width */
+  width: 22px;
+  /*Same as marker width */
+  height: 22px;
+  line-height: 20px;
+  font-size: 12px; }
+  .map-marker div.arrow {
+    position: relative;
+    border-style: solid;
+    border-color: #444 transparent transparent transparent;
+    left: 7px;
+    /*(Marker width - arrow width)/2 */
+    border-width: 10px 6px 0 6px;
+    /*Arrow w/h is defined by the borders */
+    width: 0px;
+    height: 0px; }
+  .map-marker div.icon {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ccc;
+    /*Same as marker height */
+    border-radius: 4px;
+    margin-left: 2px;
+    margin-top: 2px; }
+  .map-marker div.A div.icon:before {
+    content: "A"; }
+  .map-marker.red div.icon {
+    background: #ff2222; }
+  .map-marker.green div.icon {
+    background: #008800;
+    color: #fff; }
+  .map-marker.green.arrow {
+    border-top-color: #000;
+    background: #000; }
+  .map-marker.inactive {
+    opacity: 0.6; }
+
 /*# sourceMappingURL=main.css.map */

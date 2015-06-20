@@ -16,6 +16,9 @@
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
+
+
+      
             var addressPointsToMarkers = function(points) {
                 return points.map(function(ap) {
                     return {
@@ -24,6 +27,12 @@
                         lat: ap.lat,
                         lng: ap.lng,
                         message: _.values(ap).join("<br>"),
+                        icon:{
+                type: 'div',
+                className: 'map-marker ' + ((ap.Status == "Paid") ? "green" : (ap.Status == "Outstanding") ? "red" : "") ,
+                iconSize: null,
+                html: '<div class="icon">' +  ap.Amount + '</div><div class="arrow" />'
+            },
                         label: {
                             message: _.values(ap).join("<br>"),
                             options: {

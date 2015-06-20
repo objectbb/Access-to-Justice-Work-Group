@@ -31,6 +31,9 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
                     var shortaddr = cmpnts[0]["short_name"] + " " + changeCase.upper(cmpnts[1]["short_name"]) + "," + cmpnts[2]["short_name"];
                     console.log(item.Id + ", " + shortaddr + "," + loc.lat + "," + loc.lng);
                 }
+
+                /*else
+                    console.log(JSON.stringify(body));*/
             }, function(err) {
                 console.error("%s", err.message);
                 console.log("%j", err.res.statusCode);
@@ -38,7 +41,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         });
     }, 1);
  
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 10; i++) {
         q.push({
             Id: body[i]._id.$oid,
             address: body[i].Address+ ",Chicago,IL"
