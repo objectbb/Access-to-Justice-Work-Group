@@ -1,6 +1,6 @@
 (function() {
-    angular.module('taxidriver').controller('MapController', ['$scope', 'ReportService', '$q',
-        function($scope, ReportService, $q) {
+    angular.module('taxidriver').controller('MapController', ['$scope', 'ReportService', '$q','$animate',
+        function($scope, ReportService, $q,$animate) {
             $scope.status = "All";
             $scope.minAmount = 0;
             $scope.maxAmount = 250;
@@ -13,7 +13,7 @@
             $scope.filtertotalcount = 0;
             $scope.filtertotalviolations = 0;
             $scope.filtertotalamount = 0;
-            $scope.filterstate = "Waiting...";
+            $scope.filterstate = "...";
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
@@ -84,6 +84,8 @@
                     }
                     return is;
                 });
+
+
                 $scope.filteredMaxFine = maxfine;
                 $scope.filteredMinFine = minfine;
                 $scope.filtertotalviolations = _.keys(allvio).length;
@@ -167,9 +169,18 @@
                     rawdata = data;
                     refreshViolationsdd(data);
                     $scope.filterstate = "Rendering Map...";
-                    $scope.markers = setmap(data);
-                    $scope.filtertotalcount = $scope.markers.length;
-                    $scope.filterstate = "Done...";
+
+                    $q(function(resolve, reject) {
+                        resolve(setmap(data));
+                    }).then(function(data) {
+                        $scope.markers = data;
+                        $scope.filtertotalcount = $scope.markers.length;
+                        $scope.filterstate = "Done...";
+
+                    }, function(reason) {
+
+                    });
+
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -187,7 +198,9 @@
                     return addressPointsToMarkers(data, medalstyleconfig, medaldataconfig);
                 });
             }
+            $('#filterstats').addClass("flash animated");
             refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
+           // $('#filterstats').removeClass("flash animated");
             $scope.mapViolations = function() {
                 $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
                 refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
@@ -200,10 +213,12 @@
 
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
+                $('#filterstats').addClass("flash animated");
                 $scope.filterstate = "Rendering Map...";
                 $scope.markers = setMapData(rawdata, violationstyleconfig, violationdataconfig);
                 $scope.filtertotalcount = $scope.markers.length;
-                $scope.filterstate = "Waiting...";
+                $scope.filterstate = "...";
+                //$('#filterstats').removeClass("flash animated");
             }
         }
     ]);

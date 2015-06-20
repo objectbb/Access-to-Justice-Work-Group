@@ -59,22 +59,23 @@
                                         </isteven-multi-select>
                                     </div>
 
-                                  
-
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div>
+                                <div id="filterstats">
                                     <p>
-                                    <strong>{{filterstate}}</strong>
+                                    <strong id="filterstate">{{filterstate}}</strong>
                                     </p>
+                                    <p>
                                     Total distinct count: <strong>{{filtertotalcount}}</strong><br>
                                     Number of violations:
                                     <strong>{{filtertotalviolations}}</strong><br>
                                     Max fine: <strong>{{filteredMaxFine}}</strong>
                                     Min fine: <strong>{{filteredMinFine}}</strong>
-                                    <br><br>
+                                    </p>
+                                    <p>
                                     Totaling: <strong>{{filtertotalamount | currency}}</strong><br>
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
