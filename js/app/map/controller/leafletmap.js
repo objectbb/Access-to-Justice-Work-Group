@@ -4,22 +4,23 @@
             $scope.status = "All";
             $scope.minAmount = 0;
             $scope.maxAmount = 250;
-            $scope.fromdate = "01/01/2013";
-            $scope.todate = "01/05/2013";
+            $scope.fromdate = "11/01/2013";
+            $scope.todate = "12/31/2013";
             $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
             $scope.filteredMaxFine = 250;
             $scope.filteredMinFine = 0;
             $scope.filteredViolations = "All";
             $scope.filtertotalcount = 0;
             $scope.filtertotalviolations = 0;
+            $scope.filtertotalamount = 0;
             $scope.filterstate = "Waiting...";
             $scope.violations = [];
             $scope.allviolations = null;
             var rawdata = [];
 
+            var addressPointsToMarkers = function(points, stylef, bodyf) {
 
-      
-            var addressPointsToMarkers = function(points) {
+
                 return points.map(function(ap) {
                     return {
                         data: ap,
@@ -27,12 +28,12 @@
                         lat: ap.lat,
                         lng: ap.lng,
                         message: _.values(ap).join("<br>"),
-                        icon:{
-                type: 'div',
-                className: 'map-marker ' + ((ap.Status == "Paid") ? "green" : (ap.Status == "Outstanding") ? "red" : "") ,
-                iconSize: null,
-                html: '<div class="icon">' +  ap.Amount + '</div><div class="arrow" />'
-            },
+                        icon: {
+                            type: 'div',
+                            className: stylef(ap),
+                            iconSize: null,
+                            html: bodyf(ap)
+                        },
                         label: {
                             message: _.values(ap).join("<br>"),
                             options: {
@@ -62,6 +63,7 @@
             var filtermarkers = function(rawdata) {
                 var minfine = 250;
                 var maxfine = 0;
+                var tallyamount = 0;
                 var allvio = {};
                 $scope.filterstate = "Calculating...";
                 if (rawdata.length == 0) return;
@@ -77,6 +79,8 @@
                             name: dataprop.Description,
                             ticked: true
                         };
+
+                        tallyamount += dataprop.Amount;
                     }
                     return is;
                 });
@@ -86,11 +90,12 @@
                 _.map($scope.allviolations, function(item) {
                     item.ticked = (allvio[item.name]) ? true : false
                 });
+                $scope.filtertotalamount = tallyamount;
                 $scope.filterstate = "Finish Calculating...";
                 return rs;
             }
-            var setMapData = function(rawdata) {
-                return addressPointsToMarkers(filtermarkers(rawdata));
+            var setMapData = function(rawdata, stylef, bodyf) {
+                return addressPointsToMarkers(filtermarkers(rawdata), stylef,bodyf);
             }
             var mapIt = function() {
                 angular.extend($scope, {
@@ -128,6 +133,17 @@
                 });
             }
             mapIt();
+            var medalstyleconfig = function(obj) {return "map-marker";}
+            var medaldataconfig =  function(obj) {return '<div class="icon">' + obj.Company_Name + '</div><div class="arrow" />';}
+           
+           var violationstyleconfig = function(obj) {
+                            return 'map-marker ' + ((obj.Status == "Paid") ? "green" :
+                                (obj.Status == "Outstanding") ? "red" : "");
+                        };
+            var violationdataconfig =function(obj) {
+                            return '<div class="icon">$' + obj.Amount + " " + obj.Description + '</div><div class="arrow" />';
+                        }
+
             var refreshMapViolations = function(url, dataurl) {
                 $scope.filterstate = "Loading Data...";
                 loadMapData(url, dataurl).
@@ -136,20 +152,23 @@
                     rawdata = data;
                     refreshViolationsdd(data);
                     $scope.filterstate = "Rendering Map...";
-                    $scope.markers = setMapData(data);
+                    $scope.markers = setMapData(data,violationstyleconfig,violationdataconfig);
+
                     $scope.filtertotalcount = $scope.markers.length;
                     $scope.filterstate = "Done...";
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
             }
+          
+
             var refreshMapMedallions = function(url, dataurl) {
                 $scope.filterstate = "Loading Data...";
                 loadMapData(url, dataurl).
                 then(function(data) {
                     if (data.length == 0) return;
                     $scope.filterstate = "Rendering Map...";
-                    $scope.markers = addressPointsToMarkers(data);
+                    $scope.markers = addressPointsToMarkers(data,medalstyleconfig,medaldataconfig);
                     $scope.filtertotalcount = $scope.markers.length;
                     $scope.filterstate = "Done...";
                 }, function(reason) {
@@ -169,14 +188,14 @@
             $scope.$watchGroup(['status'], function() {
                 if (rawdata.length == 0) return;
                 $scope.filterstate = "Rendering Map...";
-                $scope.markers = setMapData(rawdata);
+                $scope.markers = setMapData(rawdata,violationstyleconfig,violationdataconfig);
                 $scope.filtertotalcount = $scope.markers.length;
                 $scope.filterstate = "Waiting...";
             }, true);
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
                 $scope.filterstate = "Rendering Map...";
-                $scope.markers = setMapData(rawdata);
+                $scope.markers =  setMapData(rawdata,violationstyleconfig,violationdataconfig);
                 $scope.filtertotalcount = $scope.markers.length;
                 $scope.filterstate = "Waiting...";
             }
