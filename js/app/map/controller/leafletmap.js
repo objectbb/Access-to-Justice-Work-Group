@@ -158,7 +158,7 @@
                 });
             }
 
-            var refreshMapViolations = function(url, dataurl) {
+            var refreshMap = function(url, dataurl, setmap) {
                 centerview();
                 $scope.filterstate = "Loading Data...";
                 loadMapData(url, dataurl).
@@ -167,8 +167,7 @@
                     rawdata = data;
                     refreshViolationsdd(data);
                     $scope.filterstate = "Rendering Map...";
-                    $scope.markers = setMapData(data, violationstyleconfig, violationdataconfig);
-
+                    $scope.markers = setmap(data);
                     $scope.filtertotalcount = $scope.markers.length;
                     $scope.filterstate = "Done...";
                 }, function(reason) {
@@ -176,19 +175,16 @@
                 });
             }
 
+            var refreshMapViolations = function(url, dataurl) {
+                refreshMap(url, dataurl, function(data) {
+                    return setMapData(data, violationstyleconfig, violationdataconfig);
+                });
+            }
+
 
             var refreshMapMedallions = function(url, dataurl) {
-                centerview();
-                $scope.filterstate = "Loading Data...";
-                loadMapData(url, dataurl).
-                then(function(data) {
-                    if (data.length == 0) return;
-                    $scope.filterstate = "Rendering Map...";
-                    $scope.markers = addressPointsToMarkers(data, medalstyleconfig, medaldataconfig);
-                    $scope.filtertotalcount = $scope.markers.length;
-                    $scope.filterstate = "Done...";
-                }, function(reason) {
-                    alert('Failed: ' + reason);
+                refreshMap(url, dataurl, function(data) {
+                    return addressPointsToMarkers(data, medalstyleconfig, medaldataconfig);
                 });
             }
             refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
@@ -201,13 +197,7 @@
                 var query = "medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}";
                 refreshMapMedallions.apply(this, [query, ""]);
             }
-            $scope.$watchGroup(['status'], function() {
-                if (rawdata.length == 0) return;
-                $scope.filterstate = "Rendering Map...";
-                $scope.markers = setMapData(rawdata, violationstyleconfig, violationdataconfig);
-                $scope.filtertotalcount = $scope.markers.length;
-                $scope.filterstate = "Waiting...";
-            }, true);
+
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
                 $scope.filterstate = "Rendering Map...";

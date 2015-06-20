@@ -27,7 +27,6 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
-
                                     <span>
                                     <h3><a href='javascript:void(0)' ng-click="mapViolations()">
                                     <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
@@ -38,7 +37,7 @@
                                         <br><br>
                                         <input type="text"  ng-model="minAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="maxAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
                                         <br><br>
-                                        <select ng-model="status" class="selectpicker" title='Select status...'>
+                                        <select ng-model="status" ng-change="onchangeRedrawmap()" class="selectpicker" title='Select status...'>
                                             <option value="All" ng-selected="status === 'All'">All</option>
                                             <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
                                             <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
