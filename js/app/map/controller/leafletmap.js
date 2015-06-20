@@ -145,7 +145,7 @@
                     (obj.Status == "Outstanding") ? "red" : "");
             };
             var violationdataconfig = function(obj) {
-                return '<div class="icon">$' + obj.Amount + " " + obj.Description + '</div><div class="arrow" />';
+                return '<div class="icon">$' + obj.Amount + " " + obj.Description + " " + obj.Date + '</div><div class="arrow" />';
             }
 
             var centerview = function() {

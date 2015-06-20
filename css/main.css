@@ -250,7 +250,7 @@ headertitle {
   /*Same as marker width */
   height: 22px;
   line-height: 20px;
-  font-size: 12px; }
+  font-size: 10px; }
   .map-marker div.arrow {
     position: relative;
     border-style: solid;
