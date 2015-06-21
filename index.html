@@ -22,71 +22,84 @@
                 </div>
             </div>
             <section class="midsection">
-                <div ng-controller="MapController">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
-                                    <span>
-                                    <h3><a href='javascript:void(0)' ng-click="mapViolations()">
-                                    <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
-                                    {Violations}</a><a href='javascript:void(0)' ng-click="mapMedallions()"> <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span>{Cab Companies}</a></h3>
+                <form name="mappingform" ng-controller="MapController">
+ 
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div id="filterstats">
+                                    <span ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                    <table class="filterstatsbox">
+                                        <tr>
+                                            <td>
+                                                Total unique: <strong>{{filtertotalcount}}</strong>
+                                            </td>
+                                            <td>
+                                                Number of violations: <strong>{{filtertotalviolations}}</strong>
+                                            </td>
+                                            <td>
+                                                Max fine: <strong>{{filteredMaxFine | currency}}</strong>
+                                            </td>
+                                            <td>
+                                                Min fine: <strong>{{filteredMinFine | currency}}</strong>
+                                            </td>
+                                            <td>
+                                                Totaling: <strong>{{filtertotalamount | currency}}</strong>
+                                            </td>
+                                        </tr>
+                                    </table>
                                     </span>
-                                    <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
-                                        <input type="text"  ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
-                                        <br><br>
-                                        <input type="text"  ng-model="minAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()"> to <input type="text" ng-model="maxAmount" ng-model-options="{ updateOn: 'blur' }" ng-change="onchangeRedrawmap()">
-                                        <br><br>
-                                        <select ng-model="status" ng-change="onchangeRedrawmap()" class="selectpicker" title='Select status...'>
-                                            <option value="All" ng-selected="status === 'All'">All</option>
-                                            <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
-                                            <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
-                                            <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
-                                        </select>
-                                        <br><br>
-                                        <isteven-multi-select
-                                        on-item-click="onchangeRedrawmap()"
-                                        input-model="allviolations"
-                                        output-model="violations"
-                                        button-label="icon name"
-                                        helper-elements="reset none filter"
-                                        item-label="icon name maker"
-                                        orientation="horizontal"
-                                        tick-property="ticked",
-                                        max-height="250px",
-                                        min-search-length="3"
-                                        >
-                                        </isteven-multi-select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    <button ng-disabled="! mappingform.$dirty" ng-click="onchangeRedrawmap()">Map IT!
+                                    &nbsp;<strong ng-show="mappingform.$dirty">Ready...CLICK!</strong>
+                                    <strong ng-show="!mappingform.$dirty">Update Form...</strong>
+                                    </button>
+                                   <strong id="filterstate">{{filterstate}}</strong>
+                                    <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
+                                        <span>
+                                        <h3><a href='javascript:void(0)' ng-click="mapViolations()">
+                                        <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
+                                        {Violations}</a><a href='javascript:void(0)' ng-click="mapMedallions()">{Cab&nbsp;Companies} <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span></a></h3>
+                                        </span>
+                                        <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                            <input type="text"  ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" > to <input type="text" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" >
+                                            <br><br>
+                                            <input type="text"  ng-model="minAmount" ng-model-options="{ updateOn: 'blur' }" > to <input type="text" ng-model="maxAmount" ng-model-options="{ updateOn: 'blur' }" >
+                                            <br><br>
+                                            <select ng-model="status"  class="selectpicker" title='Select status...'>
+                                                <option value="All" ng-selected="status === 'All'">All</option>
+                                                <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
+                                                <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
+                                                <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
+                                            </select>
+                                            <br><br>
+                                            <isteven-multi-select
+                                            on-item-click="onchangeRedrawmap()"
+                                            input-model="allviolations"
+                                            output-model="violations"
+                                            button-label="icon name"
+                                            helper-elements="reset none filter"
+                                            item-label="icon name maker"
+                                            orientation="horizontal"
+                                            tick-property="ticked",
+                                            max-height="250px",
+                                            min-search-length="3"
+                                            >
+                                            </isteven-multi-select>
+                                        </div>
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div id="filterstats">
-                                    <p>
-                                    <strong id="filterstate">{{filterstate}}</strong>
-                                    </p>
-                                    <span ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
-                                    <p>
-                                    Total distinct count: <strong>{{filtertotalcount}}</strong><br>
-                                    Number of violations:
-                                    <strong>{{filtertotalviolations}}</strong><br>
-                                    Max fine: <strong>{{filteredMaxFine}}</strong>
-                                    Min fine: <strong>{{filteredMinFine}}</strong>
-                                    </p>
-                                    <p>
-                                    Totaling: <strong>{{filtertotalamount | currency}}</strong><br>
-                                    </p>
-                                    </span>
+                                <div class="col-sm-8">
+                                    <div id="controls"></div>
+                                    <leaflet async="true" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div id="controls"></div>
-                                <leaflet async="true" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
-                            </div>
                         </div>
-                    </div>
-                </div>
+                </form>
             </section>
             <section class="tables">
                 <div ng-controller="AppCtrl" class="form-group">

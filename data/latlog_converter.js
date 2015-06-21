@@ -25,7 +25,7 @@ var aegisprof = {
 
 
 var google = {
-    limit: 4000, //day
+    limit: 2500, //day
     url: "https://maps.googleapis.com/maps/api/geocode/json?address={{ADDRESS}}&key={{TOKEN}}",
     token: "AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE",
     requesturl: function(url, address, token) {
@@ -82,12 +82,13 @@ var decarta = {
     }
 };
 
+var geocodeer = google;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
     var q = async.queue(function(item, done) {
 
-            var geocodeer = aegisprof;
+         
             var gourl = geocodeer.requesturl(geocodeer.url, item.address, geocodeer.token);
 
             request(gourl, function(err, res, body) {
@@ -113,7 +114,8 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    for (var i = 744; i < 1000; i++) {
+    var start = 3985;
+    for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,
             Id: body[i]._id.$oid,

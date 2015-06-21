@@ -13,7 +13,7 @@
   font-style: bold;
   font-weight: 700; }
 
-.background-green {
+.background-green, .filterstatsbox {
   background-color: #0e792b; }
 
 .background-white {
@@ -283,5 +283,15 @@ headertitle {
     background: #000; }
   .map-marker.inactive {
     opacity: 0.6; }
+
+.filterstatsbox {
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+  font-size: 15px;
+  color: white; }
+
+.btn {
+  padding: 1px; }
 
 /*# sourceMappingURL=main.css.map */
