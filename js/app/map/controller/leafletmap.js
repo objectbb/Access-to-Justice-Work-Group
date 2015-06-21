@@ -108,6 +108,7 @@
                     item.ticked = (allvio[item.name]) ? true : false
                 });
                 $scope.filtertotalcount = rs.length;
+                $scope.filtertotalamount = tallyamount;
                 changefiltertext("filterstate", "Finish Calculating...", "animated infinite pulse");
                 return rs;
             }
@@ -221,6 +222,10 @@
                 $scope.table = '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i';
                 var query = "medallions?q={lat:{$gt:0},lng:{$lt:0}}&f={_id:0,Company_Name_UNEDITED:0,EDIT:0}";
                 refreshMapMedallions.apply(this, [query, ""]);
+            }
+
+            $scope.setDirty = function(){
+                 $scope.mappingform.$setDirty(true);
             }
 
             $scope.onchangeRedrawmap = function() {

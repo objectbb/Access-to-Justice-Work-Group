@@ -294,4 +294,7 @@ headertitle {
 .btn {
   padding: 1px; }
 
+.ng-cloak {
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */

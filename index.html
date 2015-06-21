@@ -8,7 +8,7 @@
             <link rel="stylesheet" href="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.css">
             <link rel="stylesheet" href="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
         </head>
-        <body class="background_asphalt">
+        <body class="background_asphalt" ng-cloak>
             <div class="page-header">
                 <div class="row container">
                     <br>
@@ -77,7 +77,7 @@
                                             </select>
                                             <br><br>
                                             <isteven-multi-select
-                                            on-item-click="onchangeRedrawmap()"
+                                            on-item-click="setDirty()"
                                             input-model="allviolations"
                                             output-model="violations"
                                             button-label="icon name"
