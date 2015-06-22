@@ -232,21 +232,25 @@
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
 
-                $q(function(resolve, reject) {
+               // $q(function(resolve, reject) {
                       changefiltertext("filterstate", "Filtering...");
+
+                      /*
                       resolve(true);
                     })
                     .then(function(data) {
+                        */
                          $scope.markers =setMapData(rawdata, violationstyleconfig, violationdataconfig);
-                    }, function(err){
-                        changefiltertext("filterstate", "Error..." + err, "animated infinite pulse");
-                    })
+                   // }, function(err){
+                       // changefiltertext("filterstate", "Error..." + err, "animated infinite pulse");
+                   /* })
                     .finally(
                         function() {
+                            */
                             changefiltertext("filterstats", "Mapping Finished...");
                             $scope.mappingform.$setPristine(true);
-                        }
-                    );
+                      /*  }
+                    );*/
             }
         }
     ]);
