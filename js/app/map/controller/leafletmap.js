@@ -64,13 +64,14 @@
 
             var changefiltertext = function(id, text, effect) {
 
+/*
                 var curreffect = (effect) ? effect : "animated fadeIn";
 
-                if (text == "...")
+               // if (text == "...")
                     $('#' + id).removeClass(curreffect);
-                else
+              //  else
                     $('#' + id).addClass(curreffect);
-
+*/
                 $scope.filterstate = text;
 
             }
@@ -109,7 +110,7 @@
                 });
                 $scope.filtertotalcount = rs.length;
                 $scope.filtertotalamount = tallyamount;
-                changefiltertext("filterstate", "Finish Calculating...", "animated infinite pulse");
+                changefiltertext("filterstate", "Finish Calculating...");
                 return rs;
             }
             var setMapData = function(rawdata, stylef, bodyf) {
@@ -193,7 +194,7 @@
                         }, function(reason) {
                              changefiltertext("filterstate", 'Failed: ' + reason);
                         })
-                        .finally(changefiltertext("filterstate", "Mapping Finished...", "animated infinite pulse"));
+                        .finally(changefiltertext("filterstats", "Mapping Finished..."));
 
                 }, function(reason) {
                     changefiltertext("filterstate", 'Failed: ' + reason);
@@ -211,7 +212,7 @@
                     return addressPointsToMarkers(data, medalstyleconfig, medaldataconfig);
                 });
             }
-            changefiltertext("filterstate", "...", "animated infinite pulse");
+            changefiltertext("filterstate", "...");
             refreshMapViolations.apply(this, ["", "data/violations_map.json"]);
 
             $scope.mapViolations = function() {
@@ -232,7 +233,7 @@
                 if (rawdata.length == 0) return;
 
                 $q(function(resolve, reject) {
-                     // changefiltertext("filterstate", "Filtering...", "animated infinite fadeIn");
+                      changefiltertext("filterstate", "Filtering...");
                       resolve(true);
                     })
                     .then(function(data) {
@@ -242,7 +243,7 @@
                     })
                     .finally(
                         function() {
-                            changefiltertext("filterstate", "Mapping Finished...", "animated infinite pulse");
+                            changefiltertext("filterstats", "Mapping Finished...");
                             $scope.mappingform.$setPristine(true);
                         }
                     );
