@@ -18,6 +18,14 @@
                 }).error(function(err){
                      alert(JSON.stringify(err));
                 });
+            },
+            requestloc:function(address){
+                var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address;
+                return $http.get(url).success(function(data){
+                    return data;
+                }).error(function(err){
+                     alert(JSON.stringify(err));
+                });
             }
         }
     }]);

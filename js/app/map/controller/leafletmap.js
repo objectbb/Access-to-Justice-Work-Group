@@ -13,6 +13,7 @@
             $scope.filtertotalcount = 0;
             $scope.filtertotalviolations = 0;
             $scope.filtertotalamount = 0;
+            $scope.maploc;
 
             $scope.violations = [];
             $scope.allviolations = null;
@@ -157,7 +158,7 @@
             };
             var violationdataconfig = function(obj) {
                 return '<div class="icon">$' + obj.Amount + " " + obj.Description + " " + obj.Date +
-                 '</div><div class="arrow" />';
+                    '</div><div class="arrow" />';
             }
 
             var centerview = function() {
@@ -186,7 +187,7 @@
                         .then(function(data) {
                             $scope.markers = data;
                         }, function(error) {
-                            changefiltertext("filterstate", 'Failed: ' + error,"animated infinite fadeIn");
+                            changefiltertext("filterstate", 'Failed: ' + error, "animated infinite fadeIn");
                         }).finally(changefiltertext("filterstats", "Mapping Finished..."));
 
                 }, function(reason) {
@@ -220,6 +221,28 @@
 
             $scope.setDirty = function() {
                 $scope.mappingform.$setDirty(true);
+            }
+
+            $scope.centermap = function() {
+
+                if(! $scope.maploc) return;
+
+                 changefiltertext("filterstate", "Searching..." + $scope.maploc);
+
+                ReportService.requestloc($scope.maploc).success(function(data, status) {
+
+                    var loc = data.results[0].geometry.location;
+                    angular.extend($scope, {
+                        center: {
+                            lat: loc.lat,
+                            lng: loc.lng,
+                            zoom: 13
+                        }
+                    });
+                }).
+                error(function(data, status) {
+                    changefiltertext("filterstate", 'Failed: ' + status, "animated infinite fadeIn");
+                });
             }
 
             $scope.onchangeRedrawmap = function() {
