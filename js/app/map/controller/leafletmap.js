@@ -225,9 +225,9 @@
 
             $scope.centermap = function() {
 
-                if(! $scope.maploc) return;
+                if (!$scope.maploc) return;
 
-                 changefiltertext("filterstate", "Mapping..." + $scope.maploc);
+                changefiltertext("filterstate", "Mapping..." + $scope.maploc);
 
                 ReportService.requestloc($scope.maploc).success(function(data, status) {
 

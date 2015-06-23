@@ -331,4 +331,6 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
   background-color: black;
   text-align: center; }
 
-/*# sourceMappingURL=main.css.map */
+.multiSelect .buttonLabel{
+    display: inline-block
+  }
