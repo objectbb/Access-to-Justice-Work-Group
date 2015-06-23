@@ -2,5 +2,6 @@
   "name": "taxidriver",
   "root": "./",
   "clean_urls": true,
-  "error_page": "n"
+  "error_page": "n",
+  "exclude" : ["./node_modules/**/*","./.sass-cache/**/*","./.divshot-cache/**/*"]
 }
