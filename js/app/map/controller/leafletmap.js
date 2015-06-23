@@ -227,7 +227,7 @@
 
                 if(! $scope.maploc) return;
 
-                 changefiltertext("filterstate", "Searching..." + $scope.maploc);
+                 changefiltertext("filterstate", "Mapping..." + $scope.maploc);
 
                 ReportService.requestloc($scope.maploc).success(function(data, status) {
 
