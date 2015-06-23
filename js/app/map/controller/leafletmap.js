@@ -236,7 +236,7 @@
                         center: {
                             lat: loc.lat,
                             lng: loc.lng,
-                            zoom: 13
+                            zoom: 20
                         }
                     });
                 }).
