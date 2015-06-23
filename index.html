@@ -59,7 +59,7 @@
                                 <div class="col-sm-4">
 
                                     <button ng-disabled="! mappingform.$dirty" class="btn-primary" ng-click="onchangeRedrawmap()">                   <span class="glyphicon glyphicon-map-marker"></span>
-                                    &nbsp;<strong ng-show="mappingform.$dirty">Ready...CLICK!</strong>
+                                    &nbsp;<strong ng-class="{'animated infinite flash': mappingform.$dirty}" ng-show="mappingform.$dirty">Ready...CLICK!</strong>
                                     <strong ng-show="!mappingform.$dirty">Update Form...</strong>
                                     </button>
                                 
