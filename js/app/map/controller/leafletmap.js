@@ -13,7 +13,6 @@
             $scope.filtertotalcount = 0;
             $scope.filtertotalviolations = 0;
             $scope.filtertotalamount = 0;
-            //$scope.filterstate = "...";
 
             $scope.violations = [];
             $scope.allviolations = null;
@@ -21,8 +20,8 @@
 
             var addressPointsToMarkers = function(points, stylef, bodyf) {
 
-
                 return points.map(function(ap) {
+
                     return {
                         data: ap,
                         layer: 'realworld',
@@ -43,6 +42,7 @@
                         },
                     };
                 });
+
             };
             var refreshViolationsdd = function(data) {
                 $scope.allviolations = _.uniq(_.map(data, function(item) {
@@ -57,23 +57,14 @@
                     deferred.resolve(data);
                 }).
                 error(function(data, status) {
-                    changefiltertext("filterstate", 'Failed: ' + status);
+                    changefiltertext("filterstate", 'Failed: ' + status, "animated infinite fadeIn");
                 });
                 return deferred.promise;
             }
 
             var changefiltertext = function(id, text, effect) {
-
-/*
-                var curreffect = (effect) ? effect : "animated fadeIn";
-
-               // if (text == "...")
-                    $('#' + id).removeClass(curreffect);
-              //  else
-                    $('#' + id).addClass(curreffect);
-*/
+                $('#' + id).removeClass(effect).addClass(effect);
                 $scope.filterstate = text;
-
             }
             var filtermarkers = function(rawdata) {
                 var minfine = 250;
@@ -81,9 +72,8 @@
                 var tallyamount = 0;
                 var allvio = {};
 
-                changefiltertext("filterstats", "Calculating...");
-
                 if (rawdata.length == 0) return;
+                changefiltertext("filterstats", "Filtering...");
                 var rs = _.filter(rawdata, function(item) {
                     var dataprop = item;
                     var is = (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
@@ -114,7 +104,9 @@
                 return rs;
             }
             var setMapData = function(rawdata, stylef, bodyf) {
-                return addressPointsToMarkers(filtermarkers(rawdata), stylef, bodyf);
+                return $q(function(resolve, reject) {
+                    resolve(addressPointsToMarkers(filtermarkers(rawdata), stylef, bodyf));
+                });
             }
             var mapIt = function() {
                 angular.extend($scope, {
@@ -164,7 +156,8 @@
                     (obj.Status == "Outstanding") ? "red" : "");
             };
             var violationdataconfig = function(obj) {
-                return '<div class="icon">$' + obj.Amount + " " + obj.Description + " " + obj.Date + '</div><div class="arrow" />';
+                return '<div class="icon">$' + obj.Amount + " " + obj.Description + " " + obj.Date +
+                 '</div><div class="arrow" />';
             }
 
             var centerview = function() {
@@ -181,23 +174,23 @@
                 centerview();
                 changefiltertext("filterstate", "Loading Data...");
                 loadMapData(url, dataurl).
+                then(changefiltertext("filterstate", "Filtering...")).
                 then(function(data) {
                     if (data.length == 0) return;
                     rawdata = data;
                     refreshViolationsdd(data);
 
-                    $q(function(resolve, reject) {
+                    return $q(function(resolve, reject) {
                             resolve(setmap(data));
                         })
                         .then(function(data) {
                             $scope.markers = data;
-                        }, function(reason) {
-                             changefiltertext("filterstate", 'Failed: ' + reason);
-                        })
-                        .finally(changefiltertext("filterstats", "Mapping Finished..."));
+                        }, function(error) {
+                            changefiltertext("filterstate", 'Failed: ' + error,"animated infinite fadeIn");
+                        }).finally(changefiltertext("filterstats", "Mapping Finished..."));
 
                 }, function(reason) {
-                    changefiltertext("filterstate", 'Failed: ' + reason);
+                    changefiltertext("filterstate", 'Failed: ' + reason, "animated infinite fadeIn");
                 });
             }
 
@@ -225,32 +218,21 @@
                 refreshMapMedallions.apply(this, [query, ""]);
             }
 
-            $scope.setDirty = function(){
-                 $scope.mappingform.$setDirty(true);
+            $scope.setDirty = function() {
+                $scope.mappingform.$setDirty(true);
             }
 
             $scope.onchangeRedrawmap = function() {
                 if (rawdata.length == 0) return;
 
-               // $q(function(resolve, reject) {
-                      changefiltertext("filterstate", "Filtering...");
-
-                      /*
-                      resolve(true);
-                    })
-                    .then(function(data) {
-                        */
-                         $scope.markers =setMapData(rawdata, violationstyleconfig, violationdataconfig);
-                   // }, function(err){
-                       // changefiltertext("filterstate", "Error..." + err, "animated infinite pulse");
-                   /* })
-                    .finally(
-                        function() {
-                            */
-                            changefiltertext("filterstats", "Mapping Finished...");
-                            $scope.mappingform.$setPristine(true);
-                      /*  }
-                    );*/
+                setMapData(rawdata, violationstyleconfig, violationdataconfig).
+                then(function(data) {
+                    $scope.markers = data;
+                    changefiltertext("filterstats", "Re-mapping Finished...");
+                    $scope.mappingform.$setPristine(true);
+                }, function(err) {
+                    changefiltertext("filterstate", "Error..." + err, "animated infinite fadeIn");
+                });
             }
         }
     ]);
