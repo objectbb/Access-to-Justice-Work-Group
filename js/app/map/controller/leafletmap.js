@@ -95,7 +95,8 @@
                             changefiltertext("filterstats", "Filtering...");
                             var rs = _.filter(rawdata, function(item) {
                                 var dataprop = item;
-                                var is = (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
+                                var is = (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && 
+                                    dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
                                     'name': dataprop.Description
                                 }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == 'All'));
                                 
@@ -135,7 +136,7 @@
                                 center: {
                                     lat: 41.8369,
                                     lng: -87.6847,
-                                    zoom: 9
+                                    zoom: 9 
                                 },
                                 events: {
                                     map: {
