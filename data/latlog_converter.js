@@ -82,7 +82,7 @@ var decarta = {
     }
 };
 
-var geocodeer = aegisprof;
+var geocodeer = google;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);

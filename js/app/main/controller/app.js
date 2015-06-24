@@ -67,7 +67,6 @@
             }
             var initload = function() {
 
-                //da.clearalltables();
                 var ft = $scope.fusionmap;
                 for (var key in ft) {
                     (function(key) {
@@ -75,10 +74,7 @@
                         var cols = ft[key].cols;
                         var collection = ft[key].collection;
                         getcolumns(collection).then(function(data) {
-                            //$scope[name] = data;
                             ft[key].columns = data;
-                            //da.createtable(fusionmap[key], data);
-                            //$scope.loadcachetables("select " + cols + " from " + key, name)
                         });
                         ft[key].hashcode = function() {
                             var tree = _.map(ft[key].columns, function(item) {
@@ -94,16 +90,12 @@
             $scope.loadcachetables = function(sql, tableid) {
                 sendsql(sql, tableid).then(function(data, status) {
                     if (!data.error) {
-                        //da.loadtable(tableid, convertcolstojson(data));
-                        //da.execute(new breeze.EntityQuery().from(tableid));
                         msg = "Results at the bottom..." + data.rows.length + " rows returned";
                     } else msg = data.error.errors[0].message;
                     console.log(msg);
                 });
             }
             $scope.sendadvsql = function(sql, tableid) {
-                // da.execute(eval("new breeze.EntityQuery().from('dfin').expand('dfin_anovs')"));
-                //  da.execute(eval(sql));
                 var msg;
                 var msgid = "#" + tableid + "msg";
                 $(msgid).html("Processing...");

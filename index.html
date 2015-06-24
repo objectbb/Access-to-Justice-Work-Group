@@ -58,10 +58,11 @@
                             <div class="row">
                                 <div class="col-sm-4">
 
-                                    <button ng-disabled="! mappingform.$dirty" class="btn-primary" ng-click="onchangeRedrawmap()">                   <span class="glyphicon glyphicon-map-marker"></span>
+                                    <button ng-disabled="! mappingform.$dirty" class="btn-primary" ng-click="onchangeRedrawmap()"><span class="glyphicon glyphicon-map-marker"></span>
                                     &nbsp;<strong ng-class="{'animated infinite flash': mappingform.$dirty}" ng-show="mappingform.$dirty">Ready...CLICK!</strong>
                                     <strong ng-show="!mappingform.$dirty">Update Form...</strong>
                                     </button>
+                                    <input type="checkbox" ng-model="iscurrviewstats">Limit stats to current view
                                 
                                     <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
                                         <span>
@@ -83,6 +84,10 @@
                                             <br><br>
                                             <isteven-multi-select
                                             on-item-click="setDirty()"
+                                            on-reset="setDirty()"
+                                            on-clear="setDirty()"
+                                            on-select-none="setDirty()"  
+                                            on-select-all="setDirty()"
                                             input-model="allviolations"
                                             output-model="violations"
                                             button-label="icon name"
@@ -100,7 +105,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                       <div id="filterstate" class="filterstate" ng-class="{'animate infinite pulse': filterstate != 'Mapping Finished...'}">{{filterstate}}</div>
-                                    <leaflet async="true" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
+                                    <leaflet id="taxidrivermap" event-broadcast="events" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
 
                             </div>
                         </div>
