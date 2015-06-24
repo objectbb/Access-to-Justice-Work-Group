@@ -1,6 +1,7 @@
 (function() {
-        angular.module('taxidriver').controller('MapController', ['$scope', 'ReportService', '$q', '$animate', 'leafletData', 'leafletEvents',
-                function($scope, ReportService, $q, $animate, leafletData, leafletEvents) {
+        angular.module('taxidriver').
+        controller('MapController', ['$scope', '$filter' , '$q', '$animate', 'ReportService','leafletData', 'leafletEvents',
+                function($scope,$filter,$q,$animate,ReportService, leafletData, leafletEvents) {
                     $scope.status = "All";
                     $scope.minAmount = 0;
                     $scope.maxAmount = 250;
@@ -17,7 +18,7 @@
                     $scope.maploc;
 
                     $scope.violations = [];
-                    $scope.allviolations = null;
+                    $scope.allviolations = [];                    
                     var rawdata = [];
                     $scope.mapboundary;
 
@@ -53,6 +54,7 @@
                                 name: item.Description
                             }
                         }), "name");
+                    $scope.allviolations = $filter('orderBy')($scope.allviolations,"name",false);
                     }
                     var loadMapData = function(query, datafileurl) {
                         var deferred = $q.defer();
