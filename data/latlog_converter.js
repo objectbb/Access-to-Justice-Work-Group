@@ -75,10 +75,13 @@ var decarta = {
             body.results[0].position != null) {
 
             var loc = body.results[0].position;
-            if(body.results[0].address.freeformAddress != null)
-                 addr = body.results[0].address.freeformAddress;
+            if (body.results[0].address.freeformAddress != null)
+                addr = body.results[0].address.freeformAddress;
             console.log(item.row + "," + item.Id + ", " + addr + "," + loc.lat + "," + loc.lon);
+
+            return true;
         }
+        return false;
     }
 };
 
@@ -88,7 +91,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
     var q = async.queue(function(item, done) {
 
-         
+
             var gourl = geocodeer.requesturl(geocodeer.url, item.address, geocodeer.token);
 
             request(gourl, function(err, res, body) {
@@ -104,7 +107,14 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
                         json: true,
                         gzip: true
                     }, function(err, res, body) {
-                        geocodeer.response(item, body);
+                        if (!geocodeer.response(item, body))
+                            var str = item.row + "," + item.Id + ", " + item.address;
+                            fs.appendFile('./leftover.csv', str, function(err) {
+                                if (err) {
+                                    console.error("Could not write file: %s", err);
+                                }
+                            });
+
                     },
                     function(err) {
                         console.error("%s", err.message);
@@ -114,7 +124,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 5589;
+    var start = 8312;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,

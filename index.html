@@ -73,8 +73,9 @@
                                         <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
                                             <input type="text"  ng-focus="mappingform.$setDirty(true)" ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" > to <input type="text" ng-focus="mappingform.$setDirty(true)" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" >
                                             <br><br>
-                                            <input type="text" ng-focus="mappingform.$setDirty(true)"  ng-model="minAmount" ng-model-options="{ updateOn: 'blur' }" > to <input type="text" ng-focus="mappingform.$setDirty(true)" ng-model="maxAmount" ng-model-options="{ updateOn: 'blur' }" >
-                                            <br><br>
+
+                                            <div range-slider on-handle-down="mappingform.$setDirty(true)" step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
+   
                                             <select ng-model="status" class="selectpicker" title='Select status...'>
                                                 <option value="All" ng-selected="status === 'All'">All</option>
                                                 <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
