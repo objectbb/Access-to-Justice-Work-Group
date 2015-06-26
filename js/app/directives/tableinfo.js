@@ -60,6 +60,8 @@
                             'title': item.name
                         };
                     });
+
+ 
                     $('#' + tableid + "tablecontainer").addClass("fadeIn animated animate_control");
                     dataTables[tableid] = $('#' + tableid + "rstable").dataTable({
                         destroy: true,
@@ -68,16 +70,16 @@
                         "scrollCollapse": true,
                         "columns": cols,
                         "deferRender": true,
-                         "searchHighlight": true
-                    }).on( 'draw.dt', function () {
+                        "searchHighlight": true
+                    }).on('draw.dt', function() {
                         var body = $(this);
-                 
+
                         body.unhighlight();
-                        body.highlight( body.DataTable().search() );  
+                        body.highlight(body.DataTable().search());
 
                         msg = "..." + dataset.length + " rows returned";
                         $("#" + tableid + "msg").html(msg);
-                    } );
+                    });
                 }
             }
         };

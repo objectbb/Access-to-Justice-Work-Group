@@ -1,12 +1,13 @@
 (function() {
         angular.module('taxidriver').
-        controller('MapController', ['$scope', '$filter' , '$q', '$animate', 'ReportService','leafletData', 'leafletEvents',
+        controller('MapController', ['$scope', '$filter' , '$q', '$animate', 
+            'ReportService','leafletData', 'leafletEvents',
                 function($scope,$filter,$q,$animate,ReportService, leafletData, leafletEvents) {
                     $scope.status = "All";
                     $scope.minAmount = 0;
                     $scope.maxAmount = 250;
-                    $scope.fromdate = "11/01/2013";
-                    $scope.todate = "12/31/2013";
+                    $scope.fromdate = new Date(2013,10,1);
+                    $scope.todate = new Date(2013,12,31);
                     $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
                     $scope.filteredMaxFine = 250;
                     $scope.filteredMinFine = 0;
@@ -51,10 +52,11 @@
                     var refreshViolationsdd = function(data) {
                         $scope.allviolations = _.uniq(_.map(data, function(item) {
                             return {
-                                name: item.Description
+                               id: item.Id, name: item.Description, label: item.Description
                             }
                         }), "name");
                     $scope.allviolations = $filter('orderBy')($scope.allviolations,"name",false);
+
                     }
                     var loadMapData = function(query, datafileurl) {
                         var deferred = $q.defer();
@@ -71,7 +73,6 @@
                         $('#' + id).removeClass(effect).addClass(effect);
                         $scope.filterstate = text;
                     }
-
 
                     $scope.$on("leafletDirectiveMap.moveend", function(event, args) {
                             $scope.mapboundary = leafletData.getMap("taxidrivermap").then(function(map) {

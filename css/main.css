@@ -334,3 +334,7 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
 .multiSelect .buttonLabel{
     display: inline-block
   }
+
+.filterinputwidth{
+    width: 70px  
+  }

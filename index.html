@@ -56,55 +56,63 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
 
                                     <button ng-disabled="! mappingform.$dirty" class="btn-primary" ng-click="onchangeRedrawmap()"><span class="glyphicon glyphicon-map-marker"></span>
                                     &nbsp;<strong ng-class="{'animated infinite flash': mappingform.$dirty}" ng-show="mappingform.$dirty">Ready...CLICK!</strong>
                                     <strong ng-show="!mappingform.$dirty">Update Form...</strong>
                                     </button>
-                                    <input type="checkbox" ng-model="iscurrviewstats">calculate viewable area-ONLY
+                                    <input type="checkbox" ng-model="iscurrviewstats">Calc. viewable area-ONLY
                                 
                                     <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
                                         <span>
                                         <h3><a href='javascript:void(0)' ng-click="mapViolations()">
-                                        <span class="glyphicon glyphicons-taxi" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
-                                        {Violations}</a><a href='javascript:void(0)' ng-click="mapMedallions()">{Cab&nbsp;Companies} <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span></a></h3>
-                                        </span>
-                                        <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
-                                            <input type="text"  ng-focus="mappingform.$setDirty(true)" ng-model="fromdate" ng-model-options="{ updateOn: 'blur' }" > to <input type="text" ng-focus="mappingform.$setDirty(true)" ng-model="todate" ng-model-options="{ updateOn: 'blur' }" >
-                                            <br><br>
+                                        <span class="glyphicon glyphicon-warning-sign" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
+                                        Violations</a></h3>
 
-                                            <div range-slider on-handle-down="mappingform.$setDirty(true)" step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
-   
-                                            <select ng-model="status" class="selectpicker" title='Select status...'>
-                                                <option value="All" ng-selected="status === 'All'">All</option>
-                                                <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
-                                                <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
-                                                <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
-                                            </select>
-                                            <br><br>
-                                            <isteven-multi-select
-                                            on-item-click="setDirty()"
-                                            on-reset="setDirty()"
-                                            on-clear="setDirty()"
-                                            on-select-none="setDirty()"  
-                                            on-select-all="setDirty()"
-                                            input-model="allviolations"
-                                            output-model="violations"
-                                            button-label="icon name"
-                                            helper-elements="reset none filter"
-                                            item-label="icon name maker"
-                                            orientation="horizontal"
-                                            tick-property="ticked",
-                                            max-height="250px",
-                                            min-search-length="3"
-                                            >
-                                            </isteven-multi-select>
+                                        <!--
+                                        <a href='javascript:void(0)' ng-click="mapMedallions()">{Cab&nbsp;Companies} <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span></a></h3>
+                                        </span>
+
+
+                                        -->
+                                        <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
+                                        <input type="date" ng-model="fromdate" max="{{todate |  date:'yyyy-MM-dd' }}" required><input type="date" ng-model="todate" min="{{fromdate |  date:'yyyy-MM-dd' }}" required>
+                                        <br>
+                                        <select ng-model="status" class="selectpicker filterinputwidth" title='Select status...'>
+                                        <option value="All" ng-selected="status === 'All'">All</option>
+                                        <option value="Outstanding" ng-selected="status === 'Outstanding'">Outstanding</option>
+                                        <option value="Dismissed" ng-selected="status === 'Dismissed'">Dismissed</option>
+                                        <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
+                                        </select>
+                                        <br><br>
+
+                                       
+                                        <div range-slider on-handle-down="mappingform.$setDirty(true)" step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
+
+                                        <isteven-multi-select
+                                        on-item-click="setDirty()"
+                                        on-reset="setDirty()"
+                                        on-clear="setDirty()"
+                                        on-select-none="setDirty()"  
+                                        on-select-all="setDirty()"
+                                        input-model="allviolations"
+                                        output-model="violations"
+                                        button-label="icon name"
+                                        helper-elements="reset none filter"
+                                        item-label="icon name maker"
+                                        orientation="horizontal"
+                                        tick-property="ticked",
+                                        max-height="250px",
+                                        min-search-length="3"
+                                        >
+                                        </isteven-multi-select>
+                                            
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-9">
                                       <div id="filterstate" class="filterstate" ng-class="{'animate infinite pulse': filterstate != 'Mapping Finished...'}">{{filterstate}}</div>
                                     <leaflet id="taxidrivermap" event-broadcast="events" center="center" markers="markers" layers="layers" width="100%" height="480px"></leaflet>
 
@@ -112,9 +120,9 @@
                         </div>
                 </form>
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                    <input type="search" class="form-control" ng-change="centermap()"  ng-model="maploc" placeholder="Address Lookup..." ng-model-options="{ updateOn: 'blur' }"><span class="glyphicon glyphicon-home"></span>
                 </div>
             </section>

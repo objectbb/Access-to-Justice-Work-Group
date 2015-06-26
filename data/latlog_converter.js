@@ -8,6 +8,26 @@ var addrarray = [];
 //var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/violations?&l=1000000&apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
 //mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c latlog -u taxidriver -p taxidriver --file latlog.csv --type csv --headerline
 
+https://api.opencagedata.com/geocode/v1/google-v3-json?address=1452%20North%20Artesian,%20Chicago,%20IL&key=c5a8c626ef0cf7b9c5c5959c4d689391
+
+
+var opencagedata = {
+    limit: 2500, //day
+    url: "https://api.opencagedata.com/geocode/v1/google-v3-json?address={{ADDRESS}}&key={{TOKEN}}",
+    token: "c5a8c626ef0cf7b9c5c5959c4d689391",
+    requesturl: function(url, address, token) {
+        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    },
+    response: function(item, body) {
+        if (body.results != undefined && body.results[0] != undefined && body.results[0].geometry != undefined && body.results[0].geometry.location != undefined) {
+            var loc = body.results[0].geometry.location;
+            var addr = changeCase.upper(body.results[0].formatted_address);
+            var cmpnts = body.results[0].address_components;
+            var shortaddr = cmpnts[0]["short_name"] + " " + changeCase.upper(cmpnts[1]["short_name"]) + "," + cmpnts[2]["short_name"];
+            console.log(item.row + "," + item.Id + ", " + shortaddr + "," + loc.lat + "," + loc.lng);
+        }
+    }
+};
 
 var aegisprof = {
     url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text={{ADDRESS}}&forStorage=true&token={{TOKEN}}&f=pjson",
@@ -85,7 +105,7 @@ var decarta = {
     }
 };
 
-var geocodeer = google;
+var geocodeer = opencagedata;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
@@ -108,7 +128,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
                         gzip: true
                     }, function(err, res, body) {
                         if (!geocodeer.response(item, body))
-                            var str = item.row + "," + item.Id + ", " + item.address;
+                            var str = item.row + "," + item.Id + ", " + item.address + "\r\n";
                             fs.appendFile('./leftover.csv', str, function(err) {
                                 if (err) {
                                     console.error("Could not write file: %s", err);
@@ -124,7 +144,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 8312;
+    var start = 12162;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,
