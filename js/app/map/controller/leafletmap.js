@@ -75,6 +75,8 @@
                     }
 
                     $scope.$on("leafletDirectiveMap.moveend", function(event, args) {
+
+                        $scope.setDirty(); 
                             $scope.mapboundary = leafletData.getMap("taxidrivermap").then(function(map) {
                                     return map.getBounds();
                                 });
