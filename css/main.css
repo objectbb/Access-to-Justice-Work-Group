@@ -338,3 +338,7 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
 .filterinputwidth{
     width: 70px  
   }
+
+.filtercalinputwith{
+    width: 110px  
+  }  
