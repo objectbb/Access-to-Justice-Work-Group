@@ -347,21 +347,24 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
 .textshadow {
   text-shadow: 0 1px 0 #fff; }
 
-label input {
+.filtercontrols label input {
   display: none; }
 
-label span {
+.filtercontrols label span {
   height: 10px;
   width: 10px;
   border: 1px solid grey;
   display: inline-block;
   position: relative; }
 
-[type=checkbox]:checked + span:before {
+.filtercontrols [type=checkbox]:checked + span:before {
   content: "✔";
   position: absolute;
   top: -11px;
   left: 0;
   font-size: 20px; }
+
+button, input, select, textarea {
+  border-radius: 4px; }
 
 /*# sourceMappingURL=main.css.map */
