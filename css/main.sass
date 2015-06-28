@@ -148,11 +148,14 @@ code
 h4
     @extend .font-normal-400
 
+.boxshadow
+    box-shadow: (-1px) -1px 3px #888888
+
 .dataTables_wrapper
     font-size: $standard_table_font_size
     border: 1px gray
     padding: 2px
-    box-shadow: (-1px) -1px 3px #888888
+    @extend .boxshadow
 
 .map
     width: 400px
@@ -397,4 +400,11 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak
 .filterinputwidth
     width: 70px
     
+.filtercontrols
+    border: 1px solid
+    padding: 3px
+    border-radius: 3px
+
+.textshadow
+    text-shadow: 0 1px 0 #fff
 

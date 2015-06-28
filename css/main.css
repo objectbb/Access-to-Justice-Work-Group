@@ -113,11 +113,13 @@ code {
 .padding {
   padding: 20px; }
 
+.boxshadow, .dataTables_wrapper {
+  box-shadow: -1px -1px 3px #888888; }
+
 .dataTables_wrapper {
   font-size: 0.55em;
   border: 1px gray;
-  padding: 2px;
-  box-shadow: -1px -1px 3px #888888; }
+  padding: 2px; }
 
 .map {
   width: 400px;
@@ -331,14 +333,18 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
   background-color: black;
   text-align: center; }
 
-.multiSelect .buttonLabel{
-    display: inline-block
-  }
+.multiSelect .buttonLabel {
+  display: inline-block; }
 
-.filterinputwidth{
-    width: 70px  
-  }
+.filterinputwidth {
+  width: 70px; }
 
-.filtercalinputwith{
-    width: 110px  
-  }  
+.filtercontrols {
+  border: 1px solid;
+  padding: 3px;
+  border-radius: 3px; }
+
+.textshadow {
+  text-shadow: 0 1px 0 #fff; }
+
+/*# sourceMappingURL=main.css.map */
