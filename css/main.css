@@ -50,13 +50,17 @@ fieldset {
 
 a {
   text-decoration: none;
-  font-size: 0.85em; }
+  font-size: 0.85em;
+  color: white; }
+
+a:link {
+  color: white; }
 
 a:hover {
   color: #0e792b; }
 
 a:visited {
-  color: #125695; }
+  color: #0e792b; }
 
 .panel-body {
   font-size: 1.7em; }
@@ -310,11 +314,11 @@ headertitle {
 
 .icondollarbg:before {
   font-family: "Glyphicons Halflings";
-  content: "\e148"; }
+  content: "ň"; }
 
 .iconstopbg:before {
   font-family: "Glyphicons Halflings";
-  content: "\e101"; }
+  content: "ā"; }
 
 .btn {
   padding: 1px; }
