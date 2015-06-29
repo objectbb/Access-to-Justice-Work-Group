@@ -61,7 +61,7 @@
                         };
                     });
 
- 
+
                     $('#' + tableid + "tablecontainer").addClass("fadeIn animated animate_control");
                     dataTables[tableid] = $('#' + tableid + "rstable").dataTable({
                         destroy: true,
