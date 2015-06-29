@@ -105,7 +105,7 @@ var decarta = {
     }
 };
 
-var geocodeer = google;
+var geocodeer = opencagedata;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
@@ -144,7 +144,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 14267;
+    var start = 15886;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,
