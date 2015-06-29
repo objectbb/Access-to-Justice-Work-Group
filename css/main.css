@@ -18,22 +18,22 @@
   background-color: #0e792b; }
 
 .background-white {
-  background-color: #fff; }
+  background-color: #ffd; }
 
 .background-blue {
   background-color: #125695; }
 
 .font-white {
-  color: #fff !important; }
+  color: #ffd !important; }
 
 .font-blue {
-  color: #125695 !important; }
+  color: #ded !important; }
 
 .font-green, .theintitle {
   color: #0e792b !important; }
 
 body {
-  background-color: #fff;
+  background-color: #ffd;
   font-size: 1.2em;
   font-family: Oswald, Open Sans; }
 
@@ -51,10 +51,10 @@ fieldset {
 a {
   text-decoration: none;
   font-size: 0.85em;
-  color: white; }
+  color: #ded; }
 
 a:link {
-  color: white; }
+  color: #ded; }
 
 a:hover {
   color: #0e792b; }
@@ -70,7 +70,7 @@ a:visited {
 
 .accordion-heading-adv {
   background-color: #000;
-  color: #fff; }
+  color: #ffd; }
 
 .columnborder {
   border: 1px solid #808080;
@@ -130,10 +130,10 @@ code {
   height: 300px; }
 
 .std_transition, .fadeblockui, .animate-repeat.ng-move, .animate-repeat.ng-enter, .animate-repeat.ng-leave {
-  transition: 1s linear all;
-  -webkit-transition: 1s linear all;
-  -moz-transition: 1s linear all;
-  -o-transition: 1s linear all; }
+  transition: 0.3s linear all;
+  -webkit-transition: 0.3s linear all;
+  -moz-transition: 0.3s linear all;
+  -o-transition: 0.3s linear all; }
 
 .blockui, .fadeblockui, .filterstate {
   display: block;
@@ -302,7 +302,7 @@ headertitle {
   height: 25px;
   width: 100%;
   font-size: 15px;
-  color: white; }
+  color: #ffd; }
 
 .statsicon {
   position: absolute;
@@ -314,11 +314,11 @@ headertitle {
 
 .icondollarbg:before {
   font-family: "Glyphicons Halflings";
-  content: "ň"; }
+  content: "\e148"; }
 
 .iconstopbg:before {
   font-family: "Glyphicons Halflings";
-  content: "ā"; }
+  content: "\e101"; }
 
 .btn {
   padding: 1px; }
@@ -332,7 +332,7 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak {
   height: 15px;
   font-size: 12px;
   font-weight: bold;
-  color: white;
+  color: #ffd;
   position: absolute;
   background-color: black;
   text-align: center; }

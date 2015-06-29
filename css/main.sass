@@ -1,6 +1,6 @@
 //colors
 $color_fun_green_approx: #0e792b
-$white: #fff
+$white: #ffd
 $color_venice_blue_approx: #125695
 $black: #000
 $gray: #808080
@@ -13,6 +13,8 @@ $color_log_cabin_approx: #202020
 $color_sisal_approx: #d7ceb2
 $color_charade_approx: #2c2e38
 $color_comet_approx: #5c5f72
+$color_filter_standard: #ded
+
 $standard_table_font_size: 0.55em
 $standard_font_size: 0.85em
 $standard_header_font_size: 1.2em
@@ -25,8 +27,8 @@ $glyphicon_stop: '\101'
 //fonts
 $font_0: Oswald, Open Sans
 
-$fadein_time: 1s
-$fadeout_time: 0.5s
+$fadein_time: .3s
+$fadeout_time: 0.3s
 
 .font-light-300
     font-family: $font_0
@@ -56,7 +58,7 @@ $fadeout_time: 0.5s
     color: $white !important
 
 .font-blue
-    color: $color_venice_blue_approx !important
+    color: $color_filter_standard !important
 
 .font-green
     color: $color_fun_green_approx !important
@@ -81,10 +83,10 @@ fieldset
 a
     text-decoration: none
     font-size: $standard_font_size
-    color: white
+    color: $color_filter_standard
 
 a:link
-    color: white    
+    color: $color_filter_standard   
 
 a:hover
     color: $color_fun_green_approx
@@ -359,7 +361,7 @@ headertitle
     height: 25px
     width: 100%
     font-size: 15px
-    color: white
+    color: $white
 
 
 .statsicon
@@ -393,7 +395,7 @@ ng:cloak ng-cloak data-ng-cloak x-ng-cloak .ng-cloak .x-ng-cloak
     height: 15px
     font-size: 12px
     font-weight: bold
-    color: white
+    color: $white
     position: absolute
     background-color: black
     text-align: center
