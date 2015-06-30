@@ -54,7 +54,7 @@
     user-select: none; 
     white-space:normal;
     background-color: #666;
-    background-image: linear-gradient(#666, #030303);      
+    background-image: linear-gradient(#666, #ABB7B7);      
 }
 
 /* button: hover */
@@ -95,7 +95,7 @@
 /* the main checkboxes and helper layer */
 .multiSelect .checkboxLayer {
     color: white;
-    background-color: #222;
+    background-color: #95A5A6;
     position: absolute;
     z-index: 999;
     border: 1px solid rgba(0, 0, 0, 0.15);
