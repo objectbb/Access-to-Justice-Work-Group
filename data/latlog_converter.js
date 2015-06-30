@@ -144,7 +144,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 18113;
+    var start = 18705;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,
