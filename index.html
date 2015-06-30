@@ -23,7 +23,6 @@
             </div>
             <section class="midsection">
                 <form name="mappingform" ng-controller="MapController">
-
                     <div class="container-fluid">
                         <div class="row">
                             <div id="filterstats">
@@ -57,29 +56,28 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                            <br>
+                                <br>
                                 <div class="filtercontrols boxshadow background-blue">
                                     <button ng-disabled="! mappingform.$dirty" class="background-green" ng-click="onchangeRedrawmap()"><span class="glyphicon glyphicon-map-marker"></span>
                                     &nbsp;<strong ng-class="{'animated infinite flash font-white': mappingform.$dirty}" ng-show="mappingform.$dirty">Ready...CLICK!</strong>
                                     <strong class="font-white" ng-show="!mappingform.$dirty">Update Form...</strong>
                                     </button>
                                     <div class="filtercb">
-                                   
+
                                         <label class="font-blue">
-                                           <input type="checkbox" ng-model="iscurrviewstats">
+                                            <input type="checkbox" ng-model="iscurrviewstats">
                                             <span> </span>
                                             Calc. viewable area-ONLY
                                         </label>
                                     </div>
-
                                     <div id="14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNVmap">
                                         <span>
                                         <h3><a href='javascript:void(0)' ng-click="mapViolations()">
                                         <span class="glyphicon glyphicon-warning-sign" ng-show="table == '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'"></span>
                                         Violations</a></h3>
                                         <!--
-                                                                                <a href='javascript:void(0)' ng-click="mapMedallions()">{Cab&nbsp;Companies} <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span></a></h3>
-                                                                                </span>
+                                                                                                                        <a href='javascript:void(0)' ng-click="mapMedallions()">{Cab&nbsp;Companies} <span class="glyphicon glyphicons-taxi" ng-show="table == '1ONuiVrSyTeh6DBUOyvYUfWSi5s9sAgmVYsc8MF9i'"></span></a></h3>
+                                                                                                                        </span>
                                         -->
                                         <div ng-class="{fadeblockui: table != '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV'}">
                                             <input type="date" ng-model="fromdate" max="{{todate |  date:'yyyy-MM-dd' }}" required><input type="date" ng-model="todate" min="{{fromdate |  date:'yyyy-MM-dd' }}" required>
@@ -91,26 +89,25 @@
                                                 <option value="Paid" ng-selected="status === 'Paid'">Paid</option>
                                             </select>
                                             <br><br>
-
                                             <div range-slider on-handle-down="mappingform.$setDirty(true)" step="25" min="0" max="250" model-min="minAmount" model-max="maxAmount" class="font-blue" attach-handle-values="true" prevent-equal-min-max="true" show-values="true" filter="currency:'$'"></div>
-                                            <isteven-multi-select
-                                            on-item-click="setDirty()"
-                                            on-reset="setDirty()"
-                                            on-clear="setDirty()"
-                                            on-select-none="setDirty()"
-                                            on-select-all="setDirty()"
-                                            input-model="allviolations"
-                                            output-model="violations"
-                                            button-label="icon name"
-                                            helper-elements="reset none filter"
-                                            item-label="icon name maker"
-                                            orientation="horizontal"
-                                            tick-property="ticked",
-                                            max-height="250px",
-                                            min-search-length="3"
-                                            >
-                                            </isteven-multi-select>
-
+                                            <br><br>
+                                                <isteven-multi-select
+                                                on-item-click="setDirty()"
+                                                on-reset="setDirty()"
+                                                on-clear="setDirty()"
+                                                on-select-none="setDirty()"
+                                                on-select-all="setDirty()"
+                                                input-model="allviolations"
+                                                output-model="violations"
+                                                button-label="icon name"
+                                                helper-elements="reset none filter"
+                                                item-label="icon name maker"
+                                                orientation="horizontal"
+                                                tick-property="ticked",
+                                                max-height="250px",
+                                                min-search-length="3"
+                                                >
+                                                </isteven-multi-select>
                                         </div>
                                     </div>
                                 </div>
@@ -173,15 +170,14 @@
                         <script src="http://tombatossals.github.io/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
                         <!-- Hotjar Tracking Code for development.taxidriver.divshot.io -->
                         <script>
-                            (function(h,o,t,j,a,r){
-                                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                                h._hjSettings={hjid:47786,hjsv:5};
-                                a=o.getElementsByTagName('head')[0];
-                                r=o.createElement('script');r.async=1;
-                                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                                a.appendChild(r);
-                            })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+                                                    (function(h,o,t,j,a,r){
+                                                        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                                                        h._hjSettings={hjid:47786,hjsv:5};
+                                                        a=o.getElementsByTagName('head')[0];
+                                                        r=o.createElement('script');r.async=1;
+                                                        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                                                        a.appendChild(r);
+                                                    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
                         </script>
-
                     </body>
                 </html>

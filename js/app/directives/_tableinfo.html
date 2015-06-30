@@ -15,17 +15,17 @@
     </div>
 </div>
 </accordion-heading>
-<span>
-Group by:
-<isteven-multi-select
-input-model="columns"
-output-model="sqlcols.sqlcols"
-button-label="icon name"
-item-label="icon name maker"
-orientation="horizontal"
-tick-property="ticked">
-</isteven-multi-select>
-</span>
+
+    Group by:
+    <isteven-multi-select
+    input-model="columns"
+    output-model="sqlcols.sqlcols"
+    button-label="icon name"
+    item-label="icon name maker"
+    orientation="horizontal"
+    tick-property="ticked">
+    </isteven-multi-select>
+
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span>
 <button ng-click="send(collection,sqlcols.sqlcols)"> Run query </button>

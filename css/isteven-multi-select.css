@@ -46,7 +46,7 @@
     min-height : 38px;
     border-radius: 3px;
     color: #ffd;
-    width: 100%;   
+    max-width: 175px;   
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
