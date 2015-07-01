@@ -6,8 +6,8 @@
                     $scope.status = "All";
                     $scope.minAmount = 0;
                     $scope.maxAmount = 250;
-                    $scope.fromdate = new Date(2013,10,1);
-                    $scope.todate = new Date(2013,12,31);
+                    $scope.fromdate = new Date(2013,3,1);
+                    $scope.todate = new Date(2013,8,31);
                     $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
                     $scope.filteredMaxFine = 250;
                     $scope.filteredMinFine = 0;
@@ -27,7 +27,6 @@
 
                         return points.map(function(ap) {
 
-                            if(ap.loc)
                             return {
                                 data: ap,
                                 layer: 'realworld',
@@ -88,8 +87,8 @@
                             if (!$scope.mapboundary) return true;
 
                             var currboundary = $scope.mapboundary.$$state.value;
-                            return currboundary._northEast.lat >= coord.lat && currboundary._northEast.lng >= coord.lng &&
-                                currboundary._southWest.lat <= coord.lat && currboundary._southWest.lng <= coord.lng
+                            return currboundary._northEast.lat >= coord.loc[1] && currboundary._northEast.lng >= coord.loc[0] &&
+                                currboundary._southWest.lat <= coord.loc[1] && currboundary._southWest.lng <= coord.loc[0]
                         }
                         var filtermarkers = function(rawdata) {
                             var minfine = 250;
@@ -101,7 +100,7 @@
                             changefiltertext("filterstats", "Filtering...");
                             var rs = _.filter(rawdata, function(item) {
                                 var dataprop = item;
-                                var is = (moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && 
+                                var is = (dataprop.loc != null && moment(dataprop.Date).isBetween($scope.fromdate, $scope.todate) && dataprop.Amount >= $scope.minAmount && 
                                     dataprop.Amount <= $scope.maxAmount && (_.find($scope.violations, {
                                     'name': dataprop.Description
                                 }) || $scope.violations.length == 0) && (dataprop.Status == $scope.status || $scope.status == 'All'));
