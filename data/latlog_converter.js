@@ -4,12 +4,6 @@ var changeCase = require('change-case');
 var fs = require('fs');
 var temporal = require("temporal");
 var addrarray = [];
-//mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c latlog -u taxidriver -p taxidriver --file latlog.csv
-//var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/violations?&l=1000000&apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
-//mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c latlog -u taxidriver -p taxidriver --file latlog.csv --type csv --headerline
-
-https://api.opencagedata.com/geocode/v1/google-v3-json?address=1452%20North%20Artesian,%20Chicago,%20IL&key=c5a8c626ef0cf7b9c5c5959c4d689391
-
 
 var opencagedata = {
     limit: 2500, //day
@@ -105,7 +99,7 @@ var decarta = {
     }
 };
 
-var geocodeer = decarta;
+var geocodeer = google;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
@@ -144,7 +138,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 18705;
+    var start = 22582;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,

@@ -27,11 +27,12 @@
 
                         return points.map(function(ap) {
 
+                            if(ap.loc)
                             return {
                                 data: ap,
                                 layer: 'realworld',
-                                lat: ap.lat,
-                                lng: ap.lng,
+                                lat: ap.loc[1],
+                                lng: ap.loc[0],
                                 message: _.values(ap).join("<br>"),
                                 icon: {
                                     type: 'div',
