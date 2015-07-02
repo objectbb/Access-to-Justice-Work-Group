@@ -99,7 +99,7 @@ var decarta = {
     }
 };
 
-var geocodeer = bing;
+var geocodeer = google;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
@@ -138,7 +138,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
         },
         1);
 
-    var start = 23885;
+    var start = 26385;
     for (var i = start; i < geocodeer.limit + start; i++) {
         q.push({
             row: i,
