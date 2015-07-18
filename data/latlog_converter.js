@@ -23,16 +23,18 @@ var opencagedata = {
     }
 };
 
-var aegisprof = {
-    url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text={{ADDRESS}}&forStorage=true&token={{TOKEN}}&f=pjson",
-    token: "EaHlhKf3lWoWjEBLlibsDJX2-BAUkrh_vZreMc3e2d82gf2gD71xThBYnL0vulTLEiqWPG-DfQqvjjDyjA-h66jeN7XhHHVxfP5LNhSCSqOM7b2j8lxXIRpzYDDX3FFfmRtcq8rY3D9TcTcZnG0LGg..",
+var geocodio = {
+    limit: 2500, //day
+    url: "https://api.geocod.io/v1/geocode?q={{ADDRESS}}&api_key={{TOKEN}}",
+    token: "87bbb9b55565f538b9b5b859b2525b52f5f00c5",
     requesturl: function(url, address, token) {
         return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
     },
     response: function(item, body) {
-        if (body != null && body.locations != null) {
-            var loc = body.locations[0];
-            console.log(item.row + "," + item.Id + ", " + loc.name + "," + loc.feature.geometry.x + "," + loc.feature.geometry.y);
+        if (body.results != undefined && body.results[1] != undefined) {
+            var loc = body.results[1].location;
+            var addr = changeCase.upper(body.results[0].formatted_address);
+            console.log(item.row + "," + item.Id + ", " + addr + "," + loc.lat + "," + loc.lng);
         }
     }
 };
@@ -99,12 +101,11 @@ var decarta = {
     }
 };
 
-var geocodeer = google;
+var geocodeer = decarta;
 var srcfile = "C:\\Users\\objectbb\\taxidriver\\data\\violations.json";
 fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
     var q = async.queue(function(item, done) {
-
 
             var gourl = geocodeer.requesturl(geocodeer.url, item.address, geocodeer.token);
 
@@ -137,13 +138,13 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
             });
         },
         1);
-
-    var start = 26385;
+    var start = 32519;
     for (var i = start; i < geocodeer.limit + start; i++) {
-        q.push({
-            row: i,
-            Id: body[i]._id.$oid,
-            address: body[i].Address + ",Chicago,IL"
-        });
+        if(body[i])
+            q.push({
+                row: i,
+                Id: body[i]._id.$oid,
+                address: body[i].Address + ",Chicago,IL"
+            });
     }
 });
