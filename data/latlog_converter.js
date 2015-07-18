@@ -138,7 +138,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
             });
         },
         1);
-    var start = 32519;
+    var start = 34509;
     for (var i = start; i < geocodeer.limit + start; i++) {
         if(body[i])
             q.push({

@@ -2,20 +2,10 @@
 //var url = "https://api.mongolab.com/api/1/databases/taxidriver/collections/violations?&l=1000000&apiKey=mPLH9KwucKxZZSYDjpAqE1zlZicfCpxL";
 //mongoimport -h ds041992.mongolab.com:41992 -d taxidriver -c latlog -u taxidriver -p taxidriver --file latlog.csv --type csv --headerline
 
-db.violations.find().forEach(function(vio) {var latlog=db.latlog.find( {id: vio._id});if (latlog !=null) {vio.lng=latlog.lng;vio.lat=latlog.lat;db.violations.save(vio);}});
-
-
-db.violations.find().forEach(function(vio) {db.latlog.find( {state: vio._id}).forEach(function(ll) {print(ll.state + " ok " + vio._id); });});
+db.violations.find().forEach(function(vio) {var latlog=db.latlog.find( {id: vio._id});if (latlog !=null) {vio.lng=latlog.lng;vio.lat=latlog.lat;db.violations.save(vio);}}
 
 db.latlogmed.find().forEach(function(ll){db.medallions.update({_id : ObjectId(ll.state)},{$set: {lat: ll.lat, lng: ll.lng}});});
 
-db.latlog.find().forEach(function(ll){db.violations.update({_id : ObjectId(ll.state)},{$set: {loc:[parseFloat(ll.lng),parseFloat(ll.lat)]}});});
+db.latlog.find().forEach(function(ll){db.violations.update({_id : ObjectId(ll.vio_id)},{$set: {loc:[parseFloat(ll.log),parseFloat(ll.lat)]}});});
 
 db.latlog.find().forEach(function(ll){ delete ll.success;});
-
-
-db.violations.update({ "_id" : { "$oid" : "5579dc9c0db630d7038652df"} ,{$set: {lat: "41.85", lng: "-87.65"}},{upsert:true});
-
-
-db.violations.find(location : {$near: [-87.667512, 41.794266], $maxDistance: 0.10}})
-db.violations.find( { loc : { $near : [ -87.667512, 41.794266 ], $maxDistance: 1.00 } }

@@ -7,7 +7,7 @@
                     $scope.minAmount = 0;
                     $scope.maxAmount = 250;
                     $scope.fromdate = new Date(2013,3,1);
-                    $scope.todate = new Date(2013,4,30);
+                    $scope.todate = new Date(2013,3,30);
                     $scope.table = '14EXK6TvoG0XUY9PJzxUPfLTl5FjlsSEeidkA8mNV';
                     $scope.filteredMaxFine = 250;
                     $scope.filteredMinFine = 0;
