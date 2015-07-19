@@ -43,6 +43,19 @@ module.exports = function(grunt) {
 				node: true
 			}
 		},
+		jslint: {
+			 client: {
+		        src: [
+		          './js/app/*/*.js'
+		        ],
+		        directives: {
+		          browser: true,
+		          predef: [
+		            'jQuery'
+		          ]
+		        }
+		      }
+		},
 		concat: {
 			lib: {
 				src: ['./js/libs/jquery-2.1.4.min.js', './js/libs/jquery.highlight.js', './js/libs/angular.min.js', './js/libs/angular-animate.min.js', './js/libs/ui-bootstrap-tpls-0.13.0.min.js', './js/libs/bootstrap-select.min.js', './js/libs/bootstrap.min.js', './js/libs/angular.rangeSlider.js', './js/libs/angular.rangeSlider.js', './js/libs/lodash.min.js', './js/libs/moment.js', './js/libs/leaflet.js', './js/libs/angular-leaflet-directive.min.js', './js/libs/jquery.dataTables.min.js', './js/libs/isteven-multi-select.js'],
@@ -75,10 +88,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-jslint');	
 
 	// "npm test" runs these tasks
 	grunt.registerTask('prod', ['concat', 'uglify', 'cssmin']);
 	grunt.registerTask('dev', ['concat']);
 	grunt.registerTask('hint', ['jshint']);
+	grunt.registerTask('lint', ['jslint']);
 
 };

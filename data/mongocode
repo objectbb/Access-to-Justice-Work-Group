@@ -8,4 +8,6 @@ db.latlogmed.find().forEach(function(ll){db.medallions.update({_id : ObjectId(ll
 
 db.latlog.find().forEach(function(ll){db.violations.update({_id : ObjectId(ll.vio_id)},{$set: {loc:[parseFloat(ll.log),parseFloat(ll.lat)]}});});
 
-db.latlog.find().forEach(function(ll){ delete ll.success;});
+db.violations.find().forEach(function(ll){ delete ll.log;delete ll.lat;});
+
+ db.violations.update({"log" :{$exists: true}},{$unset:{"log":1}},false,true);

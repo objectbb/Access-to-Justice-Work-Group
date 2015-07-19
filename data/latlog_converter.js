@@ -9,8 +9,8 @@ var opencagedata = {
     limit: 2500, //day
     url: "https://api.opencagedata.com/geocode/v1/google-v3-json?address={{ADDRESS}}&key={{TOKEN}}",
     token: "c5a8c626ef0cf7b9c5c5959c4d689391",
-    requesturl: function(url, address, token) {
-        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    requesturl: function(address) {
+        return this.url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", this.token);
     },
     response: function(item, body) {
         if (body.results != undefined && body.results[0] != undefined && body.results[0].geometry != undefined && body.results[0].geometry.location != undefined) {
@@ -27,8 +27,8 @@ var geocodio = {
     limit: 2500, //day
     url: "https://api.geocod.io/v1/geocode?q={{ADDRESS}}&api_key={{TOKEN}}",
     token: "87bbb9b55565f538b9b5b859b2525b52f5f00c5",
-    requesturl: function(url, address, token) {
-        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    requesturl: function(address) {
+        return this.url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", this.token);
     },
     response: function(item, body) {
         if (body.results != undefined && body.results[1] != undefined) {
@@ -44,8 +44,8 @@ var google = {
     limit: 2500, //day
     url: "https://maps.googleapis.com/maps/api/geocode/json?address={{ADDRESS}}&key={{TOKEN}}",
     token: "AIzaSyBqK4f8zbMrK4K5cxWb8_10Zkbk7LHMrKE",
-    requesturl: function(url, address, token) {
-        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    requesturl: function(address) {
+        return this.url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", this.token);
     },
     response: function(item, body) {
         if (body.results != undefined && body.results[0] != undefined && body.results[0].geometry != undefined && body.results[0].geometry.location != undefined) {
@@ -63,8 +63,8 @@ var bing = {
     limit: 10000, //month
     url: "http://dev.virtualearth.net/REST/v1/Locations?q={{ADDRESS}}&key={{TOKEN}}",
     token: "AhNZRmjwaLBGX2UneEJzZbvxBnzRwND1tJvCrz6g3wn-NEn3qvHX7ioBldWZb5VO",
-    requesturl: function(url, address, token) {
-        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    requesturl: function(address) {
+        return this.url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", this.token);
     },
     response: function(item, body) {
         if (body.resourceSets != null && body.resourceSets[0].resources[0] != null &&
@@ -83,8 +83,8 @@ var decarta = {
     limit: 5000, //day
     url: "http://api.decarta.com/v1/{{TOKEN}}/geocode/{{ADDRESS}}.json",
     token: "6e1b0a90f877ec44a7fd2e422c9f3af8",
-    requesturl: function(url, address, token) {
-        return url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", token);
+    requesturl: function(address) {
+        return this.url.replace("{{ADDRESS}}", address).replace("{{TOKEN}}", this.token);
     },
     response: function(item, body) {
         if (body != null && body.results != null && body.results[0] != null &&
@@ -107,7 +107,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
     var body = JSON.parse(data);
     var q = async.queue(function(item, done) {
 
-            var gourl = geocodeer.requesturl(geocodeer.url, item.address, geocodeer.token);
+            var gourl = geocodeer.requesturl(item.address);
 
             request(gourl, function(err, res, body) {
                 if (err) {
@@ -138,7 +138,7 @@ fs.readFile(srcfile, 'utf8', function(err, data) {
             });
         },
         1);
-    var start = 34509;
+    var start = 0;
     for (var i = start; i < geocodeer.limit + start; i++) {
         if(body[i])
             q.push({
